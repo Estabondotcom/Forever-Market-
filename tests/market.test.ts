@@ -5,7 +5,7 @@ import {daysOfSupply,priceDeviation,marketRows,sortRows,marketWarnings,formatNum
 import {demoMarket} from '../src/lib/demo';
 import type {AuctionSnapshot,CatalogItem} from '../src/lib/types';
 const now=new Date('2026-11-17T12:00:00Z');
-const item:CatalogItem={id:1,name:'Fixture A',vendorCopper:null,metadataVerified:true,source:'fixture'};
+const item:CatalogItem={id:1,name:'Fixture A',metadataVerified:true,source:'fixture'};
 const snapshot:AuctionSnapshot={itemId:1,minBuyout:1000,median:1100,median7d:900,median30d:850,quantity:100,auctions:10,observedAt:now.toISOString(),sales:{estimatedPerDay:20,coveredHours:100,windowDays:7},source:'fixture',url:'fixture'};
 describe('currency',()=>{
   it('converts gold silver and copper',()=>{expect(fromCurrency(2,34,56)).toBe(23456);expect(currencyParts(23456)).toEqual({negative:false,gold:2,silver:34,copper:56});expect(money(23456)).toBe('2g 34s 56c');});
@@ -13,7 +13,7 @@ describe('currency',()=>{
 });
 describe('market catalogs',()=>{
   it('keeps category batches under the provider limit and validates catalog IDs',()=>{for(const category of categories){const items=catalogFor(category);expect(items.length).toBeGreaterThan(0);expect(items.length).toBeLessThanOrEqual(100);expect(new Set(items.map(i=>i.id)).size).toBe(items.length);expect(items.every(i=>i.id>0&&i.metadataVerified&&i.name.length>0)).toBe(true);}});
-  it('contains all four material categories with verified representative names',()=>{expect(catalogFor('cloth').find(i=>i.id===2589)?.name).toBe('Linen Cloth');expect(catalogFor('leather').find(i=>i.id===8170)?.name).toBe('Rugged Leather');expect(catalogFor('ore').find(i=>i.id===10620)?.name).toBe('Thorium Ore');expect(catalogFor('herbs').find(i=>i.id===13468)?.name).toBe('Black Lotus');});
+  it('contains all four material categories with verified representative names',()=>{expect(catalogFor('cloth').find(i=>i.id===2589)?.name).toBe('Linen Cloth');expect(catalogFor('skinning').find(i=>i.id===8170)?.name).toBe('Rugged Leather');expect(catalogFor('ore').find(i=>i.id===10620)?.name).toBe('Thorium Ore');expect(catalogFor('herbs').find(i=>i.id===13468)?.name).toBe('Black Lotus');});
   it('rejects alternative markets as categories',()=>{expect(isMarketCategory('retail')).toBe(false);expect(isMarketCategory('forever.normal.alliance.us')).toBe(false);expect(isMarketCategory('cloth')).toBe(true);});
   it('keeps demo explicit and scoped to the selected category',()=>{const demo=demoMarket(catalogFor('cloth'));expect(demo.demo).toBe(true);expect(demo.snapshots.map(s=>s.itemId)).toEqual(catalogFor('cloth').map(i=>i.id));});
 });

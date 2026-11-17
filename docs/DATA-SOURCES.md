@@ -1,8 +1,8 @@
-# Market data validation — 2026-11-17
+# Forever: Farmer’s Market — data validation — 2026-11-17
 
 ## Current scope
 
-A fixed-market AH dashboard for fish/catches, cloth, leather/hides, ore and herbs. No routes, harvest inputs, fishing mechanics or projected revenue calculations are part of the application. Only market observations and documented estimates are presented.
+A fixed-market AH dashboard for Cloth, Fish, Herbs, Ore and Skinning. No routes, harvest inputs, fishing mechanics or projected revenue calculations are part of the application. Only market observations and documented estimates are presented.
 
 ## AHledger integration
 
@@ -16,9 +16,9 @@ Actual read-only requests confirmed:
 - `/v1/tooltip/{market}?items=...`: market is an object with slash-separated `slug`; `items[]` contains per-item `minBuyout`, `median`, `quantity`, `observedAt`, `salesPerDay`. The observed payload does not include historical medians.
 - `/v1/pricetable/{market}`: plain-text `AHL1|market|unixTime|rowCount`, colon-separated rows. Fields 4 and 5 provide seven-day and thirty-day medians. The adapter combines this with tooltip observations. ETag and Cache-Control were observed.
 - `/v1/prices/{market}/{id}?range=7d`: `latest` includes prices, quantity, auctions, actual observation time and source; `sales` includes `estimatedPerDay`, `windowDays` and `coveredHours`; `series[]` contains `t`, `min`, `median` and optional `quantity`.
-- `/v1/items/{id}?game=forever`: curated catalog names, IDs and vendor facts were checked for all 128 records. Vendor facts are not used for calculations or displayed as profit estimates.
+- `/v1/items/{id}?game=forever`: curated catalog names, IDs and vendor facts were checked for all original catalog records; the reduced catalog contains 71 primary resources. Vendor facts are not used for calculations or displayed as profit estimates.
 
-All five category routes returned HTTP 200: fish/catches 76, cloth 6, leather/hides 10, ore 9, herbs 27. Category batches remain below the documented 100-item limit. The current price table cache is shared between categories.
+All five category routes returned HTTP 200: Cloth 6, Fish 25, Herbs 26, Ore 9, Skinning 5. Category batches remain below the documented 100-item limit. The current price table cache is shared between categories.
 
 The latest application-route smoke check verified real seven-day history for Stonescale Eel (13422), Linen Cloth (2589), Rugged Leather (8170), Thorium Ore (10620), and Black Lotus (13468), with 152–153 supplied points per item. Estimated daily sales were present in these responses. Actual 24h and 30d requests also succeeded earlier on the same date, before the announced access changes. Only supplied periods/points are shown; access errors remain explicit.
 
@@ -33,9 +33,9 @@ The demand display uses the provider’s **estimated units sold per day**, never
 - Missing daily estimate = unavailable, not zero.
 - Zero estimated daily sales with positive supply = infinite days of supply.
 - Sales sample window and coverage are displayed when the individual price response supplies them. Low or missing coverage is warned.
-- The optional green line is listed supply history, explicitly not a purchase-volume graph.
+- There is no historical purchase-volume graph: the provider supplies a current sales estimate, not purchased quantities per historical hour.
 
-Price graphs are genuine line charts using only normalized provider observations. Lowest buyout is neon cyan, market median neon magenta, and supply neon green. Tooltip values include actual timestamps and gold/silver/copper. Missing values are not filled or connected through nulls. Table percentage change is current buyout versus seven-day median, not recent momentum.
+The combined comparison graph plots current price (solid cyan line) and current average hourly demand (magenta dotted-pattern bars), with item names on the horizontal axis and separate price/units axes. A distinct price-history view plots only genuine provider observations over time for the selected price switches. Demand-only switches never synthesize historical prices or historical demand. Nulls are not filled. Hourly demand equals estimatedPerDay / 24 and is not a record of purchases in the last hour. Selections are scoped to the active tab.
 
 ## Retention and attribution
 
@@ -49,8 +49,12 @@ A still-valid cached answer may be reused during an outage, but an expired answe
 
 The original fish/catch catalog selection was researched using Classic source material, including CMaNGOS Classic DB (GPL v3); its original license and copyright notices are retained. Item identities and vendor facts were then checked against Forever metadata. There is no numerical catch, route or farming dataset in the current application. No AidVir source code or unlicensed dataset was copied.
 
-The 128-item catalog is curated and not exhaustive. It includes secondary catches under “Fish & catches,” and hides under leather. Additional Forever-specific goods need verified item identities before inclusion. Catalog facts should be rechecked after patches.
+The 71-item catalog is curated and not exhaustive. It excludes secondary catches, trophy fish, bloated fish, potions, crates/chests, hides, gems, stones, Swiftthistle and Wildvine. Mageroyal (785) and Raw Sagefish (21071) were newly checked against the Forever item endpoint and included. Truesilver Ore and Black Lotus remain as direct-node resources, despite rare availability. Additional Forever-specific goods need verified item identities before inclusion. Catalog facts should be rechecked after patches.
 
 ## Verification limits
 
 Automated checks cover currency, category isolation, demand math, sorting, fixed-market parser validation, graph normalization, missing data, provider auth errors, rate limiting and cache expiration. Live route checks passed for all categories and representative histories. Docker/CasaOS deployment and physical iPhone testing have not been performed here. The managed preview server cannot bind its local port, so current browser visual QA is also unverified.
+
+## GitHub Pages mockup
+
+`preview/entry.tsx` uses the actual Dashboard component with `demoOnly` enabled. The generated `mockup/` bundle has no live provider requests and no server credentials. A prominent synthetic-data banner cannot be switched off in the public preview. It supports all five tabs, independent per-metric switches, current comparison bars/lines, and multi-item sample price history. Real market data stays in the separately hosted Next.js app. The mockup is public under the existing GitHub Pages configuration, as requested; no live prices are archived in it.

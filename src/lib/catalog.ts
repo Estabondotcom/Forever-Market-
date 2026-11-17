@@ -1,9 +1,8 @@
-import fish from '../data/fish.json';
-import materials from '../data/materials.json';
-export const categories=['fishing','cloth','leather','ore','herbs'] as const;
+import resources from '../data/resources.json';
+import type {CatalogItem} from './types';
+export const categories=['cloth','fish','herbs','ore','skinning'] as const;
 export type MarketCategory=typeof categories[number];
-export type MaterialCategory=Exclude<MarketCategory,'fishing'>;
-export const categoryLabels:Record<MarketCategory,string>={fishing:'Fish & catches',cloth:'Cloth',leather:'Leather & hides',ore:'Ore',herbs:'Herbs'};
+export const categoryLabels:Record<MarketCategory,string>={cloth:'Cloth',fish:'Fish',herbs:'Herbs',ore:'Ore',skinning:'Skinning'};
 export function isMarketCategory(value:string):value is MarketCategory{return (categories as readonly string[]).includes(value);}
-export function catalogFor(category:MarketCategory){return category==='fishing'?fish:materials.filter(item=>item.category===category);}
-export const allItems=[...fish,...materials];
+export function catalogFor(category:MarketCategory):CatalogItem[]{return resources.filter(item=>item.category===category);}
+export const allItems:CatalogItem[]=resources;

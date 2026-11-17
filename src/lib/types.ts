@@ -1,5 +1,5 @@
 export const MARKET = 'forever.normal.horde.us' as const;
-export interface CatalogItem { id:number; name:string; vendorCopper:number|null; metadataVerified:boolean; source:string }
+export interface CatalogItem { id:number; name:string; metadataVerified:boolean; source:string }
 export interface SalesEstimate { estimatedPerDay:number|null; windowDays?:number|null; coveredHours?:number|null }
 export interface AuctionSnapshot {
   itemId:number; minBuyout:number|null; median:number|null; median7d:number|null; median30d:number|null;

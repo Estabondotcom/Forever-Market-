@@ -1,23 +1,28 @@
-# Forever Market
+# Forever: Farmer’s Market
 
 A personal, dark-mode auction dashboard for **WoW Forever · US / Americas · Normal PvE · Horde**, fixed to `forever.normal.horde.us`.
 
-Current AH prices, neon line graphs of price history, current supply, and estimated units sold per day. Goods are grouped into **fish/catches, cloth, leather/hides, ore and herbs**. Select an item in the table to update its chart and market details. No account, addon, running game client or database is required.
+Current AH prices and average estimated units sold per hour, with same-tab comparisons of primary **Cloth, Fish, Herbs, Ore and Skinning** resources. Toggle price and demand beside each item to add or remove it from the shared graph. No account, addon, running game client or database is required.
 
-## Market dashboard
+## Interactive mockup
 
-- Current lowest buyout and market median, displayed per item in gold, silver and copper.
-- Neon cyan lowest-buyout and magenta market-median **line graphs**. Exact timestamps and currency appear in chart tooltips.
-- Actual 24-hour, seven-day and 30-day observations when provided and authorized. No absent periods or price points are synthesized.
-- Optional neon green listed-supply line graph, explicitly labeled as supply rather than purchase history.
-- Estimated units sold per day, current units listed, days of supply, sales sample window and covered observation hours when supplied.
-- Search by item name or ID; sort by price, seven-day median, estimated sales volume, supply, days of supply or deviation from typical price.
-- Mobile layout, fixed night theme, remembered category, observation timestamps, manual refresh throttling, automatic cache-expiry refresh, and clear missing-data messages.
-- Explicitly labeled synthetic demo mode for development; it never replaces a failed live request.
+**[Open the interactive mockup](https://estabondotcom.github.io/Forever-Market-/mockup/)** · [Mockup files in this repository](mockup/)
 
-**Demand is inferred, not confirmed purchases.** AHledger estimates sales from auction observations. Cancellations and other listing changes may resemble purchases. The app never claims these are completed-sale records. The supply graph is not a sales graph, and no historical purchase amounts are invented. See the in-app information button and [data source record](docs/DATA-SOURCES.md).
+The mockup runs directly in GitHub Pages on desktop and mobile. It uses the **same React dashboard component** as the live app, with clearly labeled synthetic sample prices, demand and history. It makes no AH API requests and requires no server or API key. It is a design/interaction preview, not a live market feed.
 
-The catalog has 128 curated records: 76 fish and associated catches, 6 cloths, 10 leathers/hides, 9 ores and 27 herbs. Each category remains under the provider’s 100-item batch limit. Catalog metadata was checked against Forever on 2026-11-17; it is not an exhaustive catalog of every game item.
+## Tabs and comparison controls
+
+Tabs appear in this order: **Cloth, Fish, Herbs, Ore, Skinning**. The curated catalog has 71 directly farmed resources: 6 cloths, 25 fish, 26 herbs, 9 ores, and 5 leathers. Secondary catches, trophy/bloated fish, chests, potions, hides, gems, stones, Swiftthistle and Wildvine are excluded. Mageroyal and Raw Sagefish were verified and added. Rare standalone nodes/resources such as Black Lotus and Truesilver Ore remain as direct farming targets.
+
+Every item row shows its **current lowest AH buyout** and **average estimated units sold per hour**, with an independent toggle beside each metric. Toggle several items on or off at once; use Clear all to reset the graph. Selections reset when changing tabs, and items from different tabs cannot share a comparison.
+
+- **Market comparison:** items on the horizontal axis, solid cyan line for current AH price on the left axis, magenta dotted-pattern bars for estimated hourly demand on the right axis. Metrics retain their real units; they are never normalized onto one misleading scale. Missing values stay missing.
+- **Price history:** solid neon lines compare the actual lowest-buyout histories of all enabled price toggles. Choose 24h, 7d or authorized 30d observations. Demand-only toggles do not invent a corresponding historical price series.
+- Search/filter and sort the current section by resource name, AH price or hourly demand. The dark theme is permanent and the layout adapts for phones.
+
+**Hourly demand = AHledger estimated units sold per day ÷ 24.** This is a daily average rate, not purchases measured during the last hour and not confirmed completed trades. Cancellations can resemble purchases. Historical demand is not supplied, so no purchase-volume history is invented. See [data provenance](docs/DATA-SOURCES.md).
+
+All prices are per item in gold, silver and copper. Catalog identities were checked against Forever on 2026-11-17. The catalog is curated, not every game item.
 
 ## Windows launch — PowerShell
 
@@ -100,30 +105,34 @@ sudo docker compose down
 npm test
 npm run typecheck
 npm run build
+npm run build:mockup
 npm run verify:api
 node --conditions=react-server --import tsx scripts/smoke-routes.ts
 ```
 
-The deterministic unit tests cover currency, demand calculations, missing/zero sales, sorting, category isolation, response parsing, fixed-market enforcement, auth failures, rate limits, caching and expiry. Fixtures are synthetic. The live verification scripts make small read-only requests and save no provider responses. The route smoke check verifies all five categories and representative price histories.
+The deterministic unit tests cover currency, hourly demand, independent comparison switches, same-tab isolation, primary-resource filtering, multi-item historical alignment, missing/zero sales, parsing, auth failures, caching and expiry. Fixtures are synthetic. The live verification scripts make small read-only requests and save no provider responses. The route smoke check verifies all five categories and representative price histories.
 
-GitHub Actions automatically runs tests, type checking and a production build. GitHub stores the code; **GitHub Pages cannot run the server API routes**. Run on CasaOS, locally, or a Next.js-compatible host.
+GitHub Actions runs tests, type checking, production build, and regeneration of the committed mockup assets to catch preview drift. GitHub stores the code; **GitHub Pages cannot run the server API routes**. Run on CasaOS, locally, or a Next.js-compatible host.
 
-The managed development environment blocks the preview server from binding its port. Browser visual checks and physical iPhone testing remain unverified; TypeScript, build, unit tests and real API routes can still be checked.
+The managed development environment blocks the preview server from binding its port. The public GitHub Pages mockup can be used for browser checks; physical iPhone testing remains unverified. TypeScript, build, unit tests and real API routes are also checked.
 
 ## Freshness and terms
 
 AHledger responses remain only in server/browser memory for their allowed Cache-Control lifetime. Expired data is removed and refreshed. The server coalesces duplicate requests, supports ETags when a reusable answer is available, and honors Retry-After. Manual refresh is throttled. A still-permitted response may be reused during an outage, but expired responses cannot become an indefinite offline snapshot. Refresh timing therefore follows the provider’s cache lifetime, often 60 seconds for the price table.
 
-Latest actual auction observations are distinguished from fetch times. Missing sales or historical periods stay unavailable; estimated zero sales stays zero. Days of supply is units listed divided by estimated daily sales. If estimated sales is zero and stock exists, the ratio is infinite. Percentage comparisons are current buyout versus seven-day median, not a measured short-term trend.
+Latest actual auction observations are distinguished from fetch times. Missing sales or historical periods stay unavailable; estimated zero sales stays zero. Hourly demand divides the documented daily estimate by 24; missing estimates stay unavailable and zero stays zero. Demand bars compare current estimates by item, not historical purchase counts.
 
 ## Structure
 
 ```text
 src/app/             Page, fixed night theme, server API routes
-src/components/      Market dashboard and neon line charts
-src/data/            Curated item catalogs
+src/components/      Market dashboard and combined bar/line charts
+src/data/            Curated primary-resource catalog
 src/lib/             Market comparisons, currency, parsers, adapter, cache, demo
-scripts/             Real API and route verification
+src/hooks/           Bounded concurrent price-history fetching
+preview/             Entry point for the same-component mockup
+mockup/              Generated GitHub Pages preview (synthetic data)
+scripts/             API verification and mockup build
 tests/              Synthetic deterministic tests
 docs/               Source validation and provider limitations
 licenses/           Retained source attribution and copyright notices
@@ -134,3 +143,12 @@ compose.yaml
 ## Attribution and license
 
 Prices from [AHledger](https://ahledger.com), used under its [API terms](https://ahledger.com/developers). Personal noncommercial use requires attribution; monetization or data archival can require additional licensing. This source remains GPL v3; see `LICENSE`. Original CMaNGOS notices are retained for the catalog’s provenance. Blizzard names and item facts belong to their owners. No protected game artwork is used. Not affiliated with Blizzard or AHledger.
+
+## Rebuilding the GitHub preview
+
+```bash
+npm run build:mockup
+git add mockup
+```
+
+This bundles `preview/entry.tsx`, which renders `<Dashboard demoOnly />`, and copies the current dashboard CSS. Commit `mockup/index.html` and its generated assets together with source changes. GitHub Pages is configured for `main` at the repository root; the preview is served from `/Forever-Market-/mockup/`. GitHub Pages hosts the sample-data mockup, while the live Next.js application continues to run on your server.
