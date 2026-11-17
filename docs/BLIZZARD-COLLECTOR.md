@@ -1,6 +1,6 @@
 # Local Blizzard demand-trend collector
 
-This optional worker estimates commodity turnover for the 71 tracked resources. It reads **US**, `dynamic-forever-us`, ruleset **2**, auction house **114** only. It does not enable other regions, factions, houses or game versions. AHledger is the fallback before a usable local collector snapshot is available. Once available, the table and graph share locally recorded Blizzard prices and turnover metrics.
+This optional worker estimates commodity turnover for the 71 tracked resources. It reads **US**, `dynamic-forever-us`, ruleset **2**, auction house **114** only. It does not enable other regions, factions, houses or game versions. AHledger is the fallback before a usable local collector snapshot is available. Once available, current rows use saved Blizzard prices and turnover, while the graph combines AHledger price history with saved Blizzard demand intervals.
 
 ## What has been verified
 
@@ -59,7 +59,7 @@ For each listing ID present in the previous snapshot, it sums `max(0, previous q
 - A point belongs to the interval ending at its snapshot timestamp. It is an interval average, not an exact clock-hour transaction count. Daily aggregation is weighted by observed duration; uncovered hours are not filled. Tooltips show observed coverage.
 - The trend needs time to accumulate. Past days cannot be reconstructed from a current listing snapshot.
 
-The existing independent price/demand switches remain on the same 3-day hourly, 7-day daily and 30-day daily graph. Dotted demand history uses the collector's turnover proxy once enabled. **Item rows use the same latest saved commodity price and estimated turnover/hour as the local graph.** They do not label a turnover proxy as the provider's daily sales estimate. Before a usable collector snapshot exists, AHledger remains the explicitly identified fallback. With a saved collector snapshot, historical prices build from your recorded observations; the app stops shorter-lived AHledger market/history requests. Thirty-day local history needs no AHledger key, but includes only the observations actually collected.
+The existing independent price/demand switches remain on the same 3-day hourly, 7-day daily and 30-day daily graph. Dotted demand history uses the collector's turnover proxy once enabled. **Item rows use the latest saved commodity price and estimated turnover/hour.** The graph independently restores AHledger’s supplied older price history and overlays saved Blizzard demand intervals, retaining local prices as a fallback. They do not label a turnover proxy as the provider's daily sales estimate. Before a usable collector snapshot exists, AHledger remains the explicitly identified fallback. With a saved collector snapshot, the app stops fallback current-market requests, but keeps historical price requests so older prices remain available. Those historical answers renew near expiry within the provider’s own cache terms, without resetting the graph or local demand. Thirty-day local history needs no AHledger key, but includes only the observations actually collected.
 
 ## Cadence, caching and failures
 
@@ -105,6 +105,8 @@ The graph will warn when the last observation becomes stale. The dashboard's `/a
 
 ## Browser refresh behavior
 
-The page checks the local collector endpoint hourly rather than every minute. This does not change the independent hourly worker schedule. Manual refresh requests the latest saved file; it does not force a new Blizzard scan. Updates happen in the background without clearing the graph or switching to an empty/error view. A network error keeps still-permitted local data and displays an update warning. New tabs/ranges remain isolated; prior-tab content is never reused for another tab. The chart is memoized so the one-second manual-refresh countdown does not redraw it.
+The page checks the local collector endpoint hourly rather than every minute. Historical price-cache renewal is separate and may run more frequently; it is a quiet background request, not a page refresh or another Blizzard scan. This does not change the independent hourly worker schedule. Manual refresh requests the latest saved file; it does not force a new Blizzard scan. Updates happen in the background without clearing the graph or switching to an empty/error view. A network error keeps still-permitted local data and displays an update warning. New tabs/ranges remain isolated; prior-tab content is never reused for another tab. The chart is memoized so the one-second manual-refresh countdown does not redraw it.
 
 AHledger fallback refresh and expiration are isolated from local history. Each fallback history item cleans up/revalidates independently instead of resetting every selected item. Its allowed cache lifetime is respected; the fix does not extend AHledger retention. Locally saved samples have their own 30-day TTL, enforced in the browser even between hourly checks.
+
+The UI now shows the next scheduled collector check, distinct saved snapshot count when no demand is available, and the number/starting date of real measured demand intervals. `warming`/“First snapshot saved” means a baseline exists but a demand interval is not yet available. The optional collector history volume is not deleted or reset by the historical-price restoration update.

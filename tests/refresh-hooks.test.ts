@@ -66,9 +66,16 @@ describe('per-item history refresh regression',()=>{
   await act(async()=>{renderer=create(createElement(Probe));});expect(latest.histories).toEqual({});expect(latest.errors[1]).toContain('expired');
   await act(async()=>{await vi.advanceTimersByTimeAsync(5*60000);});expect(fetcher).toHaveBeenCalledTimes(1);
  });
- it('makes no AHledger history requests when local collector history is primary',async()=>{
+ it('makes no AHledger history requests when fetching is explicitly disabled',async()=>{
   const fetcher=vi.fn();vi.stubGlobal('fetch',fetcher);
   function Probe(){useHistories([1,2],'7d',false,false,0);return null;}
   await act(async()=>{renderer=create(createElement(Probe));});await act(async()=>{await vi.advanceTimersByTimeAsync(HOUR);});expect(fetcher).not.toHaveBeenCalled();
  });
+});
+
+it('renews provider history before expiry without clearing its existing line',async()=>{
+ const fetcher=vi.fn(async()=>Response.json({itemId:1,range:'7d',expiresAt:new Date(Date.now()+60000).toISOString(),latest:null,sales:null,series:[{timestamp:new Date(now-86400000).toISOString(),minBuyout:100,median:null,quantity:1}]}));vi.stubGlobal('fetch',fetcher);
+ let latest!:ReturnType<typeof useHistories>;const seen:boolean[]=[];function Probe(){latest=useHistories([1],'7d',true,false,0);seen.push(!!latest.histories[1]);return null;}
+ await act(async()=>{renderer=create(createElement(Probe));});seen.length=0;
+ await act(async()=>{await vi.advanceTimersByTimeAsync(65000);});expect(fetcher).toHaveBeenCalledTimes(2);expect(seen.every(Boolean)).toBe(true);expect(latest.errors).toEqual({});
 });

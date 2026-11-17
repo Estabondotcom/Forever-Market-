@@ -19,3 +19,9 @@ describe('hourly collector as the primary dashboard source',()=>{
  it('rejects unstarted, wrong-tab, future or expired sample rows',()=>{expect(collectedMarket([item],{...collector,enabled:false},now)).toBeNull();for(const samples of [[{...collector.samples[0],itemId:999}],[{...collector.samples[0],timestamp:new Date(now+3600000).toISOString()}],[{...collector.samples[0],timestamp:new Date(now-31*86400000).toISOString()}]])expect(collectedMarket([item],{...collector,samples},now)).toBeNull();});
  it('uses locally recorded prices consistently when requested, even with AHledger history available',()=>{const provider:HistoryData={itemId:2589,range:'7d',expiresAt:new Date(now+60000).toISOString(),latest:null,sales:null,series:[{timestamp:new Date(now).toISOString(),minBuyout:999,median:null,quantity:1}]};const histories=collectedHistories([item],{2589:provider},collector,'7d',now,true);expect(histories[2589].priceSource).toBe('blizzard-local');expect(histories[2589].series.some(p=>p.minBuyout===999)).toBe(false);});
 });
+
+import {demandCoverage} from '../src/lib/collector-comparison';
+describe('saved demand diagnostics',()=>{
+ it('distinguishes a baseline from measured demand history',()=>{const baseline={...collector,samples:[{...collector.samples[0],estimatedTurnoverPerHour:null,intervalHours:null}]};expect(demandCoverage([item],baseline,now)).toEqual({snapshots:1,intervals:0,firstInterval:null});});
+ it('counts measured zero as a real saved interval and does not count each fish as a separate snapshot',()=>{const zero={...collector,samples:[{...collector.samples[0],estimatedTurnoverPerHour:0},{...collector.samples[0],itemId:999,estimatedTurnoverPerHour:0}]};expect(demandCoverage([item],zero,now).intervals).toBe(1);});
+});

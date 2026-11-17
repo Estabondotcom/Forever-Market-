@@ -10,23 +10,27 @@ import Dashboard from '../src/components/Dashboard';
 const now=Date.parse('2026-11-17T22:00:00Z');let renderer:ReactTestRenderer|undefined;
 beforeEach(()=>{vi.useFakeTimers();vi.setSystemTime(now);chartRenders.length=0;vi.stubGlobal('window',{addEventListener:vi.fn(),removeEventListener:vi.fn()});const original=console.error;vi.spyOn(console,'error').mockImplementation((...args)=>{if(!String(args[0]).includes('react-test-renderer is deprecated'))original(...args);});});
 afterEach(async()=>{if(renderer)await act(async()=>renderer!.unmount());renderer=undefined;vi.useRealTimers();vi.unstubAllGlobals();vi.restoreAllMocks();});
-it('keeps the collector graph stable across minute cache expiry and clock ticks, then refreshes only hourly',async()=>{
+it('preserves provider price history and local demand while collector checks remain hourly',async()=>{
  const report={enabled:true,market:MARKET,houseId:114,status:'collecting',lastCheck:new Date(now).toISOString(),nextCheck:new Date(now+HOUR).toISOString(),lastObservation:new Date(now).toISOString(),stale:false,samples:[{itemId:2589,timestamp:new Date(now).toISOString(),minBuyout:100,quantity:20,estimatedTurnoverPerHour:10,intervalHours:1}]};
  const fetcher=vi.fn(async(url:string)=>{
   if(url.startsWith('/api/collector'))return Response.json(report);
   if(url.startsWith('/api/market'))return Response.json({market:MARKET,snapshots:[],expiresAt:new Date(now+60000).toISOString(),fetchedAt:new Date(now).toISOString(),stale:false});
-  const id=Number(new URL(url,'http://localhost').searchParams.get('itemId'));return Response.json({itemId:id,range:'7d',expiresAt:new Date(now+60000).toISOString(),series:[],latest:null,sales:null});
+  const id=Number(new URL(url,'http://localhost').searchParams.get('itemId'));return Response.json({itemId:id,range:'7d',expiresAt:new Date(Date.now()+60000).toISOString(),series:[{timestamp:new Date(now-2*86400000).toISOString(),minBuyout:50,median:null,quantity:100}],latest:null,sales:null});
  });vi.stubGlobal('fetch',fetcher);
  await act(async()=>{renderer=create(createElement(Dashboard));});
  const renders=chartRenders.length,initialCalls=fetcher.mock.calls.length;
- expect(chartRenders.at(-1)?.histories[2589].priceSource).toBe('blizzard-local');
- expect(chartRenders.at(-1)?.histories[2589].series[0].minBuyout).toBe(100);
- await act(async()=>{await vi.advanceTimersByTimeAsync(5*60000);});
+ expect(chartRenders.at(-1)?.histories[2589].priceSource).toBe('ahledger');
+ expect(chartRenders.at(-1)?.histories[2589].series.some(p=>p.minBuyout===50)).toBe(true);
+ expect(chartRenders.at(-1)?.histories[2589].series.some(p=>p.estimatedTurnoverPerHour===10)).toBe(true);
+ await act(async()=>{await vi.advanceTimersByTimeAsync(5000);});
  expect(chartRenders).toHaveLength(renders);expect(fetcher).toHaveBeenCalledTimes(initialCalls);
- expect(JSON.stringify(renderer!.toJSON())).toContain('Automatic updates: hourly');
+ expect(JSON.stringify(renderer!.toJSON())).toContain('Demand updates: hourly');
+ await act(async()=>{await vi.advanceTimersByTimeAsync(5*60000-5000);});
+ const settled=chartRenders.slice(renders);expect(settled.every(p=>p.histories[2589].series.some(s=>s.minBuyout===50)&&p.histories[2589].series.some(s=>s.estimatedTurnoverPerHour===10))).toBe(true);
  const before=fetcher.mock.calls.filter(([url])=>url.startsWith('/api/collector')).length;
  await act(async()=>{await vi.advanceTimersByTimeAsync(HOUR-5*60000);});
  expect(fetcher.mock.calls.filter(([url])=>url.startsWith('/api/collector'))).toHaveLength(before+1);
- expect(fetcher.mock.calls.filter(([url])=>!url.startsWith('/api/collector'))).toHaveLength(initialCalls-before);
- expect(chartRenders.at(-1)?.histories[2589].series[0].minBuyout).toBe(100);
+ expect(fetcher.mock.calls.filter(([url])=>url.startsWith('/api/market'))).toHaveLength(1);
+ expect(chartRenders.at(-1)?.histories[2589].series.some(p=>p.minBuyout===50)).toBe(true);
+ expect(chartRenders.at(-1)?.histories[2589].series.some(p=>p.estimatedTurnoverPerHour===10)).toBe(true);
 });
