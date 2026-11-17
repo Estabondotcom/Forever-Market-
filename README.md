@@ -16,7 +16,7 @@ The mockup runs directly in GitHub Pages on desktop and mobile. It uses the **sa
 
 Tabs appear in this order: **Cloth, Fish, Herbs, Ore, Skinning**. The curated catalog has 71 directly farmed resources: 6 cloths, 25 fish, 26 herbs, 9 ores, and 5 leathers. Secondary catches, trophy/bloated fish, chests, potions, hides, gems, stones, Swiftthistle and Wildvine are excluded. Mageroyal and Raw Sagefish were verified and added. Rare standalone nodes/resources such as Black Lotus and Truesilver Ore remain as direct farming targets.
 
-Every item row shows its **current lowest AH buyout** and **average estimated units sold per hour**, with an independent toggle beside each metric. Toggle several items on or off at once; use Clear all to reset the graph. Selections reset when changing tabs, and items from different tabs cannot share a comparison.
+Every item row shows its **latest observed lowest AH buyout** and **estimated hourly demand**. With collector observations available, rows and graph share the saved Blizzard commodity prices and turnover estimates; otherwise rows use AHledger’s rolling daily estimate / 24. Each row has an independent toggle beside each metric. Toggle several items on or off at once; use Clear all to reset the graph. Selections reset when changing tabs, and items from different tabs cannot share a comparison.
 
 - **One unified timeline:** history and comparison are the same graph. It starts with **7 daily points**, and can switch to **30 daily points** when provider access allows.
 - Each item has a consistent neon color. **Solid lines = daily price; dotted lines = estimated demand.** Independent switches control both metrics on that same timeline. No separate snapshot/history graph modes remain.
@@ -27,7 +27,7 @@ Every item row shows its **current lowest AH buyout** and **average estimated un
 
 **AHledger demand-history limitation:** AHledger supplies a current rolling sales estimate, not a historical daily sales series. Without the collector, past demand stays blank. Only the current estimate appears at today's endpoint, labeled as a rolling estimate—not purchases during that day. It is never copied backwards across the week/month. The public mockup includes explicitly synthetic daily demand history to demonstrate the intended combined chart.
 
-**Hourly demand = estimated units sold per day ÷ 24.** Listing cancellations can resemble purchases. A source providing dated historical sales estimates is needed for a full live demand-history line. This is not solved by an AHledger history key: that key adds price-history access, not a historical sales series. The adapter contract supports future historical demand points without changing the interface. See [data provenance](docs/DATA-SOURCES.md).
+**AHledger fallback hourly demand = estimated units sold per day ÷ 24.** Listing cancellations can resemble purchases. A source providing dated historical sales estimates is needed for a full live demand-history line. This is not solved by an AHledger history key: that key adds price-history access, not a historical sales series. The adapter contract supports future historical demand points without changing the interface. See [data provenance](docs/DATA-SOURCES.md).
 
 All prices are per item in gold, silver and copper. Catalog identities were checked against Forever on 2026-11-17. The catalog is curated, not every game item.
 
@@ -183,3 +183,8 @@ The unified graph also offers **3 days · hourly**: 72 UTC hour buckets, includi
 
 ### Blizzard credential verification
 Optional read-only discovery is available with `npm run verify:blizzard`. Store your free client credentials in the ignored `.env.local` file. Follow [the Windows setup and verification guide](docs/BLIZZARD-VERIFICATION.md). This does not enable a collector or claim a verified US Normal Horde house mapping.
+
+### Stable hourly updates
+With a saved Blizzard collector snapshot, the dashboard uses those independent observations as its primary table/graph source and checks for updates **once per hour**. Manual refresh preserves the existing graph; transient failures retain permitted local history with an update warning. The one-second manual-refresh countdown does not redraw the chart or make network requests. Collector data is still pruned at its 30-day retention boundary.
+
+AHledger cache expiration no longer triggers a shared dashboard refresh. Without a collector baseline, AHledger fallback responses still expire/revalidate according to their own shorter cache lifetime, independently per history item. They are never retained past that lifetime to simulate hourly freshness. Once saved Blizzard data is available, fallback market/history requests stop; past price history builds from your collected observations instead. Source labels identify this behavior.

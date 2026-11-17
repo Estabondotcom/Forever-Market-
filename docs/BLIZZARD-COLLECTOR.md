@@ -1,6 +1,6 @@
 # Local Blizzard demand-trend collector
 
-This optional worker estimates commodity turnover for the 71 tracked resources. It reads **US**, `dynamic-forever-us`, ruleset **2**, auction house **114** only. It does not enable other regions, factions, houses or game versions. The current AHledger adapter remains the main live price/rolling-demand source.
+This optional worker estimates commodity turnover for the 71 tracked resources. It reads **US**, `dynamic-forever-us`, ruleset **2**, auction house **114** only. It does not enable other regions, factions, houses or game versions. AHledger is the fallback before a usable local collector snapshot is available. Once available, the table and graph share locally recorded Blizzard prices and turnover metrics.
 
 ## What has been verified
 
@@ -59,7 +59,7 @@ For each listing ID present in the previous snapshot, it sums `max(0, previous q
 - A point belongs to the interval ending at its snapshot timestamp. It is an interval average, not an exact clock-hour transaction count. Daily aggregation is weighted by observed duration; uncovered hours are not filled. Tooltips show observed coverage.
 - The trend needs time to accumulate. Past days cannot be reconstructed from a current listing snapshot.
 
-The existing independent price/demand switches remain on the same 3-day hourly, 7-day daily and 30-day daily graph. Dotted demand history uses the collector's turnover proxy once enabled. **Item rows still show AHledger's rolling daily sales estimate / 24**, clearly identified as a separate measure. Where AHledger price history is unavailable, the graph can use your collected Blizzard prices and labels this fallback. Thirty-day local history needs no AHledger key, but includes only the observations actually collected.
+The existing independent price/demand switches remain on the same 3-day hourly, 7-day daily and 30-day daily graph. Dotted demand history uses the collector's turnover proxy once enabled. **Item rows use the same latest saved commodity price and estimated turnover/hour as the local graph.** They do not label a turnover proxy as the provider's daily sales estimate. Before a usable collector snapshot exists, AHledger remains the explicitly identified fallback. With a saved collector snapshot, historical prices build from your recorded observations; the app stops shorter-lived AHledger market/history requests. Thirty-day local history needs no AHledger key, but includes only the observations actually collected.
 
 ## Cadence, caching and failures
 
@@ -102,3 +102,9 @@ sudo docker compose -f compose.yaml -f compose.blizzard.yaml stop blizzard-colle
 The graph will warn when the last observation becomes stale. The dashboard's `/api/collector?category=cloth` endpoint contains only filtered public metrics and bounded status, not raw listing IDs or credentials. A missing file means not started. Invalid/corrupt or mismatched-market history is rejected instead of being plotted. A corrupt worker state stops rather than silently replacing existing history.
 
 `http-401`/`http-403`: check the local credentials/access. `http-429`: wait for the retained cooldown. `collection-error`: inspect connectivity and endpoint availability; no private provider error body is logged. Request timeouts are bounded; persistent failures preserve history and leave gaps.
+
+## Browser refresh behavior
+
+The page checks the local collector endpoint hourly rather than every minute. This does not change the independent hourly worker schedule. Manual refresh requests the latest saved file; it does not force a new Blizzard scan. Updates happen in the background without clearing the graph or switching to an empty/error view. A network error keeps still-permitted local data and displays an update warning. New tabs/ranges remain isolated; prior-tab content is never reused for another tab. The chart is memoized so the one-second manual-refresh countdown does not redraw it.
+
+AHledger fallback refresh and expiration are isolated from local history. Each fallback history item cleans up/revalidates independently instead of resetting every selected item. Its allowed cache lifetime is respected; the fix does not extend AHledger retention. Locally saved samples have their own 30-day TTL, enforced in the browser even between hourly checks.

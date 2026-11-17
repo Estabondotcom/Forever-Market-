@@ -1,14 +1,31 @@
 'use client';
 import {useEffect,useState} from 'react';
-import type {CollectorData} from '@/lib/types';
+import {MARKET,type CollectorData} from '../lib/types';
+import {HOUR,collectorDeadline,pruneCollector} from '../lib/refresh-policy';
 export function useCollector(category:string,demo:boolean,refresh:number){
- const [data,setData]=useState<CollectorData|null>(null);
+ const context=`${category}:${demo}`;
+ const [state,setState]=useState<{context:string;data:CollectorData|null;error:string}>({context,data:null,error:''});
  useEffect(()=>{
-  setData(null);if(demo)return;
-  const controller=new AbortController();let active=true;
-  async function load(){try{const r=await fetch(`/api/collector?category=${category}`,{cache:'no-store',signal:controller.signal});if(!r.ok)throw new Error();const body=await r.json();if(active)setData(body);}catch{if(active)setData(null);}}
-  void load();const timer=setInterval(()=>void load(),60000);
+  if(demo){setState({context,data:null,error:''});return;}
+  const controller=new AbortController();let active=true,busy=false;
+  async function load(){
+   if(busy)return;busy=true;
+   try{
+    const r=await fetch(`/api/collector?category=${category}`,{cache:'no-store',signal:controller.signal});if(!r.ok)throw new Error();
+    const body=await r.json();if(body.market!==MARKET||body.houseId!==114||!Array.isArray(body.samples))throw new Error();
+    if(active)setState({context,data:pruneCollector(body),error:''});
+   }catch{if(active)setState(old=>({context,data:old.context===context&&old.data?pruneCollector(old.data):null,error:'Collector update unavailable; retrying on the next hourly check. Saved observations remain visible.'}));}
+   finally{busy=false;}
+  }
+  void load();const timer=setInterval(()=>void load(),HOUR);
   return()=>{active=false;controller.abort();clearInterval(timer);};
- },[category,demo,refresh]);
- return data;
+ },[category,demo,refresh,context]);
+ const data=state.context===context?state.data:null;
+ useEffect(()=>{
+  if(!data)return;const deadline=collectorDeadline(data);if(!Number.isFinite(deadline))return;
+  let timer:ReturnType<typeof setTimeout>;
+  function schedule(){timer=setTimeout(()=>{if(Date.now()<deadline)schedule();else setState(old=>old.data?{...old,data:pruneCollector(old.data)}:old);},Math.min(2147483647,Math.max(1,deadline-Date.now())));}
+  schedule();return()=>clearTimeout(timer);
+ },[data]);
+ return {data,error:state.context===context?state.error:''};
 }

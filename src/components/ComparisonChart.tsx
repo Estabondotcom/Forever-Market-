@@ -1,14 +1,15 @@
 'use client';
-import {useId} from 'react';
+import {memo,useId} from 'react';
 import {ResponsiveContainer,LineChart,Line,XAxis,YAxis,CartesianGrid,Tooltip} from 'recharts';
 import type {CatalogItem,HistoryData,AuctionSnapshot} from '@/lib/types';
 import {itemColors,formatHourly,type Selection} from '@/lib/comparison';
 import {dailyTimeline,dayLabel,type TimelinePeriod} from '@/lib/timeline';
 import {money} from '@/lib/currency';
-export default function ComparisonChart({items,snapshots,selection,histories,period}:{items:CatalogItem[];snapshots:AuctionSnapshot[];selection:Selection;histories:Record<number,HistoryData>;period:TimelinePeriod}){
+export default memo(function ComparisonChart({items,snapshots,selection,histories,period,loading=false}:{items:CatalogItem[];snapshots:AuctionSnapshot[];selection:Selection;histories:Record<number,HistoryData>;period:TimelinePeriod;loading?:boolean}){
   const id=useId().replaceAll(':',''),{rows,currentDemandIds}=dailyTimeline(items,snapshots,selection,histories,period);
   if(!items.some(item=>selection[item.id]?.price||selection[item.id]?.demand))return <div className="chart-empty">Enable price or demand beside an item to compare its timeline.</div>;
   const hasPoints=rows.some(row=>Object.entries(row).some(([key,value])=>key!=='day'&&typeof value==='number'));
+  if(!hasPoints&&loading)return <div className="chart-empty" role="status">Loading observations…</div>;
   if(!hasPoints)return <div className="chart-empty">No observations available for the selected items and period. Missing history is never filled with sample data.</div>;
   return <div className="comparison-canvas timeline-canvas" role="img" aria-label={`${period==='3d'?'Seventy-two hourly':period==='7d'?'Seven daily':'Thirty daily'} points comparing item prices as solid lines and estimated demand as dotted lines`}>
     <ResponsiveContainer width="100%" height="100%"><LineChart data={rows} margin={{top:24,right:12,left:3,bottom:16}}>
@@ -31,4 +32,4 @@ export default function ComparisonChart({items,snapshots,selection,histories,per
       })}
     </LineChart></ResponsiveContainer>
   </div>;
-}
+});
