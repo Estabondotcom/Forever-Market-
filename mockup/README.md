@@ -4,13 +4,13 @@
 
 - Uses the same React dashboard as the live application.
 - All prices, demand and histories are **synthetic sample data**.
-- Try Cloth, Fish, Herbs, Ore and Skinning.
+- Try Cloth, Fish, Herbs, Ore, Skinning and the new Search tab.
 - Toggle each item’s price and demand independently.
 - One graph combines price history, demand history and item comparison.
 - Start with 7 daily points, then switch to 30 daily points.
 - Solid lines show prices; dotted lines show synthetic demand history.
 - Each item has a consistent neon color.
-- Comparisons reset when changing tabs.
+- Farming tabs start blank. Search has autocomplete across 241 curated items and a temporary comparison list that stays while navigating, then clears on reload.
 
 ![Verified desktop preview](preview.jpg)
 
@@ -18,7 +18,7 @@ No server, API key or running WoW client is needed. This preview is not the live
 
 Regenerate from the repository root with `npm run build:mockup`. Commit generated assets with source changes; CI checks they match.
 
-Live AHledger data has price history but no historical sales-rate series. The live app leaves past demand blank and marks only the current rolling estimate at today. This preview uses synthetic demand histories, clearly labeled, to show the combined design.
+Live AHledger data has price history but no historical sales-rate series. Without the optional Blizzard collector, the live app leaves past demand blank and marks only the current rolling estimate at today; with the collector it uses saved turnover intervals. This preview uses synthetic demand histories, clearly labeled, to show the combined design.
 
 ### Three-day hourly view
-The unified graph also offers **3 days · hourly**: 72 UTC hour buckets, including the partial current hour. It reuses the documented seven-day history response and groups available observations by hour, retaining the lowest observed buyout. Missing hours stay gaps. Seven-day and thirty-day views remain daily; seven days remains the default. Live historical demand remains unavailable; the current rolling estimate is only plotted at the current endpoint. The GitHub preview uses synthetic hourly history.
+The unified graph also offers **3 days · hourly**: 72 UTC hour buckets, including the partial current hour. It reuses the documented seven-day history response and groups available observations by hour, retaining the lowest observed buyout. Missing hours stay gaps. Seven-day and thirty-day views remain daily; seven days remains the default. AHledger historical demand remains unavailable; the optional local collector builds dated turnover estimates going forward. The GitHub preview uses synthetic hourly history.
