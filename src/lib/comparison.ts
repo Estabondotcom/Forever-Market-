@@ -11,8 +11,8 @@ export function formatHourly(value:number|null|undefined){
   if(value>0&&value<.01)return '<0.01';
   return new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(value);
 }
-export function defaultSelection(items:readonly CatalogItem[]):Selection{
-  return Object.fromEntries(items.slice(0,2).map(item=>[item.id,{price:true,demand:true}]));
+export function defaultSelection(_items:readonly CatalogItem[]):Selection{
+  return {};
 }
 export function toggleMetric(selection:Selection,items:readonly CatalogItem[],itemId:number,metric:Metric):Selection{
   if(!items.some(item=>item.id===itemId))throw new Error('Comparison item is outside the active tab');

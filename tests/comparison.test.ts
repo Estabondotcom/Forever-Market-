@@ -19,7 +19,7 @@ describe('independent comparison switches',()=>{
   it('enables multiple items and both metrics independently',()=>{let selection=toggleMetric({},cloth,cloth[0].id,'price');selection=toggleMetric(selection,cloth,cloth[1].id,'demand');expect(selection[cloth[0].id]).toEqual({price:true,demand:false});expect(selection[cloth[1].id]).toEqual({price:false,demand:true});selection=toggleMetric(selection,cloth,cloth[0].id,'demand');selection=toggleMetric(selection,cloth,cloth[0].id,'price');expect(selection[cloth[0].id]).toEqual({price:false,demand:true});});
   it('removes an item after its last metric is disabled',()=>{const selection=toggleMetric({},cloth,cloth[0].id,'price');expect(toggleMetric(selection,cloth,cloth[0].id,'price')).toEqual({});});
   it('prevents and prunes cross-tab selections',()=>{expect(()=>toggleMetric({},cloth,fish[0].id,'price')).toThrow();const selection=toggleMetric(defaultSelection(fish),cloth,cloth[0].id,'price');expect(Object.keys(selection)).toEqual([String(cloth[0].id)]);});
-  it('starts each tab with its own defaults only',()=>{const selection=defaultSelection(fish);expect(Object.keys(selection)).toEqual(fish.slice(0,2).map(i=>String(i.id)));});
+  it('starts each tab with no items selected',()=>{for(const category of categories)expect(defaultSelection(catalogFor(category))).toEqual({});});
 });
 
 describe('sample history comparisons',()=>{

@@ -18,6 +18,9 @@ it('preserves provider price history and local demand while collector checks rem
   const id=Number(new URL(url,'http://localhost').searchParams.get('itemId'));return Response.json({itemId:id,range:'7d',expiresAt:new Date(Date.now()+60000).toISOString(),series:[{timestamp:new Date(now-2*86400000).toISOString(),minBuyout:50,median:null,quantity:100}],latest:null,sales:null});
  });vi.stubGlobal('fetch',fetcher);
  await act(async()=>{renderer=create(createElement(Dashboard));});
+ expect(renderer!.root.findAllByProps({role:'switch'}).every(toggle=>toggle.props['aria-checked']===false)).toBe(true);
+ expect(fetcher.mock.calls.some(([url])=>url.startsWith('/api/history'))).toBe(false);
+ await act(async()=>{renderer!.root.findByProps({'aria-label':'Compare Linen Cloth price'}).props.onClick();renderer!.root.findByProps({'aria-label':'Compare Linen Cloth demand'}).props.onClick();});
  const renders=chartRenders.length,initialCalls=fetcher.mock.calls.length;
  expect(chartRenders.at(-1)?.histories[2589].priceSource).toBe('ahledger');
  expect(chartRenders.at(-1)?.histories[2589].series.some(p=>p.minBuyout===50)).toBe(true);
