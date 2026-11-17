@@ -1,3 +1,0 @@
-import { z } from 'zod';
-export const settingsSchema=z.object({baseSkill:z.number().int().min(1).max(300),equipmentBonus:z.number().int().min(0).max(200),lureBonus:z.number().int().min(0).max(200),secondsPerAttempt:z.number().min(5).max(120),sessionHours:z.number().min(.1).max(24),ahCut:z.number().min(0).max(1),marketShare:z.number().min(0).max(1),priceStrategy:z.enum(['conservative','current','typical']),mode:z.enum(['open-water','school','all']),seasonal:z.boolean(),theme:z.enum(['dark','light'])});
-export const defaults: z.infer<typeof settingsSchema>={baseSkill:300,equipmentBonus:0,lureBonus:0,secondsPerAttempt:25,sessionHours:1,ahCut:.05,marketShare:.05,priceStrategy:'conservative',mode:'open-water',seasonal:true,theme:'dark'};

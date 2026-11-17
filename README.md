@@ -1,147 +1,136 @@
-# WoW Forever Fishing Profit Tracker
+# Forever Market
 
-A personall Next.js dashboard for **US / Americas · Normal PvE · Horde**, fixed to `forever.normal.horde.us`. Real AHledger prices and history; demand-aware session revenue; locally saved settings; no account, addon, running game client or database required.
+A personal, dark-mode auction dashboard for **WoW Forever · US / Americas · Normal PvE · Horde**, fixed to `forever.normal.horde.us`.
 
-**Data accuracy:** Auction integration has been tested against real endpoints. Fishing recommendations are explicitly **Classic-derived estimates**, not verified Forever catch rates. 12 numerical location tables and two incomplete candidates cover inland/coastal waters, schools and secondary catches. 76 item IDs/names/vendor values were checked against Forever metadata. New Forever fish, daytime probabilities and camp upgrades remain unverified. See [data validation and provenance](docs/DATA-SOURCES.md).
+Current AH prices, neon line graphs of price history, current supply, and estimated units sold per day. Goods are grouped into **fish/catches, cloth, leather/hides, ore and herbs**. Select an item in the table to update its chart and market details. No account, addon, running game client or database is required.
 
-## Cloth, leather, ore and herbs
+## Market dashboard
 
-Select **Cloth · Leather · Ore · Herbs** above the dashboard, then choose a category. The added catalog includes **52 Forever-verified item records**: 6 cloths, 10 leathers/hides, 9 ores and 27 herbs. Each category fetches its own fixed-market batch, staying below AHledger’s 100-item limit. Fish queries remain unchanged. Click any material for current/typical/vendor values, market warnings, and actual 24h/7d/30d price history when supplied and authorized.
+- Current lowest buyout and market median, displayed per item in gold, silver and copper.
+- Neon cyan lowest-buyout and magenta market-median **line graphs**. Exact timestamps and currency appear in chart tooltips.
+- Actual 24-hour, seven-day and 30-day observations when provided and authorized. No absent periods or price points are synthesized.
+- Optional neon green listed-supply line graph, explicitly labeled as supply rather than purchase history.
+- Estimated units sold per day, current units listed, days of supply, sales sample window and covered observation hours when supplied.
+- Search by item name or ID; sort by price, seven-day median, estimated sales volume, supply, days of supply or deviation from typical price.
+- Mobile layout, fixed night theme, remembered category, observation timestamps, manual refresh throttling, automatic cache-expiry refresh, and clear missing-data messages.
+- Explicitly labeled synthetic demo mode for development; it never replaces a failed live request.
 
-Use the **Your units/hour** inputs to enter your measured or expected harvest output. Multiple outputs are summed into one plan per category; an optional route label and yields are saved only in this browser. Unknown yield stays blank, distinct from zero. Use the global settings for AH fee, session length, assumed market share and price strategy. Fishing skill, lure bonus and cast duration never affect material harvest calculations.
+**Demand is inferred, not confirmed purchases.** AHledger estimates sales from auction observations. Cancellations and other listing changes may resemble purchases. The app never claims these are completed-sale records. The supply graph is not a sales graph, and no historical purchase amounts are invented. See the in-app information button and [data source record](docs/DATA-SOURCES.md).
 
-Gross AH potential and demand-adjusted gold/hour use the same independently tested selling engine as fishing. Missing selling-capacity or vendor information remains incomplete. We do **not** invent mob drop rates, node density or “best farming locations”; compare plans using your own measured yields. Vendor values and item names were checked against the Forever item endpoint on 2026-11-17 and should be rechecked after patches. Demo mode remains explicitly labeled and never replaces unavailable live prices.
-
-## GitHub workflow
-
-Repository: https://github.com/Estabondotcom/Forever-Market-
-
-Clone it with `git clone https://github.com/Estabondotcom/Forever-Market-.git` and run commands from the resulting `Forever-Market-` folder. Keep this entire folder as the repository root. `.github/workflows/ci.yml` automatically runs the deterministic tests, TypeScript check and production build on pushes and pull requests. These checks need no API key and make no live auction requests.
-
-Clone the repository on Windows, then use the launch commands below. Store any optional provider key only in your local `.env.local` or your hosting environment. Do not upload it to the repository.
-
-GitHub stores the code and runs CI. **GitHub Pages cannot host this version**, because live provider requests and secrets run in Next.js server routes. Run the app locally, on CasaOS using Docker, or on a Next.js-compatible server host. No deployment or repository publication happens automatically from this workflow.
+The catalog has 128 curated records: 76 fish and associated catches, 6 cloths, 10 leathers/hides, 9 ores and 27 herbs. Each category remains under the provider’s 100-item batch limit. Catalog metadata was checked against Forever on 2026-11-17; it is not an exhaustive catalog of every game item.
 
 ## Windows launch — PowerShell
 
-Install **Node.js 24 LTS** (includes npm). Copy this entire `wow-fishing` folder to `C:\Projects\wow-fishing`, then run:
+Install **Node.js 24 LTS** and Git, then run:
 
 ```powershell
-cd C:\Projects\wow-fishing
+git clone https://github.com/Estabondotcom/Forever-Market-.git
+cd Forever-Market-
 npm ci
 Copy-Item .env.example .env.local
 npm run dev
 ```
 
-Open **http://localhost:3000**. No API key is needed for current prices and seven-day history under documented free access. If port 3000 is occupied:
+Open **http://localhost:3000**. No key is needed for current prices and seven-day history under documented free access. To use a different development port:
 
 ```powershell
 npm run dev -- --port 3001
 ```
 
-For a production build:
+Production launch:
 
 ```powershell
-npm test
-npm run typecheck
 npm run build
 npm start
 ```
 
-Open **http://localhost:3000**. `Ctrl+C` stops the server. To view it on an iPhone on the same Wi-Fi, use `http://YOUR-PC-LAN-IP:3000`; `ipconfig` shows the IPv4 address. Allow Node through Windows Firewall on your private network if prompted. Preferences are specific to each browser/device.
+To open it on your phone over the same Wi-Fi, use `http://YOUR-PC-LAN-IP:3000`. For home-server access through Tailscale, use `http://YOUR-SERVER-TAILSCALE-IP:3000` with Tailscale connected on both devices.
 
 ## Environment variables
 
 | Variable | Required | Purpose |
 | --- | --- | --- |
-| `AHLEDGER_API_KEY` | No | Server-only AHledger key. `Authorization: Bearer ...`; never sent in browser URLs, JS bundles or storage. Documented free key unlocks 30-day history after December 10, 2026. |
-| `PORT` | No | Production port; defaults to 3000. For development use `--port`. |
-| `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` | No | Standard system proxy configuration; normally leave unset on Windows. |
-| `NEXT_TELEMETRY_DISABLED` | No | Set to `1` to disable Next.js telemetry; already disabled in Docker. |
+| `AHLEDGER_API_KEY` | No | Server-only AHledger key, sent as `Authorization: Bearer ...`. Documented free key adds 30-day history after December 10, 2026. |
+| `PORT` | No | Production port, default 3000; use `--port` for development. |
+| `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` | No | Standard system proxy configuration, normally unset on a home server. |
+| `NEXT_TELEMETRY_DISABLED` | No | `1` disables Next.js telemetry; Docker already sets this. |
 
-Edit `.env.local` to add a key, then restart the server. Never use a `NEXT_PUBLIC_` variable for credentials. `.env*` secrets are ignored by Git and Docker. Build requires no provider credentials.
+For local Node use, put the optional key in `.env.local`, then restart the server. Never use a `NEXT_PUBLIC_` variable for credentials. Secrets are excluded from Git and Docker build context. No key is required during builds or unit tests.
 
-## What the app does
+## Docker and CasaOS
 
-- Opens with the best rankable estimated fishing spot and demand-adjusted / gross AH potential per hour.
-- Filters locations by zone/name/catch and shows all catches, success, selected prices, vendor fallback and warnings.
-- Searches and sorts market items by price, supply, estimated sales, deviation from typical price and estimated gross contribution at the best available spot.
-- Shows actual minimum-buyout / median history with Recharts. Unsupported or empty periods show a message; they are never invented.
-- Defaults to **300 base + 0 equipment + 0 lure**, 25 seconds per attempt, one-hour session, 5% AH cut and 5% assumed share. All recalculate and persist locally; reset restores defaults.
-- Uses the lower of current buyout and 7-day median by default, then the AH fee. Missing typical price is not guessed.
-- Caps session auction units at one day of estimated demand × assumed share. Verified vendor fallback handles excess, or the estimate becomes incomplete. Vendor wins when it pays more.
-- Includes an explicit, prominent **synthetic demo mode**, isolated from live data. Click “Try labeled demo” at the bottom. It never starts automatically or replaces an API error.
+CasaOS normally already provides Docker. In the server terminal:
 
-All currency displays use gold, silver, copper. Integer per-item prices are rounded down after the fee; expected quantities retain fractional precision; aggregate revenue rounds only at the final copper boundary.
+```bash
+cd /DATA/AppData
+sudo git clone https://github.com/Estabondotcom/Forever-Market-.git wow-fishing
+cd wow-fishing
+sudo docker compose up -d --build
+sudo docker compose ps
+```
 
-## Freshness and provider policy
+Open **http://YOUR-SERVER-IP:3000**. The existing Compose service name `fishing-tracker` and port are retained for compatibility. If port 3000 is occupied, change `3000:3000` to `3005:3000` in `compose.yaml` and use port 3005 in the browser.
 
-AHledger API access was verified on 2026-11-17. Prices are player scan observations, not completed purchases. Estimated sales may include cancellations. View the actual observation time, not just the request time.
+For an optional API key in Docker, create `.env` beside `compose.yaml`:
 
-The provider's December 10 terms prohibit keeping responses past their allowed cache time. The app caches only in server memory, honors Cache-Control/ETag/Retry-After, coalesces simultaneous requests and throttles manual refresh. Expired responses are removed, so refresh follows provider lifetime (the price table was 60 seconds during verification) rather than 30 minutes. During an outage only a still-permitted cached answer can remain visible. Once expired, the app shows unavailable data, not an invented price or indefinitely stale snapshot. No auction history archive is built.
+```text
+AHLEDGER_API_KEY=your_key_here
+```
 
-## Checks
+Apply it with `sudo docker compose up -d --force-recreate`. Never commit the file. The container runs as a non-root user and restarts after server reboots. No database or persistent market-cache volume is needed. Docker/CasaOS deployment has not been executed in this development environment.
+
+Update an existing installation:
+
+```bash
+cd /DATA/AppData/wow-fishing
+sudo git pull --ff-only
+sudo docker compose up -d --build
+```
+
+Logs and stop commands:
+
+```bash
+sudo docker compose logs --tail=100 fishing-tracker
+sudo docker compose down
+```
+
+## Checks and GitHub
 
 ```powershell
 npm test
 npm run typecheck
 npm run build
 npm run verify:api
-```
-
-`verify:api` makes five read-only provider requests, validates the actual response formats and prints a small status record without saving responses. The optional full route smoke check (PowerShell):
-
-```powershell
 node --conditions=react-server --import tsx scripts/smoke-routes.ts
 ```
 
-52 deterministic unit tests cover currency, fees, skill, lures, mixed catches, conditional seasons, low/high demand, unknown vendor/sales, invalid data, ranking, fixed-market parsers, graph normalization, HTTP auth failures, ETags, caching, expiry and rate limits. They use synthetic fixtures, not retained live market data.
+The deterministic unit tests cover currency, demand calculations, missing/zero sales, sorting, category isolation, response parsing, fixed-market enforcement, auth failures, rate limits, caching and expiry. Fixtures are synthetic. The live verification scripts make small read-only requests and save no provider responses. The route smoke check verifies all five categories and representative price histories.
 
-Validated in the development environment: real API requests and app route handlers, tests, TypeScript and production build. The cloud environment blocked the preview server from binding a port; **visual browser and physical iPhone QA remain unverified**. Responsive CSS is included for 375px and larger screens, but should be checked on your device.
+GitHub Actions automatically runs tests, type checking and a production build. GitHub stores the code; **GitHub Pages cannot run the server API routes**. Run on CasaOS, locally, or a Next.js-compatible host.
 
-## Project structure
+The managed development environment blocks the preview server from binding its port. Browser visual checks and physical iPhone testing remain unverified; TypeScript, build, unit tests and real API routes can still be checked.
+
+## Freshness and terms
+
+AHledger responses remain only in server/browser memory for their allowed Cache-Control lifetime. Expired data is removed and refreshed. The server coalesces duplicate requests, supports ETags when a reusable answer is available, and honors Retry-After. Manual refresh is throttled. A still-permitted response may be reused during an outage, but expired responses cannot become an indefinite offline snapshot. Refresh timing therefore follows the provider’s cache lifetime, often 60 seconds for the price table.
+
+Latest actual auction observations are distinguished from fetch times. Missing sales or historical periods stay unavailable; estimated zero sales stays zero. Days of supply is units listed divided by estimated daily sales. If estimated sales is zero and stock exists, the ratio is infinite. Percentage comparisons are current buyout versus seven-day median, not a measured short-term trend.
+
+## Structure
 
 ```text
-wow-fishing/
-  src/app/                 Dashboard page, theme CSS and API routes
-    api/market/            Fixed-market live summaries
-    api/history/           Per-item validated history
-  src/components/          Responsive dashboard, settings and detail panels
-  src/data/                Curated fish and fishing-location JSON
-  src/lib/                 Types, pure engine, currency, validation,
-                           interchangeable auction adapter, cache, demo
-  tests/                   Deterministic engine and HTTP/parser tests
-  scripts/                 Real API verification, route smoke check,
-                           original upstream Classic data importer
-  docs/DATA-SOURCES.md     Verification, assumptions and provenance
-  licenses/                CMaNGOS license and copyright notices
-  Dockerfile
-  compose.yaml
-  .env.example
+src/app/             Page, fixed night theme, server API routes
+src/components/      Market dashboard and neon line charts
+src/data/            Curated item catalogs
+src/lib/             Market comparisons, currency, parsers, adapter, cache, demo
+scripts/             Real API and route verification
+tests/              Synthetic deterministic tests
+docs/               Source validation and provider limitations
+licenses/           Retained source attribution and copyright notices
+Dockerfile
+compose.yaml
 ```
-
-## Docker and CasaOS (optional)
-
-From the project folder with Docker Engine / Docker Desktop installed:
-
-```powershell
-docker compose up -d --build
-```
-
-Open **http://localhost:3000** (or `http://CASAOS-LAN-IP:3000`). To supply the optional key, create a `.env` file beside `compose.yaml` containing `AHLEDGER_API_KEY=your_key`. Do not commit it. Restart after changes:
-
-```powershell
-docker compose up -d --force-recreate
-docker compose logs -f fishing-tracker
-docker compose down
-```
-
-On CasaOS, copy the project folder to persistent storage (for example `/DATA/AppData/wow-fishing`), open a terminal there, and run `docker compose up -d --build`. Local build context is required; CasaOS “Import Compose” may not upload source files. The app has no database or market cache volume. Use an unused host port such as `3005:3000` if CasaOS already uses 3000. Preferences live in the browser, not the container. Container runs as a non-root user; the key is provided only at runtime. Docker files are provided, but a Docker image build and CasaOS deployment have **not** been executed here.
-
-## Limitations
-
-No numerical fishing location is Forever-verified yet. Material farming routes, kill rates, node density and skill requirements are not supplied as verified facts; material gold/hour uses only yields entered by the user. Exact seasonal switch dates, daytime distributions, school rates, new Forever species such as Whimsyfin, and Rack/Hut effects need measurements. Item facts must be rechecked after game updates. Rankings are incomplete where necessary information is missing; the displayed subtotal is not a complete expected return. Auction deposits, relisting costs, travel, lure costs/uptime, pool competition and other unmodeled costs can materially reduce returns. Market trend compares current buyout with 7d median rather than measuring recent momentum. There are no guarantees of sales or personal market share.
 
 ## Attribution and license
 
-Prices from [AHledger](https://ahledger.com); [API and terms](https://ahledger.com/developers). Classic-derived fishing table data from [CMaNGOS Classic DB](https://github.com/cmangos/classic-db), GPL v3, with original license and copyright notices included. This application source is GPL v3; see `LICENSE`. Blizzard game names and item facts remain the property of their owners. No protected game artwork is used. AidVir's reference methodology was studied; its unlicensed implementation/dataset was not copied. This personal tool is not affiliated with Blizzard or AHledger.
+Prices from [AHledger](https://ahledger.com), used under its [API terms](https://ahledger.com/developers). Personal noncommercial use requires attribution; monetization or data archival can require additional licensing. This source remains GPL v3; see `LICENSE`. Original CMaNGOS notices are retained for the catalog’s provenance. Blizzard names and item facts belong to their owners. No protected game artwork is used. Not affiliated with Blizzard or AHledger.
