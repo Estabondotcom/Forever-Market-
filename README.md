@@ -8,6 +8,8 @@ Current AH prices and average estimated units sold per hour, with same-tab compa
 
 **[Open the interactive mockup](https://estabondotcom.github.io/Forever-Market-/mockup/)** · [Mockup files in this repository](mockup/)
 
+![Forever: Farmer’s Market — combined price and demand comparison](mockup/preview.jpg)
+
 The mockup runs directly in GitHub Pages on desktop and mobile. It uses the **same React dashboard component** as the live app, with clearly labeled synthetic sample prices, demand and history. It makes no AH API requests and requires no server or API key. It is a design/interaction preview, not a live market feed.
 
 ## Tabs and comparison controls
@@ -114,7 +116,7 @@ The deterministic unit tests cover currency, hourly demand, independent comparis
 
 GitHub Actions runs tests, type checking, production build, and regeneration of the committed mockup assets to catch preview drift. GitHub stores the code; **GitHub Pages cannot run the server API routes**. Run on CasaOS, locally, or a Next.js-compatible host.
 
-The managed development environment blocks the preview server from binding its port. The public GitHub Pages mockup can be used for browser checks; physical iPhone testing remains unverified. TypeScript, build, unit tests and real API routes are also checked.
+The managed development environment blocks the preview server from binding its port. The published mockup passed desktop browser checks for multiple price/demand toggles, the combined graph, multi-item history, tab isolation and Clear all. A screenshot is committed above. Physical iPhone testing remains unverified. TypeScript, build, unit tests and real API routes are also checked.
 
 ## Freshness and terms
 

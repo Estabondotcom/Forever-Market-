@@ -10,6 +10,8 @@
 - Open Price history to compare several selected price histories.
 - Comparisons reset when changing tabs.
 
+![Verified desktop preview](preview.jpg)
+
 No server, API key or running WoW client is needed. This preview is not the live market feed.
 
 Regenerate from the repository root with `npm run build:mockup`. Commit generated assets with source changes; CI checks they match.

@@ -53,7 +53,7 @@ The 71-item catalog is curated and not exhaustive. It excludes secondary catches
 
 ## Verification limits
 
-Automated checks cover currency, category isolation, demand math, sorting, fixed-market parser validation, graph normalization, missing data, provider auth errors, rate limiting and cache expiration. Live route checks passed for all categories and representative histories. Docker/CasaOS deployment and physical iPhone testing have not been performed here. The managed preview server cannot bind its local port, so current browser visual QA is also unverified.
+Automated checks cover currency, category isolation, demand math, sorting, fixed-market parser validation, graph normalization, missing data, provider auth errors, rate limiting and cache expiration. Live route checks passed for all categories and representative histories. Docker/CasaOS deployment and physical iPhone testing have not been performed here. The managed local preview server cannot bind its port. The published GitHub Pages mockup was instead checked in the cloud desktop browser: multiple independent switches, same-tab reset, Clear all, dotted demand bars, solid current-price line, and multi-item price histories worked. Desktop screenshot: `mockup/preview.jpg`. Physical iPhone testing is still unverified.
 
 ## GitHub Pages mockup
 

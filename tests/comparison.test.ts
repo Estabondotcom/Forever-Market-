@@ -1,7 +1,7 @@
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi} from 'vitest';
 import {categories,categoryLabels,catalogFor} from '../src/lib/catalog';
 import {hourlyDemand,formatHourly,defaultSelection,toggleMetric,comparisonRows,historyRows} from '../src/lib/comparison';
-import {demoMarket} from '../src/lib/demo';
+import {demoMarket,demoHistory} from '../src/lib/demo';
 import type {HistoryData} from '../src/lib/types';
 const cloth=catalogFor('cloth'),fish=catalogFor('fish');
 describe('primary resources only',()=>{
@@ -29,4 +29,15 @@ describe('actual multi-item price history',()=>{
     expect(rows).toHaveLength(2);expect(rows[0][`price_${a}`]).toBe(100);expect(rows[0][`price_${b}`]).toBeUndefined();expect(Object.keys(rows[0])).toEqual(['timestamp',`price_${a}`]);
   });
   it('does not plot demand-only selections as price history',()=>{expect(historyRows(cloth,{[cloth[0].id]:{price:false,demand:true}},{})).toEqual([]);});
+});
+
+describe('sample history comparisons',()=>{
+  it('aligns timestamps across items even when generation happens in different milliseconds',()=>{
+    const clock=vi.spyOn(Date,'now').mockReturnValueOnce(1794916800100).mockReturnValueOnce(1794916800700);
+    try{expect(demoHistory(2589,'7d').map(p=>p.timestamp)).toEqual(demoHistory(2592,'7d').map(p=>p.timestamp));}finally{clock.mockRestore();}
+  });
+  it('uses samples covering the selected historical period',()=>{
+    const points=demoHistory(2589,'7d');const span=Date.parse(points.at(-1)!.timestamp)-Date.parse(points[0].timestamp);
+    expect(span).toBeGreaterThan(6*86400000);expect(span).toBeLessThanOrEqual(7*86400000);
+  });
 });
