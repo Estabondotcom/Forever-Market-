@@ -157,3 +157,6 @@ git add mockup
 ```
 
 This bundles `preview/entry.tsx`, which renders `<Dashboard demoOnly />`, and copies the current dashboard CSS. Commit `mockup/index.html` and its generated assets together with source changes. GitHub Pages is configured for `main` at the repository root; the preview is served from `/Forever-Market-/mockup/`. GitHub Pages hosts the sample-data mockup, while the live Next.js application continues to run on your server.
+
+### Three-day hourly view
+The unified graph also offers **3 days · hourly**: 72 UTC hour buckets, including the partial current hour. It reuses the documented seven-day history response and groups available observations by hour, retaining the lowest observed buyout. Missing hours stay gaps. Seven-day and thirty-day views remain daily; seven days remains the default. Live historical demand remains unavailable; the current rolling estimate is only plotted at the current endpoint. The GitHub preview uses synthetic hourly history.

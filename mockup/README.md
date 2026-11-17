@@ -19,3 +19,6 @@ No server, API key or running WoW client is needed. This preview is not the live
 Regenerate from the repository root with `npm run build:mockup`. Commit generated assets with source changes; CI checks they match.
 
 Live AHledger data has price history but no historical sales-rate series. The live app leaves past demand blank and marks only the current rolling estimate at today. This preview uses synthetic demand histories, clearly labeled, to show the combined design.
+
+### Three-day hourly view
+The unified graph also offers **3 days · hourly**: 72 UTC hour buckets, including the partial current hour. It reuses the documented seven-day history response and groups available observations by hour, retaining the lowest observed buyout. Missing hours stay gaps. Seven-day and thirty-day views remain daily; seven days remains the default. Live historical demand remains unavailable; the current rolling estimate is only plotted at the current endpoint. The GitHub preview uses synthetic hourly history.

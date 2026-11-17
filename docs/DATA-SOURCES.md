@@ -64,3 +64,6 @@ Automated checks cover currency, category isolation, demand math, sorting, fixed
 ## GitHub Pages mockup
 
 `preview/entry.tsx` uses the actual Dashboard component with `demoOnly` enabled. The generated `mockup/` bundle has no live provider requests and no server credentials. A prominent synthetic-data banner cannot be switched off in the public preview. It supports all five tabs, independent per-metric switches, one unified multi-item daily graph with solid price and dotted synthetic demand histories, default seven-day and optional thirty-day views. Real market data stays in the separately hosted Next.js app. The mockup is public under the existing GitHub Pages configuration, as requested; no live prices are archived in it.
+
+### Three-day hourly view
+The unified graph also offers **3 days · hourly**: 72 UTC hour buckets, including the partial current hour. It reuses the documented seven-day history response and groups available observations by hour, retaining the lowest observed buyout. Missing hours stay gaps. Seven-day and thirty-day views remain daily; seven days remains the default. Live historical demand remains unavailable; the current rolling estimate is only plotted at the current endpoint. The GitHub preview uses synthetic hourly history.

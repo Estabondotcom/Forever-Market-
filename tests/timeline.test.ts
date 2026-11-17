@@ -1,5 +1,5 @@
 import {describe,it,expect} from 'vitest';
-import {calendarDays,dailyTimeline} from '../src/lib/timeline';
+import {calendarDays,timelineBuckets,dailyTimeline} from '../src/lib/timeline';
 import type {CatalogItem,HistoryData,AuctionSnapshot,PriceHistoryPoint} from '../src/lib/types';
 const now=new Date('2026-11-17T14:00:00Z');
 const a:CatalogItem={id:1,name:'Fixture A',metadataVerified:true,source:'fixture'},b={...a,id:2,name:'Fixture B'};
@@ -21,4 +21,10 @@ describe('historical demand is never invented',()=>{
   it('plots actual supplied daily demand independently of price and retains missing days',()=>{const h=history(1,[point('2026-11-15T12:00:00Z',100,48),point('2026-11-17T12:00:00Z',200,0)]);const result=dailyTimeline([a],[snapshot(1,999)],{1:{price:false,demand:true}},{1:h},'7d',now);expect(result.rows[4].demand_1).toBe(2);expect(result.rows[5].demand_1).toBeNull();expect(result.rows[6].demand_1).toBe(0);expect(result.rows[6].price_1).toBeUndefined();expect(result.currentDemandIds).toEqual([]);});
   it('excludes foreign-tab and disabled metrics from the unified graph',()=>{const result=dailyTimeline([a],[],{2:{price:true,demand:true}},{2:history(2,[point(now.toISOString(),100,48)])},'7d',now);expect(result.rows.every(r=>Object.keys(r).length===1)).toBe(true);});
   it('rejects invalid historical prices and demand',()=>{expect(()=>dailyTimeline([a],[],{1:{price:true,demand:true}},{1:history(1,[point(now.toISOString(),-1)])},'7d',now)).toThrow();expect(()=>dailyTimeline([a],[],{1:{price:false,demand:true}},{1:history(1,[point(now.toISOString(),100,-1)])},'7d',now)).toThrow();});
+});
+
+describe('three-day hourly timeline',()=>{
+  it('has 72 consecutive UTC hour buckets including the partial current hour',()=>{const rows=timelineBuckets('3d',new Date('2026-11-17T14:37:00Z'));expect(rows).toHaveLength(72);expect(rows[0]).toBe('2026-11-14T15:00:00.000Z');expect(rows.at(-1)).toBe('2026-11-17T14:00:00.000Z');});
+  it('uses seven-day provider history and aggregates only within each hour',()=>{const result=dailyTimeline([a],[],{1:{price:true,demand:true}},{1:history(1,[point('2026-11-17T13:05:00Z',200,48),point('2026-11-17T13:45:00Z',100,96),point('2026-11-17T14:00:00Z',300,24),point('2026-11-14T14:59:00Z',1,24)])},'3d',now);expect(result.rows[70].price_1).toBe(100);expect(result.rows[70].demand_1).toBe(3);expect(result.rows[71].price_1).toBe(300);expect(result.rows[0].price_1).toBeNull();});
+  it('keeps current rolling demand only in the current hour',()=>{const result=dailyTimeline([a],[snapshot(1,240)],{1:{price:false,demand:true}},{},'3d',now);expect(result.rows.slice(0,71).every(r=>r.demand_1===null)).toBe(true);expect(result.rows[71].demand_1).toBe(10);});
 });
