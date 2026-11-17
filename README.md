@@ -18,7 +18,7 @@ Tabs appear in this order: **Cloth, Fish, Herbs, Ore, Skinning**. The curated ca
 
 Every item row shows its **current lowest AH buyout** and **average estimated units sold per hour**, with an independent toggle beside each metric. Toggle several items on or off at once; use Clear all to reset the graph. Selections reset when changing tabs, and items from different tabs cannot share a comparison.
 
-- **Market comparison:** items on the horizontal axis, solid cyan line for current AH price on the left axis, magenta dotted-pattern bars for estimated hourly demand on the right axis. Metrics retain their real units; they are never normalized onto one misleading scale. Missing values stay missing.
+- **Market comparison:** items on the horizontal axis, solid cyan line for current AH price on the left axis, a dotted magenta line for estimated hourly demand on the right axis. Metrics retain their real units; they are never normalized onto one misleading scale. Missing values stay missing.
 - **Price history:** solid neon lines compare the actual lowest-buyout histories of all enabled price toggles. Choose 24h, 7d or authorized 30d observations. Demand-only toggles do not invent a corresponding historical price series.
 - Search/filter and sort the current section by resource name, AH price or hourly demand. The dark theme is permanent and the layout adapts for phones.
 
@@ -122,13 +122,13 @@ The managed development environment blocks the preview server from binding its p
 
 AHledger responses remain only in server/browser memory for their allowed Cache-Control lifetime. Expired data is removed and refreshed. The server coalesces duplicate requests, supports ETags when a reusable answer is available, and honors Retry-After. Manual refresh is throttled. A still-permitted response may be reused during an outage, but expired responses cannot become an indefinite offline snapshot. Refresh timing therefore follows the provider’s cache lifetime, often 60 seconds for the price table.
 
-Latest actual auction observations are distinguished from fetch times. Missing sales or historical periods stay unavailable; estimated zero sales stays zero. Hourly demand divides the documented daily estimate by 24; missing estimates stay unavailable and zero stays zero. Demand bars compare current estimates by item, not historical purchase counts.
+Latest actual auction observations are distinguished from fetch times. Missing sales or historical periods stay unavailable; estimated zero sales stays zero. Hourly demand divides the documented daily estimate by 24; missing estimates stay unavailable and zero stays zero. The demand line compares current estimates by item, not historical purchase counts.
 
 ## Structure
 
 ```text
 src/app/             Page, fixed night theme, server API routes
-src/components/      Market dashboard and combined bar/line charts
+src/components/      Market dashboard and solid/dotted line comparison charts
 src/data/            Curated primary-resource catalog
 src/lib/             Market comparisons, currency, parsers, adapter, cache, demo
 src/hooks/           Bounded concurrent price-history fetching

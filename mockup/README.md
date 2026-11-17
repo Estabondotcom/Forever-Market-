@@ -6,7 +6,7 @@
 - All prices, demand and histories are **synthetic sample data**.
 - Try Cloth, Fish, Herbs, Ore and Skinning.
 - Toggle each item’s price and demand independently.
-- Compare current dotted demand bars and a solid price line.
+- Compare a dotted demand line and a solid price line.
 - Open Price history to compare several selected price histories.
 - Comparisons reset when changing tabs.
 
