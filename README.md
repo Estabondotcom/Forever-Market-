@@ -1,6 +1,6 @@
 # WoW Forever Fishing Profit Tracker
 
-A personal Next.js dashboard for **US / Americas · Normal PvE · Horde**, fixed to `forever.normal.horde.us`. Real AHledger prices and history; demand-aware session revenue; locally saved settings; no account, addon, running game client or database required.
+A personall Next.js dashboard for **US / Americas · Normal PvE · Horde**, fixed to `forever.normal.horde.us`. Real AHledger prices and history; demand-aware session revenue; locally saved settings; no account, addon, running game client or database required.
 
 **Data accuracy:** Auction integration has been tested against real endpoints. Fishing recommendations are explicitly **Classic-derived estimates**, not verified Forever catch rates. 12 numerical location tables and two incomplete candidates cover inland/coastal waters, schools and secondary catches. 76 item IDs/names/vendor values were checked against Forever metadata. New Forever fish, daytime probabilities and camp upgrades remain unverified. See [data validation and provenance](docs/DATA-SOURCES.md).
 
