@@ -1,5 +1,6 @@
 import type { AuctionSnapshot,Fish,FishingCatch,FishingLocation,ProfitabilityResult,Settings } from './types';
 import { settingsSchema } from './settings';
+import { projectRevenue } from './revenue';
 export function effectiveSkill(s:Settings){return s.baseSkill+s.equipmentBonus+s.lureBonus;}
 // Independent implementation of the Classic server rule. Not proven for Forever.
 export function successChance(skill:number,base:number|null){if(!Number.isFinite(skill)||skill<0)throw new Error('Invalid skill');if(base===null)return null;return skill<Math.max(1,base)?0:Math.min(1,Math.max(0,(skill-base+5)/100));}
@@ -17,12 +18,9 @@ export function evaluateLocation(location:FishingLocation,fish:Fish[],snapshots:
  const contributions=location.catches.filter(c=>activeCatch(c,s,date)).map(c=>{
  const f=fish.find(f=>f.id===c.itemId),a=snapshots.find(a=>a.itemId===c.itemId),rate=c.probability===null||success===null?null:3600/s.secondsPerAttempt*success*c.probability;
  const usedPrice=selectedPrice(a,s.priceStrategy),net=usedPrice===null?null:netPrice(usedPrice,s.ahCut),vendor=f?.vendorCopper??null,demand=a?.sales.estimatedPerDay??null,w=marketWarnings(a,date);
- let auctionUnits:number|null=null,vendorUnits:number|null=null,revenuePerHour:number|null=null;
- if(rate===0){auctionUnits=0;vendorUnits=0;revenuePerHour=0;}
- else if(rate!==null){const count=rate*s.sessionHours;
- if(vendor!==null&&(net===null||vendor>=net)){auctionUnits=0;vendorUnits=count;revenuePerHour=count*vendor/s.sessionHours;if(net===null)w.push('No usable auction price; vendor-only lower bound');}
- else if(net!==null&&demand!==null){auctionUnits=Math.min(count,demand*s.marketShare);vendorUnits=count-auctionUnits;if(vendorUnits<1e-9||vendor!==null)revenuePerHour=(auctionUnits*net+vendorUnits*(vendor??0))/s.sessionHours;else w.push('Vendor value unknown for excess catches');}
- else w.push('Selling capacity unknown');}
+ const projection=rate===null?null:projectRevenue({unitsPerHour:rate,priceCopper:usedPrice,vendorCopper:vendor,estimatedSalesPerDay:demand,sessionHours:s.sessionHours,ahCut:s.ahCut,marketShare:s.marketShare});
+ const auctionUnits=projection?.auctionUnits??null,vendorUnits=projection?.vendorUnits??null,revenuePerHour=projection?.revenuePerHour??null;
+ w.push(...(projection?.warnings??[]));
  if(revenuePerHour===null)complete=false;
  return {itemId:c.itemId,probability:c.probability,catchesPerHour:rate,usedPrice,auctionUnits,vendorUnits,grossPerHour:rate===null||net===null?null:rate*net,revenuePerHour,daysOfSupply:supplyDays(a?.quantity??null,demand),warnings:w};});
  const adjusted=contributions.reduce((sum,c)=>sum+(c.revenuePerHour??0),0),gross=contributions.reduce((sum,c)=>sum+(c.grossPerHour??0),0);

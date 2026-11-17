@@ -52,3 +52,9 @@ Forever guides reviewed:
 ## Adding a verified location
 
 Edit `src/data/locations.json`. Use a unique ID, precise water/area, mode, minimum/base/reliable skill, each conditional item probability (null when unknown), source, notes and confidence. Set `distributionComplete` only for exhaustive supported outcomes. Specify optional month/hour conditions only with a source; hours currently mean UTC. Set confidence to `verified` only after actual Forever evidence supports success and all catch probabilities. Record sample size, date, effective skill, camp state, pool state and server time. Preserve unknown values as null. Add deterministic engine fixtures for new mechanics.
+
+## Materials expansion — 2026-11-17
+
+52 additional item IDs, Forever names and vendor values were verified by actual `GET /v1/items/{id}?game=forever` requests: cloth 6, leather/hides 10, ore 9, herbs 27. No market snapshots were saved. `src/data/materials.json` is the curated catalog. Category batches were tested through the app's own route handler: HTTP 200 for all four categories with the expected 6/10/9/27 snapshots. Linen Cloth (2589) history returned HTTP 200 with 152 actual seven-day observations. Missing item histories remain missing, never synthesized. Separate requests keep each batch below 100 items; the price-table cache is shared.
+
+Material gold/hour is explicitly user-supplied output × shared selling model. It does not use the fishing skill model. There are no invented farming routes, mob probabilities, node counts, gathering skill thresholds or respawn times. Users can label a plan and enter several outputs per category; missing yield differs from a confirmed zero yield. These local plans store no provider prices. Material rates must include the user's actual killing, gathering and travel time; the app cannot infer those costs.

@@ -4,6 +4,14 @@ A personall Next.js dashboard for **US / Americas · Normal PvE · Horde**, fixe
 
 **Data accuracy:** Auction integration has been tested against real endpoints. Fishing recommendations are explicitly **Classic-derived estimates**, not verified Forever catch rates. 12 numerical location tables and two incomplete candidates cover inland/coastal waters, schools and secondary catches. 76 item IDs/names/vendor values were checked against Forever metadata. New Forever fish, daytime probabilities and camp upgrades remain unverified. See [data validation and provenance](docs/DATA-SOURCES.md).
 
+## Cloth, leather, ore and herbs
+
+Select **Cloth · Leather · Ore · Herbs** above the dashboard, then choose a category. The added catalog includes **52 Forever-verified item records**: 6 cloths, 10 leathers/hides, 9 ores and 27 herbs. Each category fetches its own fixed-market batch, staying below AHledger’s 100-item limit. Fish queries remain unchanged. Click any material for current/typical/vendor values, market warnings, and actual 24h/7d/30d price history when supplied and authorized.
+
+Use the **Your units/hour** inputs to enter your measured or expected harvest output. Multiple outputs are summed into one plan per category; an optional route label and yields are saved only in this browser. Unknown yield stays blank, distinct from zero. Use the global settings for AH fee, session length, assumed market share and price strategy. Fishing skill, lure bonus and cast duration never affect material harvest calculations.
+
+Gross AH potential and demand-adjusted gold/hour use the same independently tested selling engine as fishing. Missing selling-capacity or vendor information remains incomplete. We do **not** invent mob drop rates, node density or “best farming locations”; compare plans using your own measured yields. Vendor values and item names were checked against the Forever item endpoint on 2026-11-17 and should be rechecked after patches. Demo mode remains explicitly labeled and never replaces unavailable live prices.
+
 ## GitHub workflow
 
 Repository: https://github.com/Estabondotcom/Forever-Market-
@@ -87,7 +95,7 @@ npm run verify:api
 node --conditions=react-server --import tsx scripts/smoke-routes.ts
 ```
 
-41 deterministic unit tests cover currency, fees, skill, lures, mixed catches, conditional seasons, low/high demand, unknown vendor/sales, invalid data, ranking, fixed-market parsers, graph normalization, HTTP auth failures, ETags, caching, expiry and rate limits. They use synthetic fixtures, not retained live market data.
+52 deterministic unit tests cover currency, fees, skill, lures, mixed catches, conditional seasons, low/high demand, unknown vendor/sales, invalid data, ranking, fixed-market parsers, graph normalization, HTTP auth failures, ETags, caching, expiry and rate limits. They use synthetic fixtures, not retained live market data.
 
 Validated in the development environment: real API requests and app route handlers, tests, TypeScript and production build. The cloud environment blocked the preview server from binding a port; **visual browser and physical iPhone QA remain unverified**. Responsive CSS is included for 375px and larger screens, but should be checked on your device.
 
@@ -132,7 +140,7 @@ On CasaOS, copy the project folder to persistent storage (for example `/DATA/App
 
 ## Limitations
 
-No numerical fishing location is Forever-verified yet. Exact seasonal switch dates, daytime distributions, school rates, new Forever species such as Whimsyfin, and Rack/Hut effects need measurements. Item facts must be rechecked after game updates. Rankings are incomplete where necessary information is missing; the displayed subtotal is not a complete expected return. Auction deposits, relisting costs, travel, lure costs/uptime, pool competition and other unmodeled costs can materially reduce returns. Market trend compares current buyout with 7d median rather than measuring recent momentum. There are no guarantees of sales or personal market share.
+No numerical fishing location is Forever-verified yet. Material farming routes, kill rates, node density and skill requirements are not supplied as verified facts; material gold/hour uses only yields entered by the user. Exact seasonal switch dates, daytime distributions, school rates, new Forever species such as Whimsyfin, and Rack/Hut effects need measurements. Item facts must be rechecked after game updates. Rankings are incomplete where necessary information is missing; the displayed subtotal is not a complete expected return. Auction deposits, relisting costs, travel, lure costs/uptime, pool competition and other unmodeled costs can materially reduce returns. Market trend compares current buyout with 7d median rather than measuring recent momentum. There are no guarantees of sales or personal market share.
 
 ## Attribution and license
 

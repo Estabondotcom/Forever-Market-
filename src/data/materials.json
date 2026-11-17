@@ -1,0 +1,470 @@
+[
+  {
+    "id": 2589,
+    "name": "Linen Cloth",
+    "category": "cloth",
+    "vendorCopper": 13,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2589-linen-cloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2592,
+    "name": "Wool Cloth",
+    "category": "cloth",
+    "vendorCopper": 33,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2592-wool-cloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4306,
+    "name": "Silk Cloth",
+    "category": "cloth",
+    "vendorCopper": 150,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4306-silk-cloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4338,
+    "name": "Mageweave Cloth",
+    "category": "cloth",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4338-mageweave-cloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14047,
+    "name": "Runecloth",
+    "category": "cloth",
+    "vendorCopper": 400,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/14047-runecloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14256,
+    "name": "Felcloth",
+    "category": "cloth",
+    "vendorCopper": 2000,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/14256-felcloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2318,
+    "name": "Light Leather",
+    "category": "leather",
+    "vendorCopper": 15,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2318-light-leather?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2319,
+    "name": "Medium Leather",
+    "category": "leather",
+    "vendorCopper": 50,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2319-medium-leather?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4234,
+    "name": "Heavy Leather",
+    "category": "leather",
+    "vendorCopper": 150,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4234-heavy-leather?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4304,
+    "name": "Thick Leather",
+    "category": "leather",
+    "vendorCopper": 300,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4304-thick-leather?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8170,
+    "name": "Rugged Leather",
+    "category": "leather",
+    "vendorCopper": 500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8170-rugged-leather?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 783,
+    "name": "Light Hide",
+    "category": "leather",
+    "vendorCopper": 50,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/783-light-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4232,
+    "name": "Medium Hide",
+    "category": "leather",
+    "vendorCopper": 125,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4232-medium-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4235,
+    "name": "Heavy Hide",
+    "category": "leather",
+    "vendorCopper": 200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4235-heavy-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8169,
+    "name": "Thick Hide",
+    "category": "leather",
+    "vendorCopper": 500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8169-thick-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8171,
+    "name": "Rugged Hide",
+    "category": "leather",
+    "vendorCopper": 500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8171-rugged-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2770,
+    "name": "Copper Ore",
+    "category": "ore",
+    "vendorCopper": 5,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2770-copper-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2771,
+    "name": "Tin Ore",
+    "category": "ore",
+    "vendorCopper": 25,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2771-tin-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2772,
+    "name": "Iron Ore",
+    "category": "ore",
+    "vendorCopper": 150,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2772-iron-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2775,
+    "name": "Silver Ore",
+    "category": "ore",
+    "vendorCopper": 75,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2775-silver-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2776,
+    "name": "Gold Ore",
+    "category": "ore",
+    "vendorCopper": 500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2776-gold-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3858,
+    "name": "Mithril Ore",
+    "category": "ore",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3858-mithril-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7911,
+    "name": "Truesilver Ore",
+    "category": "ore",
+    "vendorCopper": 500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/7911-truesilver-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10620,
+    "name": "Thorium Ore",
+    "category": "ore",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/10620-thorium-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11370,
+    "name": "Dark Iron Ore",
+    "category": "ore",
+    "vendorCopper": 500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/11370-dark-iron-ore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2447,
+    "name": "Peacebloom",
+    "category": "herbs",
+    "vendorCopper": 10,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2447-peacebloom?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2449,
+    "name": "Earthroot",
+    "category": "herbs",
+    "vendorCopper": 20,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2449-earthroot?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2450,
+    "name": "Briarthorn",
+    "category": "herbs",
+    "vendorCopper": 25,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2450-briarthorn?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2452,
+    "name": "Swiftthistle",
+    "category": "herbs",
+    "vendorCopper": 15,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2452-swiftthistle?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2453,
+    "name": "Bruiseweed",
+    "category": "herbs",
+    "vendorCopper": 25,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/2453-bruiseweed?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3355,
+    "name": "Wild Steelbloom",
+    "category": "herbs",
+    "vendorCopper": 50,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3355-wild-steelbloom?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3356,
+    "name": "Kingsblood",
+    "category": "herbs",
+    "vendorCopper": 30,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3356-kingsblood?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3357,
+    "name": "Liferoot",
+    "category": "herbs",
+    "vendorCopper": 75,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3357-liferoot?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3358,
+    "name": "Khadgar's Whisker",
+    "category": "herbs",
+    "vendorCopper": 175,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3358-khadgars-whisker?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3818,
+    "name": "Fadeleaf",
+    "category": "herbs",
+    "vendorCopper": 125,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3818-fadeleaf?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3819,
+    "name": "Wintersbite",
+    "category": "herbs",
+    "vendorCopper": 100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3819-wintersbite?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3820,
+    "name": "Stranglekelp",
+    "category": "herbs",
+    "vendorCopper": 100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3820-stranglekelp?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3821,
+    "name": "Goldthorn",
+    "category": "herbs",
+    "vendorCopper": 150,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3821-goldthorn?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4625,
+    "name": "Firebloom",
+    "category": "herbs",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4625-firebloom?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8153,
+    "name": "Wildvine",
+    "category": "herbs",
+    "vendorCopper": 5,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8153-wildvine?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8831,
+    "name": "Purple Lotus",
+    "category": "herbs",
+    "vendorCopper": 300,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8831-purple-lotus?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8836,
+    "name": "Arthas' Tears",
+    "category": "herbs",
+    "vendorCopper": 95,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8836-arthas-tears?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8838,
+    "name": "Sungrass",
+    "category": "herbs",
+    "vendorCopper": 60,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8838-sungrass?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8839,
+    "name": "Blindweed",
+    "category": "herbs",
+    "vendorCopper": 375,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8839-blindweed?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8845,
+    "name": "Ghost Mushroom",
+    "category": "herbs",
+    "vendorCopper": 375,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8845-ghost-mushroom?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8846,
+    "name": "Gromsblood",
+    "category": "herbs",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8846-gromsblood?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13463,
+    "name": "Dreamfoil",
+    "category": "herbs",
+    "vendorCopper": 100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13463-dreamfoil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13464,
+    "name": "Golden Sansam",
+    "category": "herbs",
+    "vendorCopper": 100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13464-golden-sansam?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13465,
+    "name": "Mountain Silversage",
+    "category": "herbs",
+    "vendorCopper": 150,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13465-mountain-silversage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13466,
+    "name": "Plaguebloom",
+    "category": "herbs",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13466-plaguebloom?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13467,
+    "name": "Icecap",
+    "category": "herbs",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13467-icecap?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13468,
+    "name": "Black Lotus",
+    "category": "herbs",
+    "vendorCopper": 1000,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13468-black-lotus?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  }
+]
