@@ -1,0 +1,610 @@
+[
+  {
+    "id": 858,
+    "name": "Lesser Healing Potion",
+    "vendorCopper": 25,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/858-lesser-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 1710,
+    "name": "Greater Healing Potion",
+    "vendorCopper": 125,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/1710-greater-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 3385,
+    "name": "Lesser Mana Potion",
+    "vendorCopper": 30,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3385-lesser-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 3827,
+    "name": "Mana Potion",
+    "vendorCopper": 120,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3827-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 3928,
+    "name": "Superior Healing Potion",
+    "vendorCopper": 250,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/3928-superior-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 4603,
+    "name": "Raw Spotted Yellowtail",
+    "vendorCopper": 4,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/4603-raw-spotted-yellowtail?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6149,
+    "name": "Greater Mana Potion",
+    "vendorCopper": 120,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6149-greater-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6289,
+    "name": "Raw Longjaw Mud Snapper",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6289-raw-longjaw-mud-snapper?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6291,
+    "name": "Raw Brilliant Smallfish",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6291-raw-brilliant-smallfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6303,
+    "name": "Raw Slitherskin Mackerel",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6303-raw-slitherskin-mackerel?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6307,
+    "name": "Message in a Bottle",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6307-message-in-a-bottle?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6308,
+    "name": "Raw Bristle Whisker Catfish",
+    "vendorCopper": 2,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6308-raw-bristle-whisker-catfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6309,
+    "name": "17 Pound Catfish",
+    "vendorCopper": 1700,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6309-17-pound-catfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6310,
+    "name": "19 Pound Catfish",
+    "vendorCopper": 1900,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6310-19-pound-catfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6311,
+    "name": "22 Pound Catfish",
+    "vendorCopper": 2200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6311-22-pound-catfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6351,
+    "name": "Dented Crate",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6351-dented-crate?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6353,
+    "name": "Small Chest",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6353-small-chest?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6356,
+    "name": "Battered Chest",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6356-battered-chest?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6358,
+    "name": "Oily Blackmouth",
+    "vendorCopper": 4,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6358-oily-blackmouth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6359,
+    "name": "Firefin Snapper",
+    "vendorCopper": 5,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6359-firefin-snapper?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6361,
+    "name": "Raw Rainbow Fin Albacore",
+    "vendorCopper": 2,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6361-raw-rainbow-fin-albacore?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6362,
+    "name": "Raw Rockscale Cod",
+    "vendorCopper": 4,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6362-raw-rockscale-cod?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6363,
+    "name": "26 Pound Catfish",
+    "vendorCopper": 2600,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6363-26-pound-catfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6364,
+    "name": "32 Pound Catfish",
+    "vendorCopper": 3200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6364-32-pound-catfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6522,
+    "name": "Deviate Fish",
+    "vendorCopper": 4,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6522-deviate-fish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 6645,
+    "name": "Bloated Mud Snapper",
+    "vendorCopper": 25,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/6645-bloated-mud-snapper?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 7973,
+    "name": "Big-mouth Clam",
+    "vendorCopper": 46,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/7973-big-mouth-clam?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 8365,
+    "name": "Raw Mithril Head Trout",
+    "vendorCopper": 4,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8365-raw-mithril-head-trout?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 8366,
+    "name": "Bloated Mithril Head Trout",
+    "vendorCopper": 100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/8366-bloated-mithril-head-trout?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13422,
+    "name": "Stonescale Eel",
+    "vendorCopper": 10,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13422-stonescale-eel?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13443,
+    "name": "Superior Mana Potion",
+    "vendorCopper": 400,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13443-superior-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13446,
+    "name": "Major Healing Potion",
+    "vendorCopper": 1000,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13446-major-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13754,
+    "name": "Raw Glossy Mightfish",
+    "vendorCopper": 6,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13754-raw-glossy-mightfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13755,
+    "name": "Raw Winter Squid",
+    "vendorCopper": 7,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13755-raw-winter-squid?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13756,
+    "name": "Raw Summer Bass",
+    "vendorCopper": 9,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13756-raw-summer-bass?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13757,
+    "name": "Lightning Eel",
+    "vendorCopper": 10,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13757-lightning-eel?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13758,
+    "name": "Raw Redgill",
+    "vendorCopper": 4,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13758-raw-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13759,
+    "name": "Raw Nightfin Snapper",
+    "vendorCopper": 10,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13759-raw-nightfin-snapper?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13760,
+    "name": "Raw Sunscale Salmon",
+    "vendorCopper": 10,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13760-raw-sunscale-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13874,
+    "name": "Heavy Crate",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13874-heavy-crate?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13875,
+    "name": "Ironbound Locked Chest",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13875-ironbound-locked-chest?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13876,
+    "name": "40 Pound Yellowtail",
+    "vendorCopper": 4000,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13876-40-pound-yellowtail?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13877,
+    "name": "47 Pound Yellowtail",
+    "vendorCopper": 4700,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13877-47-pound-yellowtail?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13878,
+    "name": "53 Pound Yellowtail",
+    "vendorCopper": 5300,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13878-53-pound-yellowtail?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13879,
+    "name": "59 Pound Yellowtail",
+    "vendorCopper": 5900,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13879-59-pound-yellowtail?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13880,
+    "name": "68 Pound Yellowtail",
+    "vendorCopper": 6800,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13880-68-pound-yellowtail?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13881,
+    "name": "Bloated Redgill",
+    "vendorCopper": 100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13881-bloated-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13882,
+    "name": "42 Pound Redgill",
+    "vendorCopper": 4200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13882-42-pound-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13883,
+    "name": "45 Pound Redgill",
+    "vendorCopper": 4500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13883-45-pound-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13884,
+    "name": "49 Pound Redgill",
+    "vendorCopper": 4900,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13884-49-pound-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13885,
+    "name": "34 Pound Redgill",
+    "vendorCopper": 3400,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13885-34-pound-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13886,
+    "name": "37 Pound Redgill",
+    "vendorCopper": 3700,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13886-37-pound-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13887,
+    "name": "52 Pound Redgill",
+    "vendorCopper": 5200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13887-52-pound-redgill?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13888,
+    "name": "Darkclaw Lobster",
+    "vendorCopper": 12,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13888-darkclaw-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13889,
+    "name": "Raw Whitescale Salmon",
+    "vendorCopper": 5,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13889-raw-whitescale-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13890,
+    "name": "Raw Plated Armorfish",
+    "vendorCopper": 70,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13890-raw-plated-armorfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13891,
+    "name": "Bloated Whitescale Salmon",
+    "vendorCopper": 100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13891-bloated-whitescale-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13893,
+    "name": "Large Raw Mightfish",
+    "vendorCopper": 15,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13893-large-raw-mightfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13901,
+    "name": "15 Pound Salmon",
+    "vendorCopper": 1500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13901-15-pound-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13902,
+    "name": "18 Pound Salmon",
+    "vendorCopper": 1800,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13902-18-pound-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13903,
+    "name": "22 Pound Salmon",
+    "vendorCopper": 2200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13903-22-pound-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13904,
+    "name": "25 Pound Salmon",
+    "vendorCopper": 2500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13904-25-pound-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13905,
+    "name": "29 Pound Salmon",
+    "vendorCopper": 2900,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13905-29-pound-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13907,
+    "name": "7 Pound Lobster",
+    "vendorCopper": 700,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13907-7-pound-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13908,
+    "name": "9 Pound Lobster",
+    "vendorCopper": 900,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13908-9-pound-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13909,
+    "name": "12 Pound Lobster",
+    "vendorCopper": 1200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13909-12-pound-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13910,
+    "name": "15 Pound Lobster",
+    "vendorCopper": 1500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13910-15-pound-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13911,
+    "name": "19 Pound Lobster",
+    "vendorCopper": 1900,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13911-19-pound-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13912,
+    "name": "21 Pound Lobster",
+    "vendorCopper": 2100,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13912-21-pound-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13913,
+    "name": "22 Pound Lobster",
+    "vendorCopper": 2200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13913-22-pound-lobster?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13914,
+    "name": "70 Pound Mightfish",
+    "vendorCopper": 7000,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13914-70-pound-mightfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13915,
+    "name": "85 Pound Mightfish",
+    "vendorCopper": 8500,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13915-85-pound-mightfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13916,
+    "name": "92 Pound Mightfish",
+    "vendorCopper": 9200,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13916-92-pound-mightfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13917,
+    "name": "103 Pound Mightfish",
+    "vendorCopper": 10300,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13917-103-pound-mightfish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 13918,
+    "name": "Reinforced Locked Chest",
+    "vendorCopper": 1,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/13918-reinforced-locked-chest?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  },
+  {
+    "id": 21153,
+    "name": "Raw Greater Sagefish",
+    "vendorCopper": 125,
+    "metadataVerified": true,
+    "source": "https://ahledger.com/items/21153-raw-greater-sagefish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "metadataNote": "Item facts checked against Forever on 2026-11-17; vendor value should be revalidated after patches."
+  }
+]

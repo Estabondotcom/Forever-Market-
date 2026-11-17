@@ -1,0 +1,11 @@
+services:
+  fishing-tracker:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      AHLEDGER_API_KEY: ${AHLEDGER_API_KEY:-}
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true

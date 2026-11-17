@@ -1,0 +1,1075 @@
+[
+  {
+    "id": "durotar-coast",
+    "zone": "Durotar",
+    "area": "Coastal water",
+    "mode": "open-water",
+    "minimumSkill": 1,
+    "baseThreshold": -70,
+    "reliableSkill": 25,
+    "catches": [
+      {
+        "itemId": 6303,
+        "probability": 0.98,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6356,
+        "probability": 0.02,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "barrens-coast",
+    "zone": "The Barrens",
+    "area": "Coast (Ratchet)",
+    "mode": "open-water",
+    "minimumSkill": 1,
+    "baseThreshold": -20,
+    "reliableSkill": 75,
+    "catches": [
+      {
+        "itemId": 6303,
+        "probability": 0.335,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6307,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6351,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6353,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6358,
+        "probability": 0.15,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6361,
+        "probability": 0.5,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "stranglethorn-inland",
+    "zone": "Stranglethorn Vale",
+    "area": "Inland water",
+    "mode": "open-water",
+    "minimumSkill": 130,
+    "baseThreshold": 130,
+    "reliableSkill": 225,
+    "catches": [
+      {
+        "itemId": 1710,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 3827,
+        "probability": 0.007,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6308,
+        "probability": 0.4,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6310,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6311,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6363,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6364,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 8365,
+        "probability": 0.584,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 8366,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "feralas-inland",
+    "zone": "Feralas",
+    "area": "Main inland table",
+    "mode": "open-water",
+    "minimumSkill": 205,
+    "baseThreshold": 205,
+    "reliableSkill": 300,
+    "catches": [
+      {
+        "itemId": 1710,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 3827,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6308,
+        "probability": 0.4,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6309,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6310,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6311,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6363,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6364,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 8365,
+        "probability": 0.5839,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 8366,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "tanaris-coast",
+    "zone": "Tanaris",
+    "area": "Coastal water",
+    "mode": "open-water",
+    "minimumSkill": 205,
+    "baseThreshold": 205,
+    "reliableSkill": 300,
+    "catches": [
+      {
+        "itemId": 4603,
+        "probability": 0.253,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6359,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6362,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 7973,
+        "probability": 0.08,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13422,
+        "probability": 0.15,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13754,
+        "probability": 0.15,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13756,
+        "probability": 0.15,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13874,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13875,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13876,
+        "probability": 0.004,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13877,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13878,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13879,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13880,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13755,
+        "probability": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "basis": "Classic seasonal bonus roll"
+      },
+      {
+        "itemId": 13756,
+        "probability": 0.1,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "basis": "Classic seasonal bonus roll"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "azshara-inland",
+    "zone": "Azshara",
+    "area": "General zone water; excludes Bay of Storms",
+    "mode": "open-water",
+    "minimumSkill": 205,
+    "baseThreshold": 205,
+    "reliableSkill": 300,
+    "catches": [
+      {
+        "itemId": 3928,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6149,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6358,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 8365,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13757,
+        "probability": 0.07,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13758,
+        "probability": 0.354,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13759,
+        "probability": 0.18,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13760,
+        "probability": 0.18,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13881,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13882,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13883,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13884,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13885,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13886,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13887,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13755,
+        "probability": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "basis": "Classic seasonal bonus roll"
+      },
+      {
+        "itemId": 13756,
+        "probability": 0.1,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "basis": "Classic seasonal bonus roll"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "felwood",
+    "zone": "Felwood",
+    "area": "Inland water",
+    "mode": "open-water",
+    "minimumSkill": 205,
+    "baseThreshold": 205,
+    "reliableSkill": 300,
+    "catches": [
+      {
+        "itemId": 3928,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6149,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6358,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 8365,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13757,
+        "probability": 0.07,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13758,
+        "probability": 0.354,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13759,
+        "probability": 0.18,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13760,
+        "probability": 0.18,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13881,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13882,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13883,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13884,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13885,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13886,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13887,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "hinterlands",
+    "zone": "The Hinterlands",
+    "area": "General zone water",
+    "mode": "open-water",
+    "minimumSkill": 205,
+    "baseThreshold": 205,
+    "reliableSkill": 300,
+    "catches": [
+      {
+        "itemId": 3928,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6149,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6358,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 8365,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13757,
+        "probability": 0.07,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13758,
+        "probability": 0.354,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13759,
+        "probability": 0.18,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13760,
+        "probability": 0.18,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13881,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13882,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13883,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13884,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13885,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13886,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13887,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "eastern-plaguelands",
+    "zone": "Eastern Plaguelands",
+    "area": "Inland water",
+    "mode": "open-water",
+    "minimumSkill": 330,
+    "baseThreshold": 330,
+    "reliableSkill": 425,
+    "catches": [
+      {
+        "itemId": 13443,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13446,
+        "probability": 0.004,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13757,
+        "probability": 0.12,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13758,
+        "probability": 0.05,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13759,
+        "probability": 0.17,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13760,
+        "probability": 0.17,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13889,
+        "probability": 0.305,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13890,
+        "probability": 0.17,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13891,
+        "probability": 0.004,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13901,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13902,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13903,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13904,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13905,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "winterspring",
+    "zone": "Winterspring",
+    "area": "Inland water",
+    "mode": "open-water",
+    "minimumSkill": 330,
+    "baseThreshold": 330,
+    "reliableSkill": 425,
+    "catches": [
+      {
+        "itemId": 13443,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13446,
+        "probability": 0.004,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13757,
+        "probability": 0.12,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13758,
+        "probability": 0.05,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13759,
+        "probability": 0.17,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13760,
+        "probability": 0.17,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13889,
+        "probability": 0.305,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13890,
+        "probability": 0.17,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13891,
+        "probability": 0.004,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13901,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13902,
+        "probability": 0.001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13903,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13904,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13905,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "1222",
+    "zone": "Feralas",
+    "area": "Western coast",
+    "mode": "open-water",
+    "minimumSkill": 330,
+    "baseThreshold": 330,
+    "reliableSkill": 425,
+    "catches": [
+      {
+        "itemId": 4603,
+        "probability": 0.05,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 7973,
+        "probability": 0.1,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13422,
+        "probability": 0.18,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13756,
+        "probability": 0.2,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13874,
+        "probability": 0.006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13888,
+        "probability": 0.59805,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13893,
+        "probability": 0.05,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13907,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13908,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13909,
+        "probability": 0.0015,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13910,
+        "probability": 0.0008,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13911,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13912,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13913,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13914,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13915,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13916,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13917,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13918,
+        "probability": 0.004,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 13755,
+        "probability": 0.1,
+        "months": [
+          10,
+          11,
+          12,
+          1,
+          2,
+          3
+        ],
+        "basis": "Classic seasonal bonus roll"
+      },
+      {
+        "itemId": 13756,
+        "probability": 0.1,
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "basis": "Classic seasonal bonus roll"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "718",
+    "zone": "The Barrens",
+    "area": "Wailing Caverns waters",
+    "mode": "open-water",
+    "minimumSkill": 1,
+    "baseThreshold": -20,
+    "reliableSkill": 75,
+    "catches": [
+      {
+        "itemId": 858,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 3385,
+        "probability": 0.005,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6289,
+        "probability": 0.4,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6291,
+        "probability": 0.13,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6308,
+        "probability": 0.15,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6309,
+        "probability": 0.004,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6310,
+        "probability": 0.002,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6311,
+        "probability": 0.0006,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6363,
+        "probability": 0.0003,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6364,
+        "probability": 0.0001,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6522,
+        "probability": 0.3,
+        "basis": "expected units per successful catch"
+      },
+      {
+        "itemId": 6645,
+        "probability": 0.003,
+        "basis": "expected units per successful catch"
+      }
+    ],
+    "confidence": "estimated",
+    "distributionComplete": true,
+    "source": "https://github.com/cmangos/classic-db/blob/master/Full_DB/ClassicDB_1_12_1_z2815.sql.gz",
+    "notes": [
+      "Classic 1.12 table; not measured in Forever. Includes secondary items and independent bonus rolls.",
+      "Nightfin, Sunscale and eel time-of-day variations are not validated; this is an average table.",
+      "No Fishing Rack or Fishing Hut bonuses."
+    ]
+  },
+  {
+    "id": "sagefish-school",
+    "zone": "Alterac Mountains",
+    "area": "Greater Sagefish schools",
+    "mode": "school",
+    "minimumSkill": null,
+    "baseThreshold": null,
+    "reliableSkill": null,
+    "catches": [
+      {
+        "itemId": 21153,
+        "probability": null
+      }
+    ],
+    "confidence": "incomplete",
+    "distributionComplete": false,
+    "source": "https://www.wowhead.com/forever/item=21153/raw-greater-sagefish",
+    "notes": [
+      "Pool catch distribution, success, availability and travel time are unverified."
+    ]
+  },
+  {
+    "id": "deviate-oasis",
+    "zone": "The Barrens",
+    "area": "Oasis waters (Deviate Fish)",
+    "mode": "open-water",
+    "minimumSkill": null,
+    "baseThreshold": null,
+    "reliableSkill": null,
+    "catches": [
+      {
+        "itemId": 6522,
+        "probability": null
+      }
+    ],
+    "confidence": "incomplete",
+    "distributionComplete": false,
+    "source": "https://www.wowhead.com/forever/item=6522/deviate-fish",
+    "notes": [
+      "Location candidate; catch rate and full distribution need Forever verification."
+    ]
+  }
+]
