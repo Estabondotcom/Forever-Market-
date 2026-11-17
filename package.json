@@ -9,7 +9,8 @@
     "test": "vitest run",
     "typecheck": "next typegen && tsc --noEmit",
     "verify:api": "tsx scripts/verify-api.ts",
-    "build:mockup": "node scripts/build-mockup.mjs"
+    "build:mockup": "node scripts/build-mockup.mjs",
+    "verify:blizzard": "node --env-file-if-exists=.env.local scripts/verify-blizzard.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
