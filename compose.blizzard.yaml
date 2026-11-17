@@ -1,0 +1,16 @@
+# Opt-in overlay: docker compose -f compose.yaml -f compose.blizzard.yaml up -d --build
+services:
+  blizzard-collector:
+    build:
+      context: .
+      target: collector
+    env_file:
+      - .env.local
+    environment:
+      BLIZZARD_DATA_DIR: /app/market-data
+    volumes:
+      - blizzard-history:/app/market-data
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true

@@ -1,0 +1,13 @@
+import {describe,it,expect} from 'vitest';
+import {collectedHistories} from '../src/lib/collector-comparison';
+import {dailyTimeline} from '../src/lib/timeline';
+import {MARKET,type CollectorData,type HistoryData} from '../src/lib/types';
+const now=Date.parse('2026-11-17T22:00:00Z'),item={id:2589,name:'Linen Cloth',metadataVerified:true,source:'fixture'};
+const collector:CollectorData={enabled:true,market:MARKET,houseId:114,status:'collecting',lastCheck:null,nextCheck:null,lastObservation:new Date(now).toISOString(),stale:false,samples:[{itemId:2589,timestamp:new Date(now-3600000).toISOString(),minBuyout:100,quantity:20,estimatedTurnoverPerHour:10,intervalHours:1},{itemId:2589,timestamp:new Date(now).toISOString(),minBuyout:200,quantity:30,estimatedTurnoverPerHour:20,intervalHours:2}]};
+describe('local turnover history integration',()=>{
+ it('renders local price fallback and actual dated turnover on one graph',()=>{const histories=collectedHistories([item],{},collector,'7d',now);expect(histories[2589].priceSource).toBe('blizzard-local');const graph=dailyTimeline([item],[],{2589:{price:true,demand:true}},histories,'3d',new Date(now));expect(graph.rows.at(-1)?.demand_2589).toBe(20);expect(graph.rows.at(-1)?.price_2589).toBe(200);});
+ it('keeps AHledger prices separate from local demand estimates',()=>{const provider:HistoryData={itemId:2589,range:'7d',expiresAt:new Date(now+60000).toISOString(),latest:null,sales:null,series:[{timestamp:new Date(now).toISOString(),minBuyout:50,median:null,quantity:4}]};const histories=collectedHistories([item],{2589:provider},collector,'7d',now);expect(histories[2589].priceSource).toBe('ahledger');expect(dailyTimeline([item],[],{2589:{price:true,demand:true}},histories,'7d',new Date(now)).rows.at(-1)?.price_2589).toBe(50);});
+ it('weights daily rates by measured duration',()=>{const histories=collectedHistories([item],{},collector,'7d',now);expect(dailyTimeline([item],[],{2589:{price:false,demand:true}},histories,'7d',new Date(now)).rows.at(-1)?.demand_2589).toBeCloseTo(50/3);});
+ it('does not backfill missing intervals or substitute rolling sales for a warming collector',()=>{const histories=collectedHistories([item],{}, {...collector,samples:[]},'7d',now);const graph=dailyTimeline([item],[],{2589:{price:false,demand:true}},histories,'7d',new Date(now));expect(graph.rows.every(r=>r.demand_2589===null)).toBe(true);expect(graph.currentDemandIds).toEqual([]);});
+ it('does not mix foreign items or observations outside the selected range',()=>{const histories=collectedHistories([item],{}, {...collector,samples:[{...collector.samples[0],itemId:999},{...collector.samples[0],timestamp:new Date(now-31*86400000).toISOString()}]},'7d',now);expect(histories[2589].series).toEqual([]);});
+});

@@ -33,13 +33,13 @@ The demand display uses the provider’s **estimated units sold per day**, never
 - Missing daily estimate = unavailable, not zero.
 - Zero estimated daily sales with positive supply = infinite days of supply.
 - Sales sample window and coverage are displayed when the individual price response supplies them. Low or missing coverage is warned.
-- There is no historical purchase-volume graph: the provider supplies a current sales estimate, not purchased quantities per historical hour.
+- AHledger supplies a current sales estimate, not purchased quantities per historical hour. The optional local collector supplies a separately labeled commodity-turnover proxy.
 
 The single graph combines history and comparison on a UTC calendar axis. Default: seven daily points including today. Optional: thirty daily points including today. Daily price is the minimum of available lowest-buyout observations that day. No interpolation or zero fill replaces missing days. Current day is partial. Each item has its own color; solid lines show price and dotted lines show demand.
 
 On this update, actual read-only 7d and 30d responses for Linen Cloth returned HTTP 200. Both had current `sales.estimatedPerDay/windowDays/coveredHours/method`. Historical `series[]` fields were only `t/min/median/p25/p75/quantity/auctions`: **no historical demand or purchased quantities**. The thirty-day response had only 13 supplied points; the chart retains missing dates as gaps instead of inventing the remaining days.
 
-Live historical demand therefore remains null. A current rolling estimate may appear only at the graph's current endpoint, explicitly labeled as such. It is never backfilled over past dates. A missing current estimate remains unavailable; estimated zero remains zero. The price response's aggregate sales object can supply the current point, but cannot become a historical series. The mockup alone includes explicit synthetic `estimatedSalesPerDay` points to demonstrate full demand-history lines.
+Without the optional local collector, live historical demand therefore remains null. A current rolling estimate may appear only at the graph's current endpoint, explicitly labeled as such. It is never backfilled over past dates. A missing current estimate remains unavailable; estimated zero remains zero. The price response's aggregate sales object can supply the current point, but cannot become a historical series. The mockup alone includes explicit synthetic `estimatedSalesPerDay` points to demonstrate full demand-history lines.
 
 Secondary research: [auctionhouse.fyi documentation](https://auctionhouse.fyi/docs/api/data-model) describes book disappearance as estimated volume, not confirmed purchases. Its [versioned API contract](https://auctionhouse.fyi/developers/reference/protocol/api-v1.md), Market depth section, gates historical volume estimates behind `depth` access; the anonymous item read attempted during this update returned HTTP 403. No account/key with that access was supplied, no secondary adapter was claimed as working, and no anonymous listing quantity was relabeled as sold volume. A verified historical-sales source and its required access would be needed to populate full live demand history.
 
@@ -47,7 +47,7 @@ Secondary research: [auctionhouse.fyi documentation](https://auctionhouse.fyi/do
 
 Free personal/community use requires attribution. Links appear beside market data, item details and source notes; item campaign links are preserved. No website scraping, EU prices or alternate-market data are used.
 
-From December 10 the terms prohibit retaining answers beyond their Cache-Control lifetime without an appropriate license. The implementation uses memory-only caches, removes expired market/history data, honors Cache-Control/ETag/Retry-After and coalesces identical requests. No auction data goes to localStorage, disk, fixtures or a database. The only current preference saved in localStorage is the selected category. Legacy browser preferences are no longer read.
+From December 10 the terms prohibit retaining answers beyond their Cache-Control lifetime without an appropriate license. The implementation uses memory-only caches, removes expired market/history data, honors Cache-Control/ETag/Retry-After and coalesces identical requests. No AHledger auction data goes to localStorage, disk, fixtures or a database. Optional independently obtained Blizzard data is described below. The only current preference saved in localStorage is the selected category. Legacy browser preferences are no longer read.
 
 A still-valid cached answer may be reused during an outage, but an expired answer cannot be displayed as an offline snapshot. Freshness compares actual observation timestamps, not just fetch time. An old observation can be warned even in a newly fetched response. Synthetic demo values are explicitly opt-in and never act as an error fallback.
 
@@ -67,3 +67,9 @@ Automated checks cover currency, category isolation, demand math, sorting, fixed
 
 ### Three-day hourly view
 The unified graph also offers **3 days · hourly**: 72 UTC hour buckets, including the partial current hour. It reuses the documented seven-day history response and groups available observations by hour, retaining the lowest observed buyout. Missing hours stay gaps. Seven-day and thirty-day views remain daily; seven days remains the default. Live historical demand remains unavailable; the current rolling estimate is only plotted at the current endpoint. The GitHub preview uses synthetic hourly history.
+
+## Optional local Blizzard collector
+
+The owner verified their own credentials and actual US Forever house 114 auction/commodity downloads on their CasaOS server. House identity remains community-mapped to Normal Horde, not explicitly supplied by Blizzard. The application now includes an opt-in, separately deployed collector with a 30-day TTL and read-only web access to its metrics. It does not archive AHledger responses.
+
+The dotted graph can use estimated commodity-listing turnover per elapsed hour, with cancellation/expiry uncertainty, gaps, observed interval coverage and separate rolling row estimates explained in the UI. Baselines, timestamp deduplication, partial quantity reductions, outages, storage recovery, 30-day pruning, HTTP errors, conditional requests and graph integration have fixture tests. Actual continuous collector operation, hourly upstream cadence and Docker runtime remain to be confirmed on the owner's server. See [setup, sources, retention and limitations](BLIZZARD-COLLECTOR.md).

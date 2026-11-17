@@ -1,11 +1,20 @@
 services:
   fishing-tracker:
-    build: .
+    build:
+      context: .
+      target: runner
     ports:
       - "3000:3000"
     environment:
+      BLIZZARD_HISTORY_PATH: /app/market-data/history.json
       AHLEDGER_API_KEY: ${AHLEDGER_API_KEY:-}
     restart: unless-stopped
     init: true
     security_opt:
       - no-new-privileges:true
+
+    volumes:
+      - blizzard-history:/app/market-data:ro
+
+volumes:
+  blizzard-history:

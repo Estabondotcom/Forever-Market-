@@ -23,7 +23,7 @@ export function dailyTimeline(items:readonly CatalogItem[],snapshots:AuctionSnap
     const flags=selection[item.id];if(!flags?.price&&!flags?.demand)continue;
     const priceKey=`price_${item.id}`,demandKey=`demand_${item.id}`;
     for(const row of rows){if(flags.price)row[priceKey]=null;if(flags.demand)row[demandKey]=null;}
-    const history=histories[item.id],demandSamples=new Map<string,number[]>();
+    const history=histories[item.id],demandSamples=new Map<string,{rate:number;weight:number}[]>();
     if(history?.itemId===item.id&&history.range===(period==='3d'?'7d':period)){
       for(const point of history.series){
         const time=Date.parse(point.timestamp);if(!Number.isFinite(time))continue;
@@ -33,15 +33,18 @@ export function dailyTimeline(items:readonly CatalogItem[],snapshots:AuctionSnap
           if(!Number.isFinite(point.minBuyout)||point.minBuyout<0)throw new Error('Invalid historical price');
           const previous=row[priceKey];row[priceKey]=typeof previous==='number'?Math.min(previous,point.minBuyout):point.minBuyout;
         }
-        if(flags.demand&&point.estimatedSalesPerDay!=null){
-          const rate=hourlyDemand(point.estimatedSalesPerDay)!;
-          const samples=demandSamples.get(day)??[];samples.push(rate);demandSamples.set(day,samples);
+        if(flags.demand&&(point.estimatedTurnoverPerHour!=null||point.estimatedSalesPerDay!=null)){
+          const rate=point.estimatedTurnoverPerHour??hourlyDemand(point.estimatedSalesPerDay)!;
+          if(!Number.isFinite(rate)||rate<0)throw new Error('Invalid demand rate');
+          const weight=point.estimatedTurnoverPerHour!=null?(point.intervalHours??1):1;
+          if(!Number.isFinite(weight)||weight<=0)throw new Error('Invalid demand interval');
+          const samples=demandSamples.get(day)??[];samples.push({rate,weight});demandSamples.set(day,samples);
         }
       }
     }
     if(flags.demand){
-      if(demandSamples.size){for(const [day,samples] of demandSamples)byDay.get(day)![demandKey]=samples.reduce((a,b)=>a+b,0)/samples.length;}
-      else{
+      if(demandSamples.size){for(const [day,samples] of demandSamples){const covered=samples.reduce((a,b)=>a+b.weight,0);byDay.get(day)![demandKey]=samples.reduce((a,b)=>a+b.rate*b.weight,0)/covered;if(history?.turnoverSource)byDay.get(day)![`coverage_${item.id}`]=covered;}}
+      else if(!history?.turnoverSource){
         // No flat backfill: this estimate belongs only at the current endpoint, never on past dates.
         const current=hourlyDemand(byId.get(item.id)?.sales.estimatedPerDay??(history?.itemId===item.id&&history.range===(period==='3d'?'7d':period)?history.sales?.estimatedPerDay:undefined));
         if(current!==null){byDay.get(today)![demandKey]=current;currentDemandIds.push(item.id);}else missingDemandIds.push(item.id);

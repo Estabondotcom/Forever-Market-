@@ -1,0 +1,30 @@
+import {describe,it,expect} from 'vitest';
+import {advance,emptyState,normalizeSnapshot,prune,publicReport,TTL} from '../collector/model.mjs';
+import {fetchSnapshot} from '../collector/transport.mjs';
+const now=Date.parse('2026-11-17T22:00:00Z');
+const data=auctions=>({auctions});
+const row=(id,quantity,itemId=2589,price=100)=>({id,item:{id:itemId},quantity,unit_price:price});
+const snap=(hours,rows)=>normalizeSnapshot(data(rows),new Date(now+hours*3600000).toUTCString(),[2589,2592],now+hours*3600000);
+const sequence=(previous,next,hours=1)=>advance(advance(emptyState(),snap(0,previous),now),snap(hours,next),now+hours*3600000);
+describe('Blizzard commodity turnover model',()=>{
+ it('starts with a baseline and no invented demand',()=>{const state=advance(emptyState(),snap(0,[row(1,20)]),now);expect(state.status).toBe('warming');expect(state.samples[0].estimatedTurnoverPerHour).toBeNull();});
+ it('counts disappeared quantity and partial stack purchases, not net supply change',()=>{const state=sequence([row(1,20),row(2,10)],[row(1,15),row(3,100)]);expect(state.samples.at(-2)).toMatchObject({quantity:115,estimatedTurnoverPerHour:15,intervalHours:1});});
+ it('normalizes an observed interval rather than calling every interval one hour',()=>{const state=sequence([row(1,30)],[],1.5);expect(state.samples.at(-2).estimatedTurnoverPerHour).toBe(20);});
+ it('does not treat new listings or rising supply as purchases',()=>{expect(sequence([row(1,20)],[row(1,20),row(2,80)]).samples.at(-2).estimatedTurnoverPerHour).toBe(0);});
+ it('preserves observed zero independently from missing intervals',()=>{const state=sequence([],[]);expect(state.samples.at(-1).estimatedTurnoverPerHour).toBe(0);expect(state.samples[0].estimatedTurnoverPerHour).toBeNull();});
+ it('does not count a repeated or regressed Last-Modified timestamp',()=>{const state=advance(emptyState(),snap(0,[row(1,20)]),now);const count=state.samples.length;advance(state,snap(0,[]),now);expect(state.samples).toHaveLength(count);expect(state.baseline.listings).toHaveLength(1);});
+ it('leaves a long outage blank and resumes from the new baseline',()=>{const state=sequence([row(1,20)],[],3);expect(state.status).toBe('gap');expect(state.samples.at(-2).estimatedTurnoverPerHour).toBeNull();advance(state,snap(4,[]),now+4*3600000);expect(state.samples.at(-2).estimatedTurnoverPerHour).toBe(0);});
+ it('rejects invalid, duplicate and missing snapshot data',()=>{for(const payload of [{},data([row(1,-1)]),data([row(1,10),row(1,10)])])expect(()=>normalizeSnapshot(payload,new Date(now).toUTCString(),[2589],now)).toThrow();expect(()=>normalizeSnapshot(data([]),null,[2589],now)).toThrow();});
+ it('rejects future and expired observations',()=>{expect(()=>normalizeSnapshot(data([]),new Date(now+3600000).toUTCString(),[2589],now)).toThrow();expect(()=>normalizeSnapshot(data([]),new Date(now-TTL).toUTCString(),[2589],now)).toThrow();});
+ it('retains only tracked resources and public reports contain no auction IDs',()=>{const state=advance(emptyState(),snap(0,[row(1,10),row(2,20,999)]),now);expect(state.baseline.listings).toHaveLength(1);const report=publicReport(state,[2592],now);expect(report.samples.every(s=>s.itemId===2592)).toBe(true);expect(report.baseline).toBeUndefined();});
+ it('prunes records and raw baselines at thirty days even without new observations',()=>{const state=advance(emptyState(),snap(0,[row(1,10)]),now);prune(state,now+TTL+1);expect(state.samples).toEqual([]);expect(state.baseline).toBeNull();});
+ it('rejects alternate house or market state',()=>{expect(()=>prune({...emptyState(),houseId:113},now)).toThrow();expect(()=>prune({...emptyState(),market:'other'},now)).toThrow();});
+ it('does not store seller/character fields',()=>{const state=advance(emptyState(),snap(0,[{...row(1,10),owner:'private-name',seller:'private-name'}]),now);expect(JSON.stringify(state)).not.toContain('private-name');});
+});
+describe('conditional Blizzard transport',()=>{
+ const auth={access_token:'fixture-token',token_type:'bearer'};
+ it('uses fixed market, conditional validators and no credentials in URLs',async()=>{const calls=[];const result=await fetchSnapshot({clientId:'fixture-client',clientSecret:'fixture-secret',baseline:{observedAt:new Date(now).toISOString()},etag:'fixture-etag',fetchImpl:async(url,options)=>{calls.push({url,options});return calls.length===1?Response.json(auth):new Response(null,{status:304});}});expect(result.unchanged).toBe(true);expect(calls[1].url).toContain('/ruleset/2/auctions/114/commodities');expect(calls[1].options.headers['If-None-Match']).toBe('fixture-etag');expect(calls[1].options.headers['If-Modified-Since']).toBe(new Date(now).toUTCString());expect(calls.every(c=>!c.url.includes('fixture'))).toBe(true);});
+ it('requires credentials before making a request',async()=>{await expect(fetchSnapshot({})).rejects.toThrow('credentials-missing');});
+ it('preserves Retry-After and never emits private response bodies',async()=>{try{await fetchSnapshot({clientId:'x',clientSecret:'y',fetchImpl:async()=>new Response('private-secret',{status:429,headers:{'Retry-After':'7200'}})});throw new Error('Expected rejection');}catch(error){expect(error.message).toBe('http-429');expect(error.retryMs).toBe(7200000);}});
+ it('does not follow redirects with authorization',async()=>{await expect(fetchSnapshot({clientId:'x',clientSecret:'y',fetchImpl:async(url,options)=>{expect(options.redirect).toBe('error');throw new Error('private-secret');}})).rejects.toThrow('network-error');});
+});

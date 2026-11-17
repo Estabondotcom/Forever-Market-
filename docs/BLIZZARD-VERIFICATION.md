@@ -63,3 +63,6 @@ Community endpoint research:
 - https://github.com/cnanas/Wow-Forever-Auction (API notes)
 
 The verifier uses `dynamic-forever-us`, `/data/wow/ruleset/2` and `/data/wow/ruleset/2/auctions/` (the index's trailing slash matters). These are not presented as officially documented Forever support. No user credentials were supplied to the development environment. Authentication, access errors, response validation and reporting are fixture-tested; a real authenticated Blizzard request has **not** been performed here.
+
+## After successful verification
+The optional collector implementation is now available. Follow [the separate opt-in server setup](BLIZZARD-COLLECTOR.md); verification itself still does not enable it.

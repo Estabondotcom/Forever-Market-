@@ -2,7 +2,7 @@
 
 A personal, dark-mode auction dashboard for **WoW Forever · US / Americas · Normal PvE · Horde**, fixed to `forever.normal.horde.us`.
 
-Current AH prices and average estimated units sold per hour, with one daily history/comparison timeline for primary **Cloth, Fish, Herbs, Ore and Skinning** resources. Toggle price and demand beside each item to add or remove it from the shared graph. No account, addon, running game client or database is required.
+Current AH prices and average estimated units sold per hour, with one daily history/comparison timeline for primary **Cloth, Fish, Herbs, Ore and Skinning** resources. Toggle price and demand beside each item to add or remove it from the shared graph. No player login, addon or running game client is required. The optional Blizzard trend collector needs free developer credentials and keeps a local history file.
 
 ## Interactive mockup
 
@@ -23,7 +23,9 @@ Every item row shows its **current lowest AH buyout** and **average estimated un
 - Each daily price is the lowest supplied buyout observation for that UTC day. Seven-day hourly observations are grouped into daily lows; thirty-day daily buckets use their supplied lowest buyouts. Missing days remain gaps. The current UTC day is partial.
 - Current AH price and average estimated units sold/hour remain in each item row. Search, sorting, same-tab comparisons and Clear all still work.
 
-**Live demand-history limitation:** AHledger supplies a current rolling sales estimate, not a historical daily sales series. Past demand stays blank. Only the current estimate appears at today's endpoint, labeled as a rolling estimate—not purchases during that day. It is never copied backwards across the week/month. The public mockup includes explicitly synthetic daily demand history to demonstrate the intended combined chart.
+**Demand history:** The optional [Blizzard collector](docs/BLIZZARD-COLLECTOR.md) builds a local, 30-day commodity turnover trend from new auction snapshots. It requires free developer credentials; the setup is below. This is an estimate that can include cancellations and expirations, not confirmed purchases.
+
+**AHledger demand-history limitation:** AHledger supplies a current rolling sales estimate, not a historical daily sales series. Without the collector, past demand stays blank. Only the current estimate appears at today's endpoint, labeled as a rolling estimate—not purchases during that day. It is never copied backwards across the week/month. The public mockup includes explicitly synthetic daily demand history to demonstrate the intended combined chart.
 
 **Hourly demand = estimated units sold per day ÷ 24.** Listing cancellations can resemble purchases. A source providing dated historical sales estimates is needed for a full live demand-history line. This is not solved by an AHledger history key: that key adds price-history access, not a historical sales series. The adapter contract supports future historical demand points without changing the interface. See [data provenance](docs/DATA-SOURCES.md).
 
@@ -61,6 +63,11 @@ To open it on your phone over the same Wi-Fi, use `http://YOUR-PC-LAN-IP:3000`. 
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `AHLEDGER_API_KEY` | No | Server-only AHledger key, sent as `Authorization: Bearer ...`. Documented free key adds 30-day history after December 10, 2026. |
+| `BLIZZARD_CLIENT_ID`, `BLIZZARD_CLIENT_SECRET` | Collector only | Free developer credentials; private `.env.local`, passed only to the opt-in collector. |
+| `BLIZZARD_COLLECTOR_ENABLED` | Collector only | Set `true` to enable the optional Compose overlay. |
+| `BLIZZARD_HOUSE_ID` | Collector only | Must be `114`; community-mapped US Normal Horde. |
+| `BLIZZARD_HISTORY_PATH` | No | Web reader history file path; Docker sets `/app/market-data/history.json`. |
+| `BLIZZARD_DATA_DIR` | No | Collector output directory; Docker sets `/app/market-data`. |
 | `PORT` | No | Production port, default 3000; use `--port` for development. |
 | `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` | No | Standard system proxy configuration, normally unset on a home server. |
 | `NEXT_TELEMETRY_DISABLED` | No | `1` disables Next.js telemetry; Docker already sets this. |
@@ -87,7 +94,7 @@ For an optional API key in Docker, create `.env` beside `compose.yaml`:
 AHLEDGER_API_KEY=your_key_here
 ```
 
-Apply it with `sudo docker compose up -d --force-recreate`. Never commit the file. The container runs as a non-root user and restarts after server reboots. No database or persistent market-cache volume is needed. Docker/CasaOS deployment has not been executed in this development environment.
+Apply it with `sudo docker compose up -d --force-recreate`. Never commit the file. The container runs as a non-root user and restarts after server reboots. The dashboard mounts a named history volume read-only. It remains empty unless the optional collector is enabled; AHledger responses are never persisted. Docker/CasaOS deployment has not been executed in this development environment.
 
 Update an existing installation:
 
@@ -103,6 +110,17 @@ Logs and stop commands:
 sudo docker compose logs --tail=100 fishing-tracker
 sudo docker compose down
 ```
+
+## Enable estimated hourly demand on CasaOS
+
+After verifying the Blizzard credentials in `.env.local`, follow [the collector setup](docs/BLIZZARD-COLLECTOR.md). Add `BLIZZARD_COLLECTOR_ENABLED=true` and `BLIZZARD_HOUSE_ID=114` to that private file, then run:
+
+```bash
+sudo docker compose -f compose.yaml -f compose.blizzard.yaml up -d --build
+sudo docker compose -f compose.yaml -f compose.blizzard.yaml logs --tail=40 blizzard-collector
+```
+
+The first snapshot is a baseline; the next suitable distinct snapshot produces the first estimated turnover point. Updates/retention are automatic, even with the browser closed. Actual update cadence and runtime deployment must be verified on your server. House 114's Normal Horde mapping is community-derived. Keep the same two Compose files for later updates. Never use `down -v` unless deleting history intentionally.
 
 ## Checks and GitHub
 
@@ -141,8 +159,10 @@ scripts/             API verification and mockup build
 tests/              Synthetic deterministic tests
 docs/               Source validation and provider limitations
 licenses/           Retained source attribution and copyright notices
+collector/           Optional Blizzard commodity collector, pure model and atomic storage
 Dockerfile
 compose.yaml
+compose.blizzard.yaml
 ```
 
 ## Attribution and license

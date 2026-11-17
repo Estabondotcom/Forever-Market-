@@ -19,7 +19,8 @@ export default function ComparisonChart({items,snapshots,selection,histories,per
       <YAxis yAxisId="demand" orientation="right" width={47} domain={[0,'auto']} tickFormatter={formatHourly} tick={{fontSize:9,fill:'#d7a9e9'}} tickLine={false} axisLine={false}/>
       <Tooltip contentStyle={{background:'#101728',border:'1px solid #394965',borderRadius:9,fontSize:10}} labelFormatter={value=>`${dayLabel(String(value))} · UTC${String(value)===rows.at(-1)?.day?' · current period / partial':''}`} formatter={(value,name,entry)=>{
         const key=String(entry.dataKey),demand=key.startsWith('demand_'),itemId=Number(key.split('_')[1]);
-        const basis=demand&&currentDemandIds.includes(itemId)?' — current rolling estimate only':'';
+        const coverage=entry.payload?.[`coverage_${itemId}`];
+        const basis=demand?(histories[itemId]?.turnoverSource?` — estimated turnover; ${typeof coverage==='number'?coverage.toFixed(2):'?'} observed hours; includes cancellations/expirations`:currentDemandIds.includes(itemId)?' — current rolling estimate only':''):'';
         return [typeof value==='number'?(demand?`${new Intl.NumberFormat('en-US',{maximumFractionDigits:4}).format(value)} est. units/hour${basis}`:money(value)):'Unavailable',name];
       }}/>
       {items.flatMap((item,index)=>{

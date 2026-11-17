@@ -30,3 +30,6 @@ jobs:
       - run: npm run build
       - run: npm run build:mockup
       - run: git diff --exit-code -- mockup
+
+      - run: docker build --target collector -t forever-collector:test .
+      - run: docker run --rm forever-collector:test node --check collector/run.mjs
