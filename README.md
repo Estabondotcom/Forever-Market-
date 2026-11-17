@@ -2,7 +2,7 @@
 
 A personal, dark-mode auction dashboard for **WoW Forever · US / Americas · Normal PvE · Horde**, fixed to `forever.normal.horde.us`.
 
-Current AH prices and average estimated units sold per hour, with same-tab comparisons of primary **Cloth, Fish, Herbs, Ore and Skinning** resources. Toggle price and demand beside each item to add or remove it from the shared graph. No account, addon, running game client or database is required.
+Current AH prices and average estimated units sold per hour, with one daily history/comparison timeline for primary **Cloth, Fish, Herbs, Ore and Skinning** resources. Toggle price and demand beside each item to add or remove it from the shared graph. No account, addon, running game client or database is required.
 
 ## Interactive mockup
 
@@ -18,11 +18,14 @@ Tabs appear in this order: **Cloth, Fish, Herbs, Ore, Skinning**. The curated ca
 
 Every item row shows its **current lowest AH buyout** and **average estimated units sold per hour**, with an independent toggle beside each metric. Toggle several items on or off at once; use Clear all to reset the graph. Selections reset when changing tabs, and items from different tabs cannot share a comparison.
 
-- **Market comparison:** items on the horizontal axis, solid cyan line for current AH price on the left axis, a dotted magenta line for estimated hourly demand on the right axis. Metrics retain their real units; they are never normalized onto one misleading scale. Missing values stay missing.
-- **Price history:** solid neon lines compare the actual lowest-buyout histories of all enabled price toggles. Choose 24h, 7d or authorized 30d observations. Demand-only toggles do not invent a corresponding historical price series.
-- Search/filter and sort the current section by resource name, AH price or hourly demand. The dark theme is permanent and the layout adapts for phones.
+- **One unified timeline:** history and comparison are the same graph. It starts with **7 daily points**, and can switch to **30 daily points** when provider access allows.
+- Each item has a consistent neon color. **Solid lines = daily price; dotted lines = estimated demand.** Independent switches control both metrics on that same timeline. No separate snapshot/history graph modes remain.
+- Each daily price is the lowest supplied buyout observation for that UTC day. Seven-day hourly observations are grouped into daily lows; thirty-day daily buckets use their supplied lowest buyouts. Missing days remain gaps. The current UTC day is partial.
+- Current AH price and average estimated units sold/hour remain in each item row. Search, sorting, same-tab comparisons and Clear all still work.
 
-**Hourly demand = AHledger estimated units sold per day ÷ 24.** This is a daily average rate, not purchases measured during the last hour and not confirmed completed trades. Cancellations can resemble purchases. Historical demand is not supplied, so no purchase-volume history is invented. See [data provenance](docs/DATA-SOURCES.md).
+**Live demand-history limitation:** AHledger supplies a current rolling sales estimate, not a historical daily sales series. Past demand stays blank. Only the current estimate appears at today's endpoint, labeled as a rolling estimate—not purchases during that day. It is never copied backwards across the week/month. The public mockup includes explicitly synthetic daily demand history to demonstrate the intended combined chart.
+
+**Hourly demand = estimated units sold per day ÷ 24.** Listing cancellations can resemble purchases. A source providing dated historical sales estimates is needed for a full live demand-history line. This is not solved by an AHledger history key: that key adds price-history access, not a historical sales series. The adapter contract supports future historical demand points without changing the interface. See [data provenance](docs/DATA-SOURCES.md).
 
 All prices are per item in gold, silver and copper. Catalog identities were checked against Forever on 2026-11-17. The catalog is curated, not every game item.
 
@@ -112,7 +115,7 @@ npm run verify:api
 node --conditions=react-server --import tsx scripts/smoke-routes.ts
 ```
 
-The deterministic unit tests cover currency, hourly demand, independent comparison switches, same-tab isolation, primary-resource filtering, multi-item historical alignment, missing/zero sales, parsing, auth failures, caching and expiry. Fixtures are synthetic. The live verification scripts make small read-only requests and save no provider responses. The route smoke check verifies all five categories and representative price histories.
+The deterministic unit tests cover currency, hourly demand, independent comparison switches, same-tab isolation, primary-resource filtering, daily aggregation, seven/thirty-day calendar alignment, no demand backfill, multi-item timelines, missing/zero sales, parsing, auth failures, caching and expiry. Fixtures are synthetic. The live verification scripts make small read-only requests and save no provider responses. The route smoke check verifies all five categories and representative price histories.
 
 GitHub Actions runs tests, type checking, production build, and regeneration of the committed mockup assets to catch preview drift. GitHub stores the code; **GitHub Pages cannot run the server API routes**. Run on CasaOS, locally, or a Next.js-compatible host.
 
@@ -122,7 +125,7 @@ The managed development environment blocks the preview server from binding its p
 
 AHledger responses remain only in server/browser memory for their allowed Cache-Control lifetime. Expired data is removed and refreshed. The server coalesces duplicate requests, supports ETags when a reusable answer is available, and honors Retry-After. Manual refresh is throttled. A still-permitted response may be reused during an outage, but expired responses cannot become an indefinite offline snapshot. Refresh timing therefore follows the provider’s cache lifetime, often 60 seconds for the price table.
 
-Latest actual auction observations are distinguished from fetch times. Missing sales or historical periods stay unavailable; estimated zero sales stays zero. Hourly demand divides the documented daily estimate by 24; missing estimates stay unavailable and zero stays zero. The demand line compares current estimates by item, not historical purchase counts.
+Latest actual auction observations are distinguished from fetch times. Missing sales or historical periods stay unavailable; estimated zero sales stays zero. Hourly demand divides the documented daily estimate by 24; missing estimates stay unavailable and zero stays zero. The graph uses UTC dates, not item names, on the horizontal axis. Historical demand is not backfilled from a current estimate.
 
 ## Structure
 

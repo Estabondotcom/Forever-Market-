@@ -1,37 +1,33 @@
 'use client';
 import {useId} from 'react';
-import {ResponsiveContainer,Line,LineChart,XAxis,YAxis,CartesianGrid,Tooltip} from 'recharts';
-import type {AuctionSnapshot,CatalogItem,HistoryData} from '@/lib/types';
-import {comparisonRows,historyRows,itemColors,type Selection,formatHourly} from '@/lib/comparison';
+import {ResponsiveContainer,LineChart,Line,XAxis,YAxis,CartesianGrid,Tooltip} from 'recharts';
+import type {CatalogItem,HistoryData,AuctionSnapshot} from '@/lib/types';
+import {itemColors,formatHourly,type Selection} from '@/lib/comparison';
+import {dailyTimeline,dayLabel,type TimelinePeriod} from '@/lib/timeline';
 import {money} from '@/lib/currency';
-import {formatTime} from '@/lib/market';
-export function SnapshotComparison({items,snapshots,selection}:{items:CatalogItem[];snapshots:AuctionSnapshot[];selection:Selection}){
-  const id=useId().replaceAll(':',''),rows=comparisonRows(items,snapshots,selection);
-  if(!rows.length)return <div className="chart-empty">Switch on price or demand beside an item to start comparing.</div>;
-  return <div className="comparison-scroll"><div className="comparison-canvas" style={{minWidth:rows.length>3?rows.length*120+130:undefined}} role="img" aria-label="Current item comparison: a dotted line for estimated units sold per hour and a solid line for auction price">
-    <ResponsiveContainer width="100%" height="100%"><LineChart data={rows} margin={{top:25,right:12,left:2,bottom:30}}>
-      <defs><filter id={`${id}-glow`} x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+export default function ComparisonChart({items,snapshots,selection,histories,period}:{items:CatalogItem[];snapshots:AuctionSnapshot[];selection:Selection;histories:Record<number,HistoryData>;period:TimelinePeriod}){
+  const id=useId().replaceAll(':',''),{rows,currentDemandIds}=dailyTimeline(items,snapshots,selection,histories,period);
+  if(!items.some(item=>selection[item.id]?.price||selection[item.id]?.demand))return <div className="chart-empty">Enable price or demand beside an item to compare its daily timeline.</div>;
+  const hasPoints=rows.some(row=>Object.entries(row).some(([key,value])=>key!=='day'&&typeof value==='number'));
+  if(!hasPoints)return <div className="chart-empty">No observations available for the selected items and period. Missing history is never filled with sample data.</div>;
+  return <div className="comparison-canvas timeline-canvas" role="img" aria-label={`${period==='7d'?'Seven':'Thirty'} daily points comparing item prices as solid lines and estimated demand as dotted lines`}>
+    <ResponsiveContainer width="100%" height="100%"><LineChart data={rows} margin={{top:24,right:12,left:3,bottom:16}}>
+      <defs><filter id={`${id}-glow`} x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
       <CartesianGrid stroke="#22304a" strokeDasharray="3 5" vertical={false}/>
-      <XAxis dataKey="name" interval={0} tick={{fontSize:9,fill:'#a8b8d1'}} tickFormatter={v=>String(v).replace(/^Raw /,'').replace(/ Cloth$/,'')} tickLine={false} axisLine={false} minTickGap={0}/>
-      <YAxis yAxisId="price" width={82} tickFormatter={v=>money(v)} tick={{fontSize:9,fill:'#35eaff'}} tickLine={false} axisLine={false} domain={[0,'auto']} label={{value:'AH price / item',angle:-90,position:'insideLeft',fill:'#35eaff',fontSize:9,dx:0}}/>
-      <YAxis yAxisId="demand" orientation="right" width={55} tickFormatter={v=>formatHourly(v)} tick={{fontSize:9,fill:'#f46bff'}} tickLine={false} axisLine={false} domain={[0,'auto']} label={{value:'Est. sold / hour',angle:90,position:'insideRight',fill:'#f46bff',fontSize:9}}/>
-      <Tooltip contentStyle={{background:'#101728',border:'1px solid #394965',borderRadius:9,fontSize:11}} formatter={(value,name)=>typeof value==='number'?[name==='Current AH price'?money(value):`${new Intl.NumberFormat('en-US',{maximumFractionDigits:4}).format(value)} est. units/hour`,name]:['Unavailable',name]}/>
-      <Line yAxisId="demand" dataKey="demand" name="Estimated hourly demand" type="linear" stroke="#f46bff" strokeWidth={2.4} strokeDasharray="1 6" strokeLinecap="round" dot={{r:3,fill:'#f46bff'}} activeDot={{r:5}} connectNulls={false} filter={`url(#${id}-glow)`} isAnimationActive={false}/>
-      <Line yAxisId="price" dataKey="price" name="Current AH price" type="linear" stroke="#35eaff" strokeWidth={2.4} dot={{r:3,fill:'#35eaff'}} activeDot={{r:5}} connectNulls={false} filter={`url(#${id}-glow)`} isAnimationActive={false}/>
-    </LineChart></ResponsiveContainer>
-  </div></div>;
-}
-export function PriceHistoryComparison({items,selection,histories}:{items:CatalogItem[];selection:Selection;histories:Record<number,HistoryData>}){
-  const rows=historyRows(items,selection,histories),selected=items.filter(i=>selection[i.id]?.price);
-  if(!selected.length)return <div className="chart-empty">Enable at least one item’s price toggle to compare price history.</div>;
-  if(!rows.length)return <div className="chart-empty">No price-history points are currently available for the selected items.</div>;
-  return <div className="comparison-canvas" role="img" aria-label="Solid neon lines comparing actual auction price histories for the active tab">
-    <ResponsiveContainer width="100%" height="100%"><LineChart data={rows} margin={{top:24,right:18,left:8,bottom:10}}>
-      <CartesianGrid stroke="#22304a" strokeDasharray="3 5" vertical={false}/>
-      <XAxis dataKey="timestamp" tickFormatter={v=>new Date(v).toLocaleDateString([],{month:'short',day:'numeric'})} minTickGap={45} tick={{fontSize:9,fill:'#8fa2bf'}} axisLine={false} tickLine={false}/>
-      <YAxis width={83} tickFormatter={v=>money(v)} tick={{fontSize:9,fill:'#a4bad6'}} domain={['auto','auto']} axisLine={false} tickLine={false}/>
-      <Tooltip contentStyle={{background:'#101728',border:'1px solid #394965',borderRadius:9,fontSize:11}} labelFormatter={v=>formatTime(String(v))} formatter={(value,name)=>[typeof value==='number'?money(value):'Unavailable',name]}/>
-      {items.map((item,index)=>selection[item.id]?.price?<Line key={item.id} type="linear" dataKey={`price_${item.id}`} name={item.name} stroke={itemColors[index%itemColors.length]} strokeWidth={2} dot={rows.length===1?{r:3}:false} activeDot={{r:4}} connectNulls={false} isAnimationActive={false}/>:null)}
+      <XAxis dataKey="day" interval={period==='7d'?0:'preserveStartEnd'} minTickGap={25} tickFormatter={dayLabel} tick={{fontSize:9,fill:'#a2b7d5'}} axisLine={false} tickLine={false}/>
+      <YAxis yAxisId="price" width={80} domain={[0,'auto']} tickFormatter={value=>money(value)} tick={{fontSize:9,fill:'#9edfea'}} tickLine={false} axisLine={false}/>
+      <YAxis yAxisId="demand" orientation="right" width={47} domain={[0,'auto']} tickFormatter={formatHourly} tick={{fontSize:9,fill:'#d7a9e9'}} tickLine={false} axisLine={false}/>
+      <Tooltip contentStyle={{background:'#101728',border:'1px solid #394965',borderRadius:9,fontSize:10}} labelFormatter={value=>`${dayLabel(String(value))} · UTC${String(value)===rows.at(-1)?.day?' · today / partial':''}`} formatter={(value,name,entry)=>{
+        const key=String(entry.dataKey),demand=key.startsWith('demand_'),itemId=Number(key.split('_')[1]);
+        const basis=demand&&currentDemandIds.includes(itemId)?' — current rolling estimate only':'';
+        return [typeof value==='number'?(demand?`${new Intl.NumberFormat('en-US',{maximumFractionDigits:4}).format(value)} est. units/hour${basis}`:money(value)):'Unavailable',name];
+      }}/>
+      {items.flatMap((item,index)=>{
+        const flags=selection[item.id],color=itemColors[index%itemColors.length];
+        if(!flags)return [];
+        return [flags.price?<Line key={`price-${item.id}`} yAxisId="price" dataKey={`price_${item.id}`} name={`${item.name} · price`} type="linear" stroke={color} strokeWidth={2.2} dot={{r:2.3,fill:color}} activeDot={{r:4}} connectNulls={false} isAnimationActive={false} filter={`url(#${id}-glow)`}/>:null,
+          flags.demand?<Line key={`demand-${item.id}`} yAxisId="demand" dataKey={`demand_${item.id}`} name={`${item.name} · demand`} type="linear" stroke={color} strokeWidth={2.2} strokeDasharray="1 6" strokeLinecap="round" dot={{r:2.3,fill:color}} activeDot={{r:4}} connectNulls={false} isAnimationActive={false} filter={`url(#${id}-glow)`}/>:null];
+      })}
     </LineChart></ResponsiveContainer>
   </div>;
 }

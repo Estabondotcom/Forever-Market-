@@ -1,11 +1,18 @@
 import {catalogFor} from './catalog';
 import { MARKET,type MarketData,type CatalogItem } from './types';
 // Deliberately synthetic fixtures: opt-in browser mode only, never a production fallback.
-export function demoMarket(items:CatalogItem[]=catalogFor('cloth')):MarketData {const now=new Date();return {market:MARKET,fetchedAt:now.toISOString(),expiresAt:new Date(+now+300000).toISOString(),stale:false,demo:true,snapshots:items.map((f,i)=>({itemId:f.id,minBuyout:200+(i%9)*90,median:230+(i%9)*80,median7d:190+(i%9)*85,median30d:220+(i%9)*80,quantity:100+(i%7)*120,auctions:20,observedAt:now.toISOString(),sales:{estimatedPerDay:i%8===0?2:400+(i%5)*80,coveredHours:120,windowDays:7},source:'SYNTHETIC DEMO',url:f.source}))};}
+export function demoMarket(items:CatalogItem[]=catalogFor('cloth')):MarketData {
+  const now=new Date();return {market:MARKET,fetchedAt:now.toISOString(),expiresAt:new Date(+now+300000).toISOString(),stale:false,demo:true,snapshots:items.map((item,index)=>{
+    const series=demoHistory(item.id,'7d'),last=series.at(-1)!;
+    return {itemId:item.id,minBuyout:last.minBuyout,median:last.median,median7d:series[3].median,median30d:series[0].median,quantity:100+(index%7)*120,auctions:20,observedAt:now.toISOString(),sales:{estimatedPerDay:last.estimatedSalesPerDay,coveredHours:120,windowDays:7},source:'SYNTHETIC DEMO',url:item.source};
+  })};
+}
 export function demoHistory(id:number,range:string){
-  const count=range==='24h'?24:range==='30d'?30:56;
-  const step=range==='30d'?86400000:range==='7d'?10800000:3600000;
-  // Shared bucket boundaries keep selected sample histories aligned even on slower phones.
-  const end=Math.floor(Date.now()/step)*step;
-  return Array.from({length:count},(_,i)=>({timestamp:new Date(end-(count-1-i)*step).toISOString(),minBuyout:200+id%100+Math.round(Math.sin(i/4)*70),median:240+id%100+Math.round(Math.sin(i/5)*50),quantity:500}));
+  const count=range==='24h'?24:range==='30d'?30:7,step=range==='24h'?3600000:86400000;
+  const end=Math.floor(Date.now()/step)*step,phase=id%11/3;
+  return Array.from({length:count},(_,index)=>{
+    // Anchor to the endpoint so 7d and 30d previews agree on overlapping calendar dates.
+    const offset=index-(count-1);
+    return {timestamp:new Date(end+offset*step).toISOString(),minBuyout:200+id%100+Math.round(Math.sin(offset/3+phase)*70),median:240+id%100+Math.round(Math.sin(offset/4+phase)*50),quantity:500,estimatedSalesPerDay:Math.round((300+id%400)*(1+.3*Math.sin(offset/2+phase)))};
+  });
 }

@@ -1,14 +1,15 @@
 'use client';
 import {useEffect,useMemo,useState} from 'react';
-import {Activity,ArrowDownUp,ArrowUpRight,Fish,Info,Layers,Leaf,LineChart,Package,RefreshCw,Search,Shirt,Sprout,X} from 'lucide-react';
+import {ArrowDownUp,ArrowUpRight,Fish,Info,Layers,Leaf,Package,RefreshCw,Search,Shirt,Sprout,X} from 'lucide-react';
 import {categories,catalogFor,categoryLabels,isMarketCategory,type MarketCategory} from '@/lib/catalog';
 import {formatNumber,formatTime} from '@/lib/market';
-import {comparisonRows,defaultSelection,formatHourly,hourlyDemand,itemColors,toggleMetric,type Metric} from '@/lib/comparison';
+import {defaultSelection,formatHourly,hourlyDemand,itemColors,toggleMetric,type Metric} from '@/lib/comparison';
 import type {MarketData} from '@/lib/types';
 import {money} from '@/lib/currency';
 import {demoMarket} from '@/lib/demo';
 import {useHistories} from '@/hooks/useHistories';
-import {SnapshotComparison,PriceHistoryComparison} from './ComparisonChart';
+import ComparisonChart from './ComparisonChart';
+import {dailyTimeline,type TimelinePeriod} from '@/lib/timeline';
 const icons={cloth:Shirt,fish:Fish,herbs:Leaf,ore:Package,skinning:Layers};
 export default function Dashboard({demoOnly=false}:{demoOnly?:boolean}){
   const [category,setCategory]=useState<MarketCategory>('cloth'),[demo,setDemo]=useState(demoOnly),[about,setAbout]=useState(false);
@@ -23,13 +24,13 @@ export default function Dashboard({demoOnly=false}:{demoOnly?:boolean}){
       <ResourceMarket key={`${category}-${demo}`} category={category} demo={demo}/>
       <footer><span>Forever: Farmer’s Market · forever.normal.horde.us</span><div><a href="https://ahledger.com" target="_blank" rel="noreferrer">Prices from AHledger <ArrowUpRight size={12}/></a>{demoOnly?<a href="https://github.com/Estabondotcom/Forever-Market-#readme">Run the live app ↗</a>:<button onClick={()=>setDemo(v=>!v)}>{demo?'Exit demo':'Try labeled demo'}</button>}</div></footer>
     </main>
-    {about&&<div className="modal-backdrop" onClick={()=>setAbout(false)}><section className="about-panel" role="dialog" aria-modal="true" aria-label="About prices and hourly demand" onClick={e=>e.stopPropagation()}><button autoFocus className="icon-button close-button" aria-label="Close information" onClick={()=>setAbout(false)}><X/></button><div className="eyebrow">KNOW YOUR DATA</div><h2>Hourly demand is an average.</h2><p>AHledger estimates units sold per day from auction observations. We divide that estimate by 24 to show <b>average estimated units sold per hour</b>. This is not a measurement of purchases during the last hour. Cancellations can resemble purchases.</p><p>The Market comparison chart uses <b>items on the horizontal axis</b>. A dotted magenta line shows current estimated hourly demand; the solid cyan line compares current lowest buyout per item. The two vertical axes have separate units. Turn either metric on or off beside each item.</p><p>The Price history view compares actual price observations over time for the enabled price toggles. Historical purchase-volume data is not supplied, so no demand history is invented. A separate range is never fabricated when the provider cannot supply it.</p><p>Comparisons are limited to the active tab and reset when you change tabs. Catalogs focus on direct resources. Chests, bloated/trophy fish, hides, gems, stones and incidental herbal byproducts are excluded. Rare standalone resources such as Black Lotus and Truesilver Ore remain because they are gathered directly.</p><p>Current prices are asking prices, not guaranteed proceeds. Missing prices and demand remain unavailable. Cached answers expire according to provider terms; demo values never replace failed live requests.</p><a className="source-link" href="https://ahledger.com/developers" target="_blank" rel="noreferrer">AHledger API documentation and terms ↗</a></section></div>}
+    {about&&<div className="modal-backdrop" onClick={()=>setAbout(false)}><section className="about-panel" role="dialog" aria-modal="true" aria-label="About prices and hourly demand" onClick={e=>e.stopPropagation()}><button autoFocus className="icon-button close-button" aria-label="Close information" onClick={()=>setAbout(false)}><X/></button><div className="eyebrow">KNOW YOUR DATA</div><h2>Hourly demand is an average.</h2><p>AHledger estimates units sold per day from auction observations. We divide that estimate by 24 to show <b>average estimated units sold per hour</b>. This is not a measurement of purchases during the last hour. Cancellations can resemble purchases.</p><p>History and comparison share one graph with <b>daily points for 7 or 30 calendar days</b>, including today, in UTC. Each item has a consistent neon color. Solid lines show daily lowest observed buyout; dotted lines show historical estimated hourly demand only when supplied.</p><p>AHledger currently supplies price history but no historical sales-rate series. The live graph therefore leaves past demand blank and shows only the current rolling demand estimate at today’s endpoint. This is not a past daily purchase measurement. Sample mode uses explicit synthetic daily demand history to preview the combined layout.</p><p>Daily prices are the minimum of the supplied lowest-buyout observations for that UTC day. Missing days remain gaps, not zero prices. The current day is incomplete. Item toggles affect this same timeline; there is no separate snapshot chart.</p><p>Comparisons are limited to the active tab and reset when you change tabs. Catalogs focus on direct resources. Chests, bloated/trophy fish, hides, gems, stones and incidental herbal byproducts are excluded. Rare standalone resources such as Black Lotus and Truesilver Ore remain because they are gathered directly.</p><p>Current prices are asking prices, not guaranteed proceeds. Missing prices and demand remain unavailable. Cached answers expire according to provider terms; demo values never replace failed live requests.</p><a className="source-link" href="https://ahledger.com/developers" target="_blank" rel="noreferrer">AHledger API documentation and terms ↗</a></section></div>}
   </div>;
 }
 function ResourceMarket({category,demo}:{category:MarketCategory;demo:boolean}){
   const items=useMemo(()=>catalogFor(category),[category]);
   const [data,setData]=useState<MarketData|null>(null),[loading,setLoading]=useState(true),[error,setError]=useState(''),[refresh,setRefresh]=useState(0),[retryAt,setRetryAt]=useState(0),[clock,setClock]=useState(()=>Date.now());
-  const [selection,setSelection]=useState(()=>defaultSelection(items)),[query,setQuery]=useState(''),[sort,setSort]=useState<'name'|'price'|'demand'>('name'),[ascending,setAscending]=useState(true),[view,setView]=useState<'comparison'|'history'>('comparison'),[range,setRange]=useState('7d');
+  const [selection,setSelection]=useState(()=>defaultSelection(items)),[query,setQuery]=useState(''),[sort,setSort]=useState<'name'|'price'|'demand'>('name'),[ascending,setAscending]=useState(true),[range,setRange]=useState<TimelinePeriod>('7d');
   useEffect(()=>{const timer=setInterval(()=>setClock(Date.now()),1000);return()=>clearInterval(timer);},[]);
   useEffect(()=>{
     const controller=new AbortController();let active=true;let expiration:ReturnType<typeof setTimeout>;
@@ -44,8 +45,8 @@ function ResourceMarket({category,demo}:{category:MarketCategory;demo:boolean}){
     }catch(e){if(active){setError(e instanceof Error?e.message:'Market unavailable');setRetryAt(old=>Math.max(old,Date.now()+60000));setData(old=>old&&Date.parse(old.expiresAt)>Date.now()?old:null);}}
     finally{if(active)setLoading(false);}})();return()=>{active=false;controller.abort();clearTimeout(expiration);};
   },[category,items,demo,refresh]);
-  const priceIds=items.filter(i=>selection[i.id]?.price).map(i=>i.id);
-  const {histories,errors:historyErrors,loading:historyLoading}=useHistories(priceIds,range,view==='history',demo,refresh);
+  const selectedIds=items.filter(i=>selection[i.id]?.price||selection[i.id]?.demand).map(i=>i.id);
+  const {histories,errors:historyErrors,loading:historyLoading}=useHistories(selectedIds,range,true,demo,refresh);
   const snapshots=data?.snapshots??[],byId=new Map(snapshots.map(s=>[s.itemId,s]));
   const selected=items.filter(i=>selection[i.id]?.price||selection[i.id]?.demand),selectedCount=selected.length;
   const visible=items.filter(i=>`${i.name} ${i.id}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>{
@@ -55,7 +56,7 @@ function ResourceMarket({category,demo}:{category:MarketCategory;demo:boolean}){
   });
   const latest=snapshots.map(s=>s.observedAt).filter((s):s is string=>!!s).sort().at(-1),wait=Math.max(0,Math.ceil((retryAt-clock)/1000));
   const can30=demo||!!data?.historyRanges?.includes('30d');
-  const plotted=comparisonRows(items,snapshots,selection),hasValue=plotted.some(p=>p.price!==null||p.demand!==null);
+  const {currentDemandIds,missingDemandIds}=dailyTimeline(items,snapshots,selection,histories,range);
   function changeSort(key:typeof sort){if(sort===key)setAscending(v=>!v);else{setSort(key);setAscending(key==='name');}}
   function toggle(id:number,metric:Metric){setSelection(old=>toggleMetric(old,items,id,metric));}
   return <>
@@ -68,9 +69,15 @@ function ResourceMarket({category,demo}:{category:MarketCategory;demo:boolean}){
         {!visible.length&&<div className="small-empty">No matching resources.</div>}
         <div className="list-footer"><span>{selectedCount} items selected · {categoryLabels[category]} only</span><button onClick={()=>setSelection({})}>Clear all</button></div>
       </section>
-      <section className="chart-panel" id="comparison-graph"><div className="chart-top"><div><div className="eyebrow">COMPARE YOUR MARKET</div><h2>{view==='comparison'?'Price meets demand.':'Watch prices over time.'}</h2></div><span className="selected-pill">{selectedCount} selected</span></div>
-        <div className="chart-view-tabs"><button className={view==='comparison'?'active':''} onClick={()=>setView('comparison')}><Activity size={14}/> Market comparison</button><button className={view==='history'?'active':''} onClick={()=>setView('history')}><LineChart size={14}/> Price history</button>{view==='history'&&<div className="range-controls">{['24h','7d','30d'].map(p=><button key={p} aria-pressed={range===p} disabled={p==='30d'&&!can30} className={range===p?'active':''} onClick={()=>setRange(p)}>{p.toUpperCase()}</button>)}</div>}</div>
-        {view==='comparison'?<><div className="chart-legend"><span className="cyan-key">Current AH price · solid line</span><span className="pink-key dotted-key">Est. sold/hour · dotted line</span></div>{!data&&selectedCount?<div className="chart-empty">{loading?'Loading current market data…':'Live comparison data unavailable.'}</div>:selectedCount&&!hasValue?<div className="chart-empty">No price or demand observations supplied for these items.</div>:<SnapshotComparison items={items} snapshots={snapshots} selection={selection}/>}<div className="chart-caption">Items on the horizontal axis · Price on the left · Estimated units/hour on the right</div></>:<><div className="history-legend">{items.map((item,index)=>selection[item.id]?.price?<span key={item.id}><i style={{background:itemColors[index%itemColors.length]}}/>{item.name}</span>:null)}</div>{historyLoading&&<p className="history-status"><RefreshCw size={12} className="spin"/> Loading selected price histories…</p>}<PriceHistoryComparison items={items} selection={selection} histories={histories}/><div className="chart-caption">Actual observation timestamps · Lowest buyout per item · No demand history is invented</div>{Object.entries(historyErrors).map(([id,message])=><p className="history-error" key={id}>{items.find(i=>i.id===Number(id))?.name}: {message}</p>)}</>}
+      <section className="chart-panel" id="comparison-graph"><div className="chart-top"><div><div className="eyebrow">HISTORY & COMPARISON · DAILY</div><h2>Your market, over time.</h2></div><span className="selected-pill">{selectedCount} selected</span></div>
+        <div className="timeline-toolbar"><span>Daily points · UTC</span><div className="range-controls" aria-label="Daily timeline period">{(['7d','30d'] as const).map(period=><button key={period} aria-pressed={range===period} disabled={period==='30d'&&!can30} className={range===period?'active':''} onClick={()=>setRange(period)}>{period==='7d'?'7 days':'30 days'}</button>)}</div></div>
+        <div className="chart-legend"><span className="cyan-key">Price · solid line</span><span className="pink-key dotted-key">Demand · dotted line</span><small>One color per item</small></div>
+        <div className="history-legend">{items.map((item,index)=>selection[item.id]?.price||selection[item.id]?.demand?<span key={item.id}><i style={{background:itemColors[index%itemColors.length]}}/>{item.name}</span>:null)}</div>
+        {historyLoading&&<p className="history-status"><RefreshCw size={12} className="spin"/> Loading daily observations…</p>}
+        <ComparisonChart items={items} snapshots={snapshots} selection={selection} histories={histories} period={range}/>
+        {!demo&&(currentDemandIds.length>0||missingDemandIds.length>0)&&<div className="history-data-note"><Info size={14}/><span><b>Historical demand is not supplied by AHledger.</b> {currentDemandIds.length?'Only the current rolling estimate is plotted at today’s endpoint; earlier days stay blank.':'Demand stays blank until an estimate is available.'} No past sales are invented.</span></div>}
+        <div className="chart-caption">{range==='7d'?'7':'30'} calendar days, including today · Daily lowest observed buyout · Current day is partial · Demand axis: est. units/hour</div>
+        {Object.entries(historyErrors).map(([id,message])=><p className="history-error" key={id}>{items.find(i=>i.id===Number(id))?.name}: {message}</p>)}
         <div className="selection-chips">{selected.map(item=><span key={item.id}><b>{item.name}</b><small>{selection[item.id].price?'Price':''}{selection[item.id].price&&selection[item.id].demand?' + ':''}{selection[item.id].demand?'Demand':''}</small><button aria-label={`Remove ${item.name} from comparison`} onClick={()=>setSelection(old=>{const next={...old};delete next[item.id];return next;})}><X size={12}/></button></span>)}</div>
       </section>
     </div>
