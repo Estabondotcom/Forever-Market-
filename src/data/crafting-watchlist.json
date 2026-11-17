@@ -1,0 +1,1532 @@
+[
+  {
+    "id": 7081,
+    "name": "Breath of Wind",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7081-breath-of-wind?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7075,
+    "name": "Core of Earth",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7075-core-of-earth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8150,
+    "name": "Deeprock Salt",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8150-deeprock-salt?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7069,
+    "name": "Elemental Air",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7069-elemental-air?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7067,
+    "name": "Elemental Earth",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7067-elemental-earth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7068,
+    "name": "Elemental Fire",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7068-elemental-fire?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7070,
+    "name": "Elemental Water",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7070-elemental-water?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7082,
+    "name": "Essence of Air",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7082-essence-of-air?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7076,
+    "name": "Essence of Earth",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7076-essence-of-earth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7078,
+    "name": "Essence of Fire",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7078-essence-of-fire?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12808,
+    "name": "Essence of Undeath",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12808-essence-of-undeath?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7080,
+    "name": "Essence of Water",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7080-essence-of-water?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7079,
+    "name": "Globe of Water",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7079-globe-of-water?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7077,
+    "name": "Heart of Fire",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7077-heart-of-fire?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10286,
+    "name": "Heart of the Wild",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10286-heart-of-the-wild?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12803,
+    "name": "Living Essence",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12803-living-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2452,
+    "name": "Swiftthistle",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2452-swiftthistle?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8153,
+    "name": "Wildvine",
+    "group": "elemental-reagents",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8153-wildvine?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 9155,
+    "name": "Arcane Elixir",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/9155-arcane-elixir?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8949,
+    "name": "Elixir of Agility",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8949-elixir-of-agility?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13453,
+    "name": "Elixir of Brute Force",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13453-elixir-of-brute-force?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8951,
+    "name": "Elixir of Defense",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8951-elixir-of-defense?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6373,
+    "name": "Elixir of Fire Power",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6373-elixir-of-fire-power?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 17708,
+    "name": "Elixir of Frost Power",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/17708-elixir-of-frost-power?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6662,
+    "name": "Elixir of Giant Growth",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6662-elixir-of-giant-growth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 9187,
+    "name": "Elixir of Greater Agility",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/9187-elixir-of-greater-agility?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13445,
+    "name": "Elixir of Greater Defense",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13445-elixir-of-greater-defense?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 9179,
+    "name": "Elixir of Greater Intellect",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/9179-elixir-of-greater-intellect?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 9206,
+    "name": "Elixir of Greater Strength",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/9206-elixir-of-greater-strength?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3391,
+    "name": "Elixir of Ogre Strength",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3391-elixir-of-ogre-strength?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13452,
+    "name": "Elixir of the Mongoose",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13452-elixir-of-the-mongoose?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13511,
+    "name": "Flask of Distilled Wisdom",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13511-flask-of-distilled-wisdom?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13512,
+    "name": "Flask of Supreme Power",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13512-flask-of-supreme-power?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13510,
+    "name": "Flask of the Titans",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13510-flask-of-the-titans?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13454,
+    "name": "Greater Arcane Elixir",
+    "group": "elixirs-flasks",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13454-greater-arcane-elixir?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11176,
+    "name": "Dream Dust",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11176-dream-dust?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11082,
+    "name": "Greater Astral Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11082-greater-astral-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 16203,
+    "name": "Greater Eternal Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/16203-greater-eternal-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10939,
+    "name": "Greater Magic Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10939-greater-magic-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11135,
+    "name": "Greater Mystic Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11135-greater-mystic-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11175,
+    "name": "Greater Nether Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11175-greater-nether-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 16204,
+    "name": "Illusion Dust",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/16204-illusion-dust?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14344,
+    "name": "Large Brilliant Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/14344-large-brilliant-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11084,
+    "name": "Large Glimmering Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11084-large-glimmering-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11139,
+    "name": "Large Glowing Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11139-large-glowing-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11178,
+    "name": "Large Radiant Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11178-large-radiant-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10998,
+    "name": "Lesser Astral Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10998-lesser-astral-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 16202,
+    "name": "Lesser Eternal Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/16202-lesser-eternal-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10938,
+    "name": "Lesser Magic Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10938-lesser-magic-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11134,
+    "name": "Lesser Mystic Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11134-lesser-mystic-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11174,
+    "name": "Lesser Nether Essence",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11174-lesser-nether-essence?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 20725,
+    "name": "Nexus Crystal",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/20725-nexus-crystal?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14343,
+    "name": "Small Brilliant Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/14343-small-brilliant-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10978,
+    "name": "Small Glimmering Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10978-small-glimmering-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11138,
+    "name": "Small Glowing Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11138-small-glowing-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11177,
+    "name": "Small Radiant Shard",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11177-small-radiant-shard?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11083,
+    "name": "Soul Dust",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11083-soul-dust?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10940,
+    "name": "Strange Dust",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10940-strange-dust?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11137,
+    "name": "Vision Dust",
+    "group": "enchanting-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11137-vision-dust?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2836,
+    "name": "Coarse Stone",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2836-coarse-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 15992,
+    "name": "Dense Blasting Powder",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/15992-dense-blasting-powder?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12365,
+    "name": "Dense Stone",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12365-dense-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10646,
+    "name": "Goblin Sapper Charge",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10646-goblin-sapper-charge?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10558,
+    "name": "Gold Power Core",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10558-gold-power-core?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2838,
+    "name": "Heavy Stone",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2838-heavy-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4390,
+    "name": "Iron Grenade",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/4390-iron-grenade?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10561,
+    "name": "Mithril Casing",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10561-mithril-casing?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10559,
+    "name": "Mithril Tube",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10559-mithril-tube?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2835,
+    "name": "Rough Stone",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2835-rough-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10505,
+    "name": "Solid Blasting Powder",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10505-solid-blasting-powder?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10507,
+    "name": "Solid Dynamite",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10507-solid-dynamite?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7912,
+    "name": "Solid Stone",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7912-solid-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 15993,
+    "name": "Thorium Grenade",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/15993-thorium-grenade?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 16000,
+    "name": "Thorium Tube",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/16000-thorium-tube?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 15994,
+    "name": "Thorium Widget",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/15994-thorium-widget?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 10560,
+    "name": "Unstable Trigger",
+    "group": "engineering",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/10560-unstable-trigger?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12217,
+    "name": "Dragonbreath Chili",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12217-dragonbreath-chili?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13928,
+    "name": "Grilled Squid",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13928-grilled-squid?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2581,
+    "name": "Heavy Linen Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2581-heavy-linen-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8545,
+    "name": "Heavy Mageweave Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8545-heavy-mageweave-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14530,
+    "name": "Heavy Runecloth Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/14530-heavy-runecloth-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6451,
+    "name": "Heavy Silk Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6451-heavy-silk-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3531,
+    "name": "Heavy Wool Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3531-heavy-wool-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13929,
+    "name": "Hot Smoked Bass",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13929-hot-smoked-bass?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 1251,
+    "name": "Linen Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/1251-linen-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8544,
+    "name": "Mageweave Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8544-mageweave-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13931,
+    "name": "Nightfin Soup",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13931-nightfin-soup?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13932,
+    "name": "Poached Sunscale Salmon",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13932-poached-sunscale-salmon?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14529,
+    "name": "Runecloth Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/14529-runecloth-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 18254,
+    "name": "Runn Tum Tuber Surprise",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/18254-runn-tum-tuber-surprise?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 21217,
+    "name": "Sagefish Delight",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/21217-sagefish-delight?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6657,
+    "name": "Savory Deviate Delight",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6657-savory-deviate-delight?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6450,
+    "name": "Silk Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6450-silk-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 20452,
+    "name": "Smoked Desert Dumplings",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/20452-smoked-desert-dumplings?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 21072,
+    "name": "Smoked Sagefish",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/21072-smoked-sagefish?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7676,
+    "name": "Thistle Tea",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7676-thistle-tea?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3530,
+    "name": "Wool Bandage",
+    "group": "food-bandages",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3530-wool-bandage?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6370,
+    "name": "Blackmouth Oil",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6370-blackmouth-oil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 20748,
+    "name": "Brilliant Mana Oil",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/20748-brilliant-mana-oil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 20749,
+    "name": "Brilliant Wizard Oil",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/20749-brilliant-wizard-oil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12404,
+    "name": "Dense Sharpening Stone",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12404-dense-sharpening-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12643,
+    "name": "Dense Weightstone",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12643-dense-weightstone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 18262,
+    "name": "Elemental Sharpening Stone",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/18262-elemental-sharpening-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6371,
+    "name": "Fire Oil",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6371-fire-oil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3829,
+    "name": "Frost Oil",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3829-frost-oil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8956,
+    "name": "Oil of Immolation",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8956-oil-of-immolation?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3824,
+    "name": "Shadow Oil",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3824-shadow-oil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7964,
+    "name": "Solid Sharpening Stone",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7964-solid-sharpening-stone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 7965,
+    "name": "Solid Weightstone",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/7965-solid-weightstone?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13423,
+    "name": "Stonescale Oil",
+    "group": "oils-enhancements",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13423-stonescale-oil?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 5634,
+    "name": "Free Action Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/5634-free-action-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 250940,
+    "name": "Frenzy Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/250940-frenzy-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 5633,
+    "name": "Great Rage Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/5633-great-rage-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13461,
+    "name": "Greater Arcane Protection Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13461-greater-arcane-protection-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13457,
+    "name": "Greater Fire Protection Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13457-greater-fire-protection-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13456,
+    "name": "Greater Frost Protection Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13456-greater-frost-protection-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 1710,
+    "name": "Greater Healing Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/1710-greater-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6149,
+    "name": "Greater Mana Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6149-greater-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13458,
+    "name": "Greater Nature Protection Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13458-greater-nature-protection-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13459,
+    "name": "Greater Shadow Protection Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13459-greater-shadow-protection-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13455,
+    "name": "Greater Stoneshield Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13455-greater-stoneshield-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 929,
+    "name": "Healing Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/929-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 9172,
+    "name": "Invisibility Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/9172-invisibility-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 858,
+    "name": "Lesser Healing Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/858-lesser-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3823,
+    "name": "Lesser Invisibility Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3823-lesser-invisibility-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3385,
+    "name": "Lesser Mana Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3385-lesser-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3387,
+    "name": "Limited Invulnerability Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3387-limited-invulnerability-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 9036,
+    "name": "Magic Resistance Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/9036-magic-resistance-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 250943,
+    "name": "Major Frenzy Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/250943-major-frenzy-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13446,
+    "name": "Major Healing Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13446-major-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13444,
+    "name": "Major Mana Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13444-major-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 250949,
+    "name": "Major Mender's Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/250949-major-menders-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3827,
+    "name": "Mana Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3827-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13442,
+    "name": "Mighty Rage Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13442-mighty-rage-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 118,
+    "name": "Minor Healing Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/118-minor-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2455,
+    "name": "Minor Mana Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2455-minor-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 9224,
+    "name": "Potion of Demon Slaying",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/9224-potion-of-demon-slaying?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13462,
+    "name": "Purification Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13462-purification-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 250934,
+    "name": "Spellblasting Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/250934-spellblasting-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 250942,
+    "name": "Superior Frenzy Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/250942-superior-frenzy-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3928,
+    "name": "Superior Healing Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3928-superior-healing-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 13443,
+    "name": "Superior Mana Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/13443-superior-mana-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 250948,
+    "name": "Superior Mender's Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/250948-superior-menders-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2459,
+    "name": "Swiftness Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2459-swiftness-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6372,
+    "name": "Swim Speed Potion",
+    "group": "potions",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6372-swim-speed-potion?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12363,
+    "name": "Arcane Crystal",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12363-arcane-crystal?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12360,
+    "name": "Arcanite Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12360-arcanite-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2996,
+    "name": "Bolt of Linen Cloth",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2996-bolt-of-linen-cloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4339,
+    "name": "Bolt of Mageweave",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/4339-bolt-of-mageweave?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14048,
+    "name": "Bolt of Runecloth",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/14048-bolt-of-runecloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4305,
+    "name": "Bolt of Silk Cloth",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/4305-bolt-of-silk-cloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2997,
+    "name": "Bolt of Woolen Cloth",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2997-bolt-of-woolen-cloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2841,
+    "name": "Bronze Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2841-bronze-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 249409,
+    "name": "Cerulean Dye",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/249409-cerulean-dye?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2840,
+    "name": "Copper Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2840-copper-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 4236,
+    "name": "Cured Heavy Hide",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/4236-cured-heavy-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 15407,
+    "name": "Cured Rugged Hide",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/15407-cured-rugged-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 8172,
+    "name": "Cured Thick Hide",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/8172-cured-thick-hide?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 11371,
+    "name": "Dark Iron Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/11371-dark-iron-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3577,
+    "name": "Gold Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3577-gold-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3575,
+    "name": "Iron Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3575-iron-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 249430,
+    "name": "Magenta Dye",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/249430-magenta-dye?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3860,
+    "name": "Mithril Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3860-mithril-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 14342,
+    "name": "Mooncloth",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/14342-mooncloth?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 15409,
+    "name": "Refined Deeprock Salt",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/15409-refined-deeprock-salt?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 2842,
+    "name": "Silver Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/2842-silver-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3859,
+    "name": "Steel Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3859-steel-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 12359,
+    "name": "Thorium Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/12359-thorium-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 3576,
+    "name": "Tin Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/3576-tin-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  },
+  {
+    "id": 6037,
+    "name": "Truesilver Bar",
+    "group": "processed-materials",
+    "metadataVerified": true,
+    "selectionBasis": "curated-common-use",
+    "source": "https://ahledger.com/items/6037-truesilver-bar?utm_source=ahledger_api&utm_medium=api&utm_campaign=items",
+    "verifiedAt": "2026-11-17"
+  }
+]

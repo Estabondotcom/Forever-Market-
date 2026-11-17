@@ -1,15 +1,18 @@
 import {readFile} from 'node:fs/promises';
+import {trackedIds,synchronizeTracking} from './catalog.mjs';
 import {loadState,saveState} from './store.mjs';
 import {advance,normalizeSnapshot} from './model.mjs';
 import {fetchSnapshot} from './transport.mjs';
 const directory=process.env.BLIZZARD_DATA_DIR??'/app/market-data';
-const items=JSON.parse(await readFile(new URL('../src/data/resources.json',import.meta.url),'utf8')).map(i=>i.id);
+const catalogs=await Promise.all(['resources.json','crafting-watchlist.json'].map(async name=>JSON.parse(await readFile(new URL(`../src/data/${name}`,import.meta.url),'utf8'))));
+const items=trackedIds(catalogs[0],catalogs[1]);
 let state;
-try{state=await loadState(directory);}catch(error){console.error(error.message);process.exit(1);}
+try{state=synchronizeTracking(await loadState(directory),items);}catch(error){console.error(error.message);process.exit(1);}
 let stopped=false,wake;
 for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{stopped=true;wake?.();});
 const enabled=process.env.BLIZZARD_COLLECTOR_ENABLED==='true'&&process.env.BLIZZARD_HOUSE_ID==='114';
 if(!enabled){console.error('Set BLIZZARD_COLLECTOR_ENABLED=true and BLIZZARD_HOUSE_ID=114 to opt into the community-mapped US Normal Horde collector.');process.exit(1);}
+console.log(`Tracking ${items.length} curated IDs; comparison lists do not affect collection.`);
 console.log('Blizzard commodity collector: US Forever Normal Horde, community-mapped house 114. Estimated turnover, not confirmed sales.');
 while(!stopped){
   let delay=3600000;
@@ -18,9 +21,9 @@ while(!stopped){
   else{
     state.lastCheck=new Date().toISOString();
     try{
-      const result=await fetchSnapshot({clientId:process.env.BLIZZARD_CLIENT_ID,clientSecret:process.env.BLIZZARD_CLIENT_SECRET,baseline:state.baseline,etag:state.etag});
+      const result=await fetchSnapshot({clientId:process.env.BLIZZARD_CLIENT_ID,clientSecret:process.env.BLIZZARD_CLIENT_SECRET,baseline:state.catalogRefreshRequired?null:state.baseline,etag:state.catalogRefreshRequired?null:state.etag});
       if(result.unchanged)state.status='unchanged';
-      else{advance(state,normalizeSnapshot(result.data,result.lastModified,items));state.etag=result.etag;state.cacheControl=result.cacheControl;}
+      else{advance(state,normalizeSnapshot(result.data,result.lastModified,items));state.catalogRefreshRequired=false;state.etag=result.etag;state.cacheControl=result.cacheControl;}
       console.log(`Collector ${state.status}; observation ${state.baseline?.observedAt??'none'}.`);
     }catch(error){state.status=/^http-\d+$/.test(error.message)?error.message:'collection-error';delay=Math.max(delay,error.retryMs??0);console.error(`Collector ${state.status}; existing history preserved, no zero-filled observations.`);}
     state.nextCheck=new Date(Date.now()+delay).toISOString();

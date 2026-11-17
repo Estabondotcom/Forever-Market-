@@ -14,7 +14,7 @@ FROM node:24-alpine AS collector
 WORKDIR /app
 RUN addgroup -S tracker && adduser -S tracker -G tracker && mkdir -p /app/market-data && chown tracker:tracker /app/market-data
 COPY --chown=tracker:tracker collector ./collector
-COPY --chown=tracker:tracker src/data/resources.json ./src/data/resources.json
+COPY --chown=tracker:tracker src/data/resources.json src/data/crafting-watchlist.json ./src/data/
 USER tracker
 CMD ["node", "collector/run.mjs"]
 

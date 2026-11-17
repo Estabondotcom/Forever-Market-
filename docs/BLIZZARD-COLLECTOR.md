@@ -1,6 +1,6 @@
 # Local Blizzard demand-trend collector
 
-This optional worker estimates commodity turnover for the 71 tracked resources. It reads **US**, `dynamic-forever-us`, ruleset **2**, auction house **114** only. It does not enable other regions, factions, houses or game versions. AHledger is the fallback before a usable local collector snapshot is available. Once available, current rows use saved Blizzard prices and turnover, while the graph combines AHledger price history with saved Blizzard demand intervals.
+This optional worker estimates commodity turnover for 241 curated items: 71 farming resources and 170 crafted goods/reagents. The added goods are available through Search, not appended to the five farming tabs. It reads **US**, `dynamic-forever-us`, ruleset **2**, auction house **114** only. It does not enable other regions, factions, houses or game versions. AHledger is the fallback before a usable local collector snapshot is available. Once available, current rows use saved Blizzard prices and turnover, while the graph combines AHledger price history with saved Blizzard demand intervals.
 
 ## What has been verified
 
@@ -110,3 +110,9 @@ The page checks the local collector endpoint hourly rather than every minute. Hi
 AHledger fallback refresh and expiration are isolated from local history. Each fallback history item cleans up/revalidates independently instead of resetting every selected item. Its allowed cache lifetime is respected; the fix does not extend AHledger retention. Locally saved samples have their own 30-day TTL, enforced in the browser even between hourly checks.
 
 The UI now shows the next scheduled collector check, distinct saved snapshot count when no demand is available, and the number/starting date of real measured demand intervals. `warming`/“First snapshot saved” means a baseline exists but a demand interval is not yet available. The optional collector history volume is not deleted or reset by the historical-price restoration update.
+
+## Curated expansion and Search
+
+The collector now reads `resources.json` plus `crafting-watchlist.json`, for 241 verified identities. The individual catalog and source notes are in [TRACKED-ITEMS.md](TRACKED-ITEMS.md). Search lists are ephemeral per browser page and do not modify the global tracking allowlist. Every allowed ID collects even when nobody has it selected.
+
+The existing named history volume and original items are preserved on expansion. New IDs can establish a baseline from a full snapshot, including a repeated version, without altering existing demand estimates. A new item gets no historical rate until an adjacent comparable snapshot is observed. Future allowlist removals are applied to retained samples/baselines at worker startup. Standard 30-day retention remains in force; reader caps are now 250,000 metrics and 100 MiB to accommodate the expanded list.

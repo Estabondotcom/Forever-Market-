@@ -30,7 +30,16 @@ export function normalizeSnapshot(data,lastModified,ids,now=Date.now()){
 export function advance(state,next,now=Date.now()){
   prune(state,now);
   const previous=state.baseline,end=Date.parse(next.observedAt),start=previous?Date.parse(previous.observedAt):null;
-  if(start!==null&&end<=start){state.status='unchanged';return state;}
+  if(start!==null&&end<=start){
+    if(end===start){
+      // A freshly fetched full snapshot can establish baselines for newly tracked IDs.
+      // No past rates are inferred for items absent from the old allowlist.
+      const added=new Set(Object.keys(next.totals).filter(id=>!Object.hasOwn(previous.totals,id)).map(Number));
+      for(const id of added){previous.totals[id]=next.totals[id];state.samples.push({itemId:id,timestamp:next.observedAt,...next.totals[id],estimatedTurnoverPerHour:null,intervalHours:null});}
+      previous.listings.push(...next.listings.filter(listing=>added.has(listing.itemId)));
+    }
+    state.status='unchanged';return state;
+  }
   const hours=start===null?null:(end-start)/3600000;
   // Long outages do not become a falsely precise hourly demand measurement.
   const validInterval=hours!==null&&hours>=.25&&hours<=2;

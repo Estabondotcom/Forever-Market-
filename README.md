@@ -14,7 +14,7 @@ The mockup runs directly in GitHub Pages on desktop and mobile. It uses the **sa
 
 ## Tabs and comparison controls
 
-Tabs appear in this order: **Cloth, Fish, Herbs, Ore, Skinning**. The curated catalog has 71 directly farmed resources: 6 cloths, 25 fish, 26 herbs, 9 ores, and 5 leathers. Secondary catches, trophy/bloated fish, chests, potions, hides, gems, stones, Swiftthistle and Wildvine are excluded. Mageroyal and Raw Sagefish were verified and added. Rare standalone nodes/resources such as Black Lotus and Truesilver Ore remain as direct farming targets.
+Tabs appear in this order: **Cloth, Fish, Herbs, Ore, Skinning**. The five farming tabs have 71 directly farmed resources: 6 cloths, 25 fish, 26 herbs, 9 ores, and 5 leathers. Secondary catches, trophy/bloated fish, chests, potions, hides, gems, stones, Swiftthistle and Wildvine are excluded. Mageroyal and Raw Sagefish were verified and added. Rare standalone nodes/resources such as Black Lotus and Truesilver Ore remain as direct farming targets.
 
 Every item row shows its **latest observed lowest AH buyout** and **estimated hourly demand**. With collector observations available, rows use saved Blizzard commodity prices and turnover estimates; the graph combines AHledger price history with those saved demand intervals; otherwise rows use AHledger’s rolling daily estimate / 24. Each row has an independent toggle beside each metric. Toggle several items on or off at once; use Clear all to reset the graph. Every tab starts with nothing selected and a blank graph. Selections reset to blank when changing tabs, and items from different tabs cannot share a comparison.
 
@@ -29,7 +29,13 @@ Every item row shows its **latest observed lowest AH buyout** and **estimated ho
 
 **AHledger fallback hourly demand = estimated units sold per day ÷ 24.** Listing cancellations can resemble purchases. A source providing dated historical sales estimates is needed for a full live demand-history line. This is not solved by an AHledger history key: that key adds price-history access, not a historical sales series. The adapter contract supports future historical demand points without changing the interface. See [data provenance](docs/DATA-SOURCES.md).
 
-All prices are per item in gold, silver and copper. Catalog identities were checked against Forever on 2026-11-17. The catalog is curated, not every game item.
+All prices are per item in gold, silver and copper. Catalog identities were checked against Forever on 2026-11-17. The expanded tracking catalog has **241 items**: the original 71 resources plus 170 curated crafted goods/reagents. All 241 collect in the background; the added goods appear only through Search, not inside the five farming lists. See [the complete tracking list and provenance](docs/TRACKED-ITEMS.md).
+
+## Search and temporary comparisons
+
+The **Search** tab starts empty. Type at least two characters or an exact item ID, then choose an autocomplete suggestion. That item is added to your comparison list with price and demand enabled; add up to 20 items, toggle individual lines, remove rows, hide all lines, or clear the list. All added items share the existing 3-day hourly / 7-day daily / 30-day daily graph.
+
+Your list belongs to the current browser tab and survives switching between app tabs. It **clears on page reload** and is independent of other visitors, browsers and devices. No accounts, shared favorites or permanent list storage are introduced. The collector tracks the same curated allowlist regardless of what any visitor selects. New items accumulate demand history only from newly recorded baselines and comparable snapshots.
 
 ## Windows launch — PowerShell
 
