@@ -63,9 +63,9 @@ The existing independent price/demand switches remain on the same 3-day hourly, 
 
 ## Cadence, caching and failures
 
-Every hour the worker obtains an application token and conditionally revalidates the fixed commodity URL with ETag and/or If-Modified-Since. It uses normal request revalidation (`Cache-Control: no-cache`), never random cache-busting query strings. An HTTP 304 or unchanged/regressed Last-Modified is a no-op for history. HTTP errors do not become market observations; Retry-After cooldowns are preserved across restarts. No-store responses are rejected for persistence.
+Every 15 minutes the worker obtains an application token and conditionally revalidates the fixed commodity URL with ETag and/or If-Modified-Since. It uses normal request revalidation (`Cache-Control: no-cache`), never random cache-busting query strings. An HTTP 304 or unchanged/regressed Last-Modified is a no-op for history. HTTP errors do not become market observations; Retry-After cooldowns are preserved across restarts. No-store responses are rejected for persistence.
 
-The owner's response advertised `max-age=86400`. This describes cache freshness, not proof of a daily origin refresh schedule. Explicit conditional revalidation can discover a changed origin document without inventing fresh timestamps. **Hourly upstream changes remain unverified**. If Blizzard serves an unchanged snapshot all day, the app shows that fact and leaves turnover gaps; hourly polling does not guarantee hourly data.
+The owner's response advertised `max-age=86400`. This describes cache freshness, not proof of a daily origin refresh schedule. Explicit conditional revalidation can discover a changed origin document without inventing fresh timestamps. **Hourly upstream changes remain unverified**. If Blizzard serves an unchanged snapshot all day, the app shows that fact and leaves turnover gaps; 15-minute polling does not guarantee hourly data.
 
 Blizzard describes If-Modified-Since support here:
 https://us.forums.blizzard.com/en/blizzard/t/world-of-warcraft-api-update-visions-of-nzoth/3461
@@ -79,7 +79,7 @@ Only tracked item/listing IDs, remaining quantities, current lows, observation t
 Blizzard's API terms require a maximum 30-day TTL:
 https://www.blizzard.com/en-us/legal/a2989b50-5f16-43b1-abec-2ae17cc09dd6/blizzard-developer-api-terms-of-use
 
-Records (including the beginning of measured intervals) and expired raw baselines are pruned on writes, during hourly housekeeping even on HTTP failure, and immediately at worker startup. The web reader independently filters expired records. Old records are not renewed simply because the same snapshot was re-fetched. Keep backups/snapshots of this volume out of long-term archives or apply the same retention. An entirely powered-off server cannot perform housekeeping until it starts.
+Records (including the beginning of measured intervals) and expired raw baselines are pruned on writes, during 15-minute housekeeping even on HTTP failure, and immediately at worker startup. The web reader independently filters expired records. Old records are not renewed simply because the same snapshot was re-fetched. Keep backups/snapshots of this volume out of long-term archives or apply the same retention. An entirely powered-off server cannot perform housekeeping until it starts.
 
 The volume survives normal rebuilds/restarts. **Do not use `docker compose down -v` unless you intend to delete your collected history.** Do not copy the history file into Git. Local `market-data/` directories are ignored by Git and Docker builds.
 
@@ -105,9 +105,9 @@ The graph will warn when the last observation becomes stale. The dashboard's `/a
 
 ## Browser refresh behavior
 
-The page checks the local collector endpoint hourly rather than every minute. Historical price-cache renewal is separate and may run more frequently; it is a quiet background request, not a page refresh or another Blizzard scan. This does not change the independent hourly worker schedule. Manual refresh requests the latest saved file; it does not force a new Blizzard scan. Updates happen in the background without clearing the graph or switching to an empty/error view. A network error keeps still-permitted local data and displays an update warning. New tabs/ranges remain isolated; prior-tab content is never reused for another tab. The chart is memoized so the one-second manual-refresh countdown does not redraw it.
+The page checks the local collector endpoint every 15 minutes rather than every minute. Historical price-cache renewal is separate and may run more frequently; it is a quiet background request, not a page refresh or another Blizzard scan. This does not change the independent 15-minute worker schedule. Manual refresh requests the latest saved file; it does not force a new Blizzard scan. Updates happen in the background without clearing the graph or switching to an empty/error view. A network error keeps still-permitted local data and displays an update warning. New tabs/ranges remain isolated; prior-tab content is never reused for another tab. The chart is memoized so the one-second manual-refresh countdown does not redraw it.
 
-AHledger fallback refresh and expiration are isolated from local history. Each fallback history item cleans up/revalidates independently instead of resetting every selected item. Its allowed cache lifetime is respected; the fix does not extend AHledger retention. Locally saved samples have their own 30-day TTL, enforced in the browser even between hourly checks.
+AHledger fallback refresh and expiration are isolated from local history. Each fallback history item cleans up/revalidates independently instead of resetting every selected item. Its allowed cache lifetime is respected; the fix does not extend AHledger retention. Locally saved samples have their own 30-day TTL, enforced in the browser even between 15-minute checks.
 
 The UI now shows the next scheduled collector check, distinct saved snapshot count when no demand is available, and the number/starting date of real measured demand intervals. `warming`/“First snapshot saved” means a baseline exists but a demand interval is not yet available. The optional collector history volume is not deleted or reset by the historical-price restoration update.
 
@@ -115,4 +115,7 @@ The UI now shows the next scheduled collector check, distinct saved snapshot cou
 
 The collector now reads `resources.json` plus `crafting-watchlist.json`, for 241 verified identities. The individual catalog and source notes are in [TRACKED-ITEMS.md](TRACKED-ITEMS.md). Search lists are ephemeral per browser page and do not modify the global tracking allowlist. Every allowed ID collects even when nobody has it selected.
 
-The existing named history volume and original items are preserved on expansion. New IDs can establish a baseline from a full snapshot, including a repeated version, without altering existing demand estimates. A new item gets no historical rate until an adjacent comparable snapshot is observed. Future allowlist removals are applied to retained samples/baselines at worker startup. Standard 30-day retention remains in force; reader caps are now 250,000 metrics and 100 MiB to accommodate the expanded list.
+The existing named history volume and original items are preserved on expansion. New IDs can establish a baseline from a full snapshot, including a repeated version, without altering existing demand estimates. A new item gets no historical rate until an adjacent comparable snapshot is observed. Future allowlist removals are applied to retained samples/baselines at worker startup. Standard 30-day retention remains in force; reader caps are now 750,000 metrics and 200 MiB to accommodate the expanded list.
+
+### Fifteen-minute polling
+Both the worker and browser use the shared 15-minute interval in `src/data/collector-policy.json`. Upgrading shortens the previous normal hourly schedule; saved error cooldowns remain intact. Conditional revalidation, unchanged-snapshot deduplication, 15-minute–2-hour comparable intervals, and 30-day retention are unchanged. More frequent checks do not guarantee more frequent upstream snapshots. Reader limits allow 30 days of the current 241-item catalog even if every check yields a new snapshot.

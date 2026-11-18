@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import {MARKET,type CollectorData} from '../lib/types';
-import {HOUR,collectorDeadline,pruneCollector} from '../lib/refresh-policy';
+import {COLLECTOR_CHECK_INTERVAL,collectorDeadline,pruneCollector} from '../lib/refresh-policy';
 export function useCollector(category:string,demo:boolean,refresh:number,itemKey?:string){
  const requestKey=itemKey===undefined?`category=${category}`:`items=${itemKey}`;
  const context=`${category}:${demo}`;
@@ -15,10 +15,10 @@ export function useCollector(category:string,demo:boolean,refresh:number,itemKey
     const r=await fetch(`/api/collector?${requestKey}`,{cache:'no-store',signal:controller.signal});if(!r.ok)throw new Error();
     const body=await r.json();if(body.market!==MARKET||body.houseId!==114||!Array.isArray(body.samples))throw new Error();
     if(active)setState({context,data:pruneCollector(body),error:''});
-   }catch{if(active)setState(old=>({context,data:old.context===context&&old.data?pruneCollector(old.data):null,error:'Collector update unavailable; retrying on the next hourly check. Saved observations remain visible.'}));}
+   }catch{if(active)setState(old=>({context,data:old.context===context&&old.data?pruneCollector(old.data):null,error:'Collector update unavailable; retrying on the next 15-minute check. Saved observations remain visible.'}));}
    finally{busy=false;}
   }
-  void load();const timer=setInterval(()=>void load(),HOUR);
+  void load();const timer=setInterval(()=>void load(),COLLECTOR_CHECK_INTERVAL);
   return()=>{active=false;controller.abort();clearInterval(timer);};
  },[category,demo,refresh,context,requestKey,itemKey]);
  const data=state.context===context?state.data:null;

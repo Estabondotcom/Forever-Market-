@@ -1,5 +1,5 @@
 const ROOT='https://us.api.blizzard.com';
-/** Hourly conditional revalidation, without cache-busting query parameters. */
+/** Periodic conditional revalidation, without cache-busting query parameters. */
 export async function fetchSnapshot({clientId,clientSecret,baseline,etag,fetchImpl=fetch,now=Date.now()}){
   if(!clientId||!clientSecret)throw new Error('credentials-missing');
   const request=async(url,options)=>{

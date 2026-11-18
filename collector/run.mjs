@@ -1,3 +1,4 @@
+import {CHECK_INTERVAL,migrateSchedule} from './schedule.mjs';
 import {readFile} from 'node:fs/promises';
 import {trackedIds,synchronizeTracking} from './catalog.mjs';
 import {loadState,saveState} from './store.mjs';
@@ -7,7 +8,7 @@ const directory=process.env.BLIZZARD_DATA_DIR??'/app/market-data';
 const catalogs=await Promise.all(['resources.json','crafting-watchlist.json'].map(async name=>JSON.parse(await readFile(new URL(`../src/data/${name}`,import.meta.url),'utf8'))));
 const items=trackedIds(catalogs[0],catalogs[1]);
 let state;
-try{state=synchronizeTracking(await loadState(directory),items);}catch(error){console.error(error.message);process.exit(1);}
+try{state=migrateSchedule(synchronizeTracking(await loadState(directory),items));}catch(error){console.error(error.message);process.exit(1);}
 let stopped=false,wake;
 for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{stopped=true;wake?.();});
 const enabled=process.env.BLIZZARD_COLLECTOR_ENABLED==='true'&&process.env.BLIZZARD_HOUSE_ID==='114';
@@ -15,9 +16,9 @@ if(!enabled){console.error('Set BLIZZARD_COLLECTOR_ENABLED=true and BLIZZARD_HOU
 console.log(`Tracking ${items.length} curated IDs; comparison lists do not affect collection.`);
 console.log('Blizzard commodity collector: US Forever Normal Horde, community-mapped house 114. Estimated turnover, not confirmed sales.');
 while(!stopped){
-  let delay=3600000;
+  let delay=CHECK_INTERVAL;
   const nextDue=Date.parse(state.nextCheck??'');
-  if(Number.isFinite(nextDue)&&nextDue>Date.now())delay=Math.min(nextDue-Date.now(),3600000);
+  if(Number.isFinite(nextDue)&&nextDue>Date.now())delay=Math.min(nextDue-Date.now(),CHECK_INTERVAL);
   else{
     state.lastCheck=new Date().toISOString();
     try{
@@ -29,5 +30,5 @@ while(!stopped){
     state.nextCheck=new Date(Date.now()+delay).toISOString();
   }
   await saveState(directory,state);
-  await new Promise(resolve=>{const timer=setTimeout(resolve,Math.min(delay,3600000));wake=()=>{clearTimeout(timer);resolve();};});wake=undefined;
+  await new Promise(resolve=>{const timer=setTimeout(resolve,Math.min(delay,CHECK_INTERVAL));wake=()=>{clearTimeout(timer);resolve();};});wake=undefined;
 }

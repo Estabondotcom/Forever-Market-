@@ -1,5 +1,7 @@
+import collectorPolicy from '../data/collector-policy.json';
 import type {CollectorData,HistoryData} from './types';
 export const HOUR=3600000;
+export const COLLECTOR_CHECK_INTERVAL=collectorPolicy.checkIntervalMs;
 export const RETENTION=30*86400000;
 export const MIN_RETRY=60000;
 export function validHistories(histories:Record<number,HistoryData>,ids:number[],range:string,now=Date.now()){

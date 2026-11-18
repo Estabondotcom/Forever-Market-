@@ -1,7 +1,7 @@
 import {createElement} from 'react';
 import {act,create,type ReactTestRenderer} from 'react-test-renderer';
 import {afterEach,beforeEach,expect,it,vi} from 'vitest';
-import {HOUR} from '../src/lib/refresh-policy';
+import {HOUR,COLLECTOR_CHECK_INTERVAL} from '../src/lib/refresh-policy';
 import {MARKET,type HistoryData,type AuctionSnapshot} from '../src/lib/types';
 const chartRenders=vi.hoisted(()=>[] as {histories:Record<number,HistoryData>;snapshots?:AuctionSnapshot[]}[]);
 vi.mock('../src/components/ComparisonChart',async()=>{const {memo}=await import('react');return {default:memo((props:{histories:Record<number,HistoryData>})=>{chartRenders.push(props);return null;})};});
@@ -10,7 +10,7 @@ import Dashboard from '../src/components/Dashboard';
 const now=Date.parse('2026-11-17T22:00:00Z');let renderer:ReactTestRenderer|undefined;
 beforeEach(()=>{vi.useFakeTimers();vi.setSystemTime(now);chartRenders.length=0;vi.stubGlobal('window',{addEventListener:vi.fn(),removeEventListener:vi.fn()});const original=console.error;vi.spyOn(console,'error').mockImplementation((...args)=>{if(!String(args[0]).includes('react-test-renderer is deprecated'))original(...args);});});
 afterEach(async()=>{if(renderer)await act(async()=>renderer!.unmount());renderer=undefined;vi.useRealTimers();vi.unstubAllGlobals();vi.restoreAllMocks();});
-it('preserves provider price history and local demand while collector checks remain hourly',async()=>{
+it('preserves provider price history and local demand while collector checks run every 15 minutes',async()=>{
  const report={enabled:true,market:MARKET,houseId:114,status:'collecting',lastCheck:new Date(now).toISOString(),nextCheck:new Date(now+HOUR).toISOString(),lastObservation:new Date(now).toISOString(),stale:false,samples:[{itemId:2589,timestamp:new Date(now).toISOString(),minBuyout:100,quantity:20,estimatedTurnoverPerHour:10,intervalHours:1}]};
  const fetcher=vi.fn(async(url:string)=>{
   if(url.startsWith('/api/collector'))return Response.json(report);
@@ -27,11 +27,11 @@ it('preserves provider price history and local demand while collector checks rem
  expect(chartRenders.at(-1)?.histories[2589].series.some(p=>p.estimatedTurnoverPerHour===10)).toBe(true);
  await act(async()=>{await vi.advanceTimersByTimeAsync(5000);});
  expect(chartRenders).toHaveLength(renders);expect(fetcher).toHaveBeenCalledTimes(initialCalls);
- expect(JSON.stringify(renderer!.toJSON())).toContain('Demand updates: hourly');
+ expect(JSON.stringify(renderer!.toJSON())).toContain('Snapshot checks: every 15 minutes');
  await act(async()=>{await vi.advanceTimersByTimeAsync(5*60000-5000);});
  const settled=chartRenders.slice(renders);expect(settled.every(p=>p.histories[2589].series.some(s=>s.minBuyout===50)&&p.histories[2589].series.some(s=>s.estimatedTurnoverPerHour===10))).toBe(true);
  const before=fetcher.mock.calls.filter(([url])=>url.startsWith('/api/collector')).length;
- await act(async()=>{await vi.advanceTimersByTimeAsync(HOUR-5*60000);});
+ await act(async()=>{await vi.advanceTimersByTimeAsync(COLLECTOR_CHECK_INTERVAL-5*60000);});
  expect(fetcher.mock.calls.filter(([url])=>url.startsWith('/api/collector'))).toHaveLength(before+1);
  expect(fetcher.mock.calls.filter(([url])=>url.startsWith('/api/market'))).toHaveLength(1);
  expect(chartRenders.at(-1)?.histories[2589].series.some(p=>p.minBuyout===50)).toBe(true);
