@@ -25,3 +25,20 @@ describe('saved demand diagnostics',()=>{
  it('distinguishes a baseline from measured demand history',()=>{const baseline={...collector,samples:[{...collector.samples[0],estimatedTurnoverPerHour:null,intervalHours:null}]};expect(demandCoverage([item],baseline,now)).toEqual({snapshots:1,intervals:0,firstInterval:null});});
  it('counts measured zero as a real saved interval and does not count each fish as a separate snapshot',()=>{const zero={...collector,samples:[{...collector.samples[0],estimatedTurnoverPerHour:0},{...collector.samples[0],itemId:999,estimatedTurnoverPerHour:0}]};expect(demandCoverage([item],zero,now).intervals).toBe(1);});
 });
+
+import {itemDemandStatus} from '../src/lib/collector-comparison';
+describe('per-item demand readiness in mixed Search comparisons',()=>{
+ it('does not apply an existing resource demand status to a newly tracked potion',()=>{
+  expect(itemDemandStatus(2589,collector,now)).toBeNull();
+  expect(itemDemandStatus(13444,collector,now)).toContain('Not recorded yet');
+  const expanded={...collector,samples:[...collector.samples,{...collector.samples[0],itemId:13444,estimatedTurnoverPerHour:null,intervalHours:null}]};
+  expect(itemDemandStatus(13444,expanded,now)).toContain('Baseline saved');
+ });
+ it('recognizes measured zero, long gaps, errors and expired history separately',()=>{
+  expect(itemDemandStatus(2589,{...collector,samples:[{...collector.samples[0],estimatedTurnoverPerHour:0}]},now)).toBeNull();
+  expect(itemDemandStatus(2589,{...collector,samples:collector.samples.map(s=>({...s,estimatedTurnoverPerHour:null,intervalHours:null}))},now)).toContain('No comparable recent interval');
+  expect(itemDemandStatus(2589,{...collector,status:'history-unavailable'},now)).toBe('Saved history unavailable');
+  expect(itemDemandStatus(2589,collector,now+31*86400000)).toContain('Not recorded yet');
+  expect(itemDemandStatus(2589,null,now)).toBeNull();
+ });
+});

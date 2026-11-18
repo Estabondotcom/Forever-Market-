@@ -33,3 +33,15 @@ export function demandCoverage(items:CatalogItem[],collector:CollectorData|null,
  }
  return {snapshots:snapshots.size,intervals:intervals.size,firstInterval:[...intervals].sort()[0]??null};
 }
+
+/** Explain demand readiness per item; a tab-wide collecting status can hide new-item baselines. */
+export function itemDemandStatus(itemId:number,collector:CollectorData|null,now=Date.now()):string|null{
+ if(!collector?.enabled)return null;
+ if(collector.status==='history-unavailable')return 'Saved history unavailable';
+ const samples=collector.samples.filter(s=>s.itemId===itemId&&Date.parse(s.timestamp)<=now&&Date.parse(s.timestamp)-(s.intervalHours??0)*3600000>now-30*86400000).sort((a,b)=>Date.parse(a.timestamp)-Date.parse(b.timestamp));
+ if(!samples.length)return 'Not recorded yet — check collector catalog/update';
+ const latest=samples.at(-1)!;
+ if(latest.estimatedTurnoverPerHour!==null)return null;
+ if(samples.length===1)return 'Baseline saved — waiting for a second distinct snapshot';
+ return 'No comparable recent interval — waiting for two snapshots 15 min–2 hr apart';
+}
