@@ -4,15 +4,15 @@ import { allItems,catalogFor,type MarketCategory } from './catalog';
 import { MARKET,type MarketData } from './types';
 import { ResponseCache,ProviderError } from './cache';
 import { parseHistory,parsePriceTable,parseTooltip } from './parsers';
-export interface AuctionAdapter { market(category?:MarketCategory):Promise<MarketData>; marketItems(ids:number[]):Promise<MarketData>; history(itemId:number,range:'24h'|'7d'|'30d',revalidate?:boolean):Promise<unknown> }
+export interface AuctionAdapter { market(category?:MarketCategory,revalidate?:boolean):Promise<MarketData>; marketItems(ids:number[],revalidate?:boolean):Promise<MarketData>; history(itemId:number,range:'24h'|'7d'|'30d',revalidate?:boolean):Promise<unknown> }
 // Proxy-aware transport also works on Windows without proxy variables.
 const dispatcher=new EnvHttpProxyAgent();
 const cache=new ResponseCache(async(url,init)=>await proxyFetch(url,{...init,dispatcher} as Parameters<typeof proxyFetch>[1]) as unknown as Response);
 const base='https://api.ahledger.com';
 async function get(path:string,revalidate=false){return cache.get(base+path,process.env.AHLEDGER_API_KEY,revalidate);}
-async function currentItems(items:typeof allItems):Promise<MarketData>{const [tooltip,table]=await Promise.all([get(`/v1/tooltip/${MARKET}?items=${items.map(f=>f.id).join(',')}`),get(`/v1/pricetable/${MARKET}`)]);const snapshots=parseTooltip(JSON.parse(tooltip.body),parsePriceTable(table.body));return {historyRanges:process.env.AHLEDGER_API_KEY||Date.now()<Date.parse('2026-12-10T00:00:00Z')?['24h','7d','30d']:['24h','7d'],market:MARKET,snapshots,fetchedAt:new Date().toISOString(),expiresAt:new Date(Math.min(tooltip.expires,table.expires)).toISOString(),stale:snapshots.some(s=>s.observedAt!==null&&Date.now()-Date.parse(s.observedAt)>7200000)};}
+async function currentItems(items:typeof allItems,revalidate=false):Promise<MarketData>{const [tooltip,table]=await Promise.all([get(`/v1/tooltip/${MARKET}?items=${items.map(f=>f.id).join(',')}`,revalidate),get(`/v1/pricetable/${MARKET}`,revalidate)]);const snapshots=parseTooltip(JSON.parse(tooltip.body),parsePriceTable(table.body));return {historyRanges:process.env.AHLEDGER_API_KEY||Date.now()<Date.parse('2026-12-10T00:00:00Z')?['24h','7d','30d']:['24h','7d'],market:MARKET,snapshots,fetchedAt:new Date().toISOString(),expiresAt:new Date(Math.min(tooltip.expires,table.expires)).toISOString(),stale:snapshots.some(s=>s.observedAt!==null&&Date.now()-Date.parse(s.observedAt)>7200000)};}
 export const auction:AuctionAdapter={
- async market(category='cloth'){return currentItems(catalogFor(category));},
- async marketItems(ids){if(!ids.length||ids.length>20||new Set(ids).size!==ids.length||ids.some(id=>!allItems.some(item=>item.id===id)))throw new ProviderError('Invalid tracked item selection',400);return currentItems(ids.map(id=>allItems.find(item=>item.id===id)!));},
+ async market(category='cloth',revalidate=false){return currentItems(catalogFor(category),revalidate);},
+ async marketItems(ids,revalidate=false){if(!ids.length||ids.length>20||new Set(ids).size!==ids.length||ids.some(id=>!allItems.some(item=>item.id===id)))throw new ProviderError('Invalid tracked item selection',400);return currentItems(ids.map(id=>allItems.find(item=>item.id===id)!),revalidate);},
  async history(itemId,range,revalidate=false){if(!allItems.some(f=>f.id===itemId))throw new ProviderError('Unknown catalog item ID',400);if(range==='30d'&&!process.env.AHLEDGER_API_KEY&&Date.now()>=Date.parse('2026-12-10T00:00:00Z'))throw new ProviderError('30-day history requires a free AHledger API key',403);const data=await get(`/v1/prices/${MARKET}/${itemId}?range=${range}`,revalidate);return {...parseHistory(JSON.parse(data.body),itemId,range),expiresAt:new Date(data.expires).toISOString()};}
 };

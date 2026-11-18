@@ -2,7 +2,7 @@
 import {useEffect,useMemo,useState} from 'react';
 import type {HistoryData} from '../lib/types';
 import {demoHistory} from '../lib/demo';
-import {HOUR,MIN_RETRY,historyDeadline,validHistories} from '../lib/refresh-policy';
+import {HOUR,MIN_RETRY,historyDeadline,validHistories,renewalDelay} from '../lib/refresh-policy';
 export function useHistories(ids:number[],range:string,enabled:boolean,demo:boolean,refresh:number){
  const key=ids.slice().sort((a,b)=>a-b).join(','),context=`${range}:${demo}:${enabled}`;
  const [state,setState]=useState<{context:string;histories:Record<number,HistoryData>;errors:Record<number,string>;loading:boolean}>({context,histories:{},errors:{},loading:false});
@@ -22,7 +22,7 @@ export function useHistories(ids:number[],range:string,enabled:boolean,demo:bool
     const lifetime=Date.parse(body.expiresAt)-Date.now();if(!Number.isFinite(lifetime)||lifetime<=0)throw new Error('Provider history expired; retrying later');
     setState(old=>{const errors={...old.errors};delete errors[id];return {...old,histories:{...old.histories,[id]:body},errors};});
     // A separate request for this item only; never re-run the whole selection effect.
-    later(id,lifetime>15000?lifetime-Math.min(5000,lifetime/4):lifetime+250);
+    later(id,renewalDelay(lifetime));
    }catch(error){if(active){later(id,retryDelay,true);setState(old=>({...old,errors:{...old.errors,[id]:error instanceof Error?error.message:'History unavailable'}}));}}
    finally{inflight--;if(active&&inflight===0)setState(old=>({...old,loading:false}));}
   }

@@ -79,3 +79,9 @@ it('renews provider history before expiry without clearing its existing line',as
  await act(async()=>{renderer=create(createElement(Probe));});seen.length=0;
  await act(async()=>{await vi.advanceTimersByTimeAsync(65000);});expect(fetcher).toHaveBeenCalledTimes(2);expect(seen.every(Boolean)).toBe(true);expect(latest.errors).toEqual({});
 });
+
+it('does not enter a rapid refresh loop when history permission lasts only a second',async()=>{
+ const fetcher=vi.fn(async()=>Response.json({itemId:1,range:'7d',expiresAt:new Date(Date.now()+1000).toISOString(),latest:null,sales:null,series:[]}));vi.stubGlobal('fetch',fetcher);
+ function Probe(){useHistories([1],'7d',true,false,0);return null;}
+ await act(async()=>{renderer=create(createElement(Probe));});await act(async()=>{await vi.advanceTimersByTimeAsync(30000);});expect(fetcher).toHaveBeenCalledTimes(1);
+});

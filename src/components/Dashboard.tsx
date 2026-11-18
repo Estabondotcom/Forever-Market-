@@ -13,7 +13,7 @@ import {useHistories} from '@/hooks/useHistories';
 import ComparisonChart from './ComparisonChart';
 import SearchPicker from './SearchPicker';
 import {addSearchItem} from '@/lib/search';
-import {HOUR} from '@/lib/refresh-policy';
+import {renewalDelay,MIN_RETRY} from '@/lib/refresh-policy';
 import {dailyTimeline,type TimelinePeriod} from '@/lib/timeline';
 const EMPTY_SNAPSHOTS:MarketData['snapshots']=[];
 const icons={cloth:Shirt,fish:Fish,herbs:Leaf,ore:Package,skinning:Layers};
@@ -57,18 +57,24 @@ function ResourceMarket({category,demo,searchItems,searchSelection,setSearchSele
   useEffect(()=>{
     if(!items.length){setData(null);setLoading(false);setError('');return;}
     if(localPrimary){setData(null);setLoading(false);setError('');return;}
-    const controller=new AbortController();let active=true;let expiration:ReturnType<typeof setTimeout>;
-    setLoading(true);setError('');
-    if(demo){setData(demoMarket(items));setLoading(false);return;}
+    const controller=new AbortController();let active=true;let renewal:ReturnType<typeof setTimeout>,retryDelay=MIN_RETRY;
+    setLoading(true);
+    if(demo){setData(demoMarket(items));setError('');setLoading(false);return;}
     (async()=>{try{
-      const response=await fetch(`/api/market?${marketQuery}`,{cache:'no-store',signal:controller.signal});const body=await response.json();if(!active)return;
-      const delay=Number(response.headers.get('Retry-After')??60);setRetryAt(Date.now()+(Number.isFinite(delay)?delay:60)*1000);
+      const response=await fetch(`/api/market?${marketQuery}&revalidate=1`,{cache:'no-store',signal:controller.signal});const body=await response.json();if(!active)return;
+      const delay=Number(response.headers.get('Retry-After')??60);retryDelay=Math.max(MIN_RETRY,(Number.isFinite(delay)?delay:60)*1000);setRetryAt(Date.now()+retryDelay);
       if(!response.ok)throw new Error(body.error??'Market unavailable');
-      const lifetime=Date.parse(body.expiresAt)-Date.now();if(lifetime<=0)throw new Error('Provider cache expired. Refresh for new data.');
-      setData(body);expiration=setTimeout(()=>{setData(null);setMarketRefresh(v=>v+1);},lifetime+1);
-    }catch(e){if(active){setError(e instanceof Error?e.message:'Market unavailable');setRetryAt(old=>Math.max(old,Date.now()+60000));setData(old=>old&&Date.parse(old.expiresAt)>Date.now()?old:null);}}
-    finally{if(active)setLoading(false);}})();return()=>{active=false;controller.abort();clearTimeout(expiration);};
+      const lifetime=Date.parse(body.expiresAt)-Date.now();if(!Number.isFinite(lifetime)||lifetime<=0)throw new Error('Provider cache expired or invalid. Refresh for new data.');
+      setData(body);setError('');renewal=setTimeout(()=>setMarketRefresh(v=>v+1),renewalDelay(lifetime));
+    }catch(e){if(active){setError(e instanceof Error?e.message:'Market unavailable');setRetryAt(old=>Math.max(old,Date.now()+60000));setData(old=>old&&Date.parse(old.expiresAt)>Date.now()?old:null);renewal=setTimeout(()=>setMarketRefresh(v=>v+1),retryDelay);}}
+    finally{if(active)setLoading(false);}})();return()=>{active=false;controller.abort();clearTimeout(renewal);};
   },[category,items,demo,refresh,marketRefresh,localPrimary,marketQuery]);
+  // Market expiration is independent from renewal: never clear a still-permitted snapshot.
+  useEffect(()=>{
+    if(!providerData||demo)return;const deadline=Date.parse(providerData.expiresAt);
+    const timer=setTimeout(()=>setData(current=>current&&Date.parse(current.expiresAt)<=Date.now()?null:current),Math.max(1,deadline-Date.now()));
+    return()=>clearTimeout(timer);
+  },[providerData,demo]);
   const selectedIds=items.filter(i=>selection[i.id]?.price||selection[i.id]?.demand).map(i=>i.id);
   const {histories:providerHistories,errors:historyErrors,loading:historyLoading}=useHistories(selectedIds,range==='3d'?'7d':range,true,demo,refresh);
   const histories=useMemo(()=>collectedHistories(items,providerHistories,collector,range==='3d'?'7d':range,Date.now()),[items,providerHistories,collector,range,localPrimary]);

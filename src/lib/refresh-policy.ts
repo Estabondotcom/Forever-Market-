@@ -16,3 +16,6 @@ export function pruneCollector(data:CollectorData,now=Date.now()):CollectorData{
  return {...data,samples,lastObservation,stale};
 }
 export function collectorDeadline(data:CollectorData){return Math.min(...data.samples.map(s=>Date.parse(s.timestamp)-(s.intervalHours??0)*HOUR+RETENTION),data.lastObservation?Date.parse(data.lastObservation)+RETENTION:Infinity);}
+
+/** Leave room for the provider timeout; very short-lived responses get no fast retry loop. */
+export function renewalDelay(lifetime:number){if(!Number.isFinite(lifetime)||lifetime<=15000)return MIN_RETRY;return lifetime>60000?lifetime-30000:lifetime-Math.min(5000,lifetime/4);}

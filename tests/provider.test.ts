@@ -25,3 +25,9 @@ describe('quiet history revalidation before expiry',()=>{
   const cache=new ResponseCache(fetcher,()=>clock);await cache.get('url');clock=50000;expect((await cache.get('url',undefined,true)).expires).toBe(60000);
  });
 });
+
+it('serves still-permitted history during a rate-limit cooldown without extending its expiry',async()=>{
+ let clock=0;const fetcher=vi.fn().mockResolvedValueOnce(new Response('history',{headers:{'cache-control':'max-age=60,s-maxage=300'}})).mockResolvedValueOnce(new Response('limited',{status:429,headers:{'retry-after':'120'}}));
+ const cache=new ResponseCache(fetcher,()=>clock);await cache.get('history');clock=270000;await expect(cache.get('other')).rejects.toMatchObject({status:429});
+ expect((await cache.get('history',undefined,true)).expires).toBe(300000);clock=301000;await expect(cache.get('history',undefined,true)).rejects.toMatchObject({status:429});expect(fetcher).toHaveBeenCalledTimes(2);
+});
