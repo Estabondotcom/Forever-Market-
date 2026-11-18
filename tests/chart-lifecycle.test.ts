@@ -2,11 +2,11 @@ import {createElement} from 'react';
 import {act,create,type ReactTestRenderer} from 'react-test-renderer';
 import {afterEach,beforeEach,it,expect,vi} from 'vitest';
 import type {HistoryData} from '../src/lib/types';
-const plot=vi.hoisted(()=>({renders:0,mounts:0,unmounts:0}));
+const plot=vi.hoisted(()=>({renders:0,mounts:0,unmounts:0,axes:[] as Record<string,unknown>[],rows:[] as Record<string,unknown>[]}));
 vi.mock('recharts',async()=>{
  const {createElement,useEffect}=await import('react');
  function Surface({children}:{children:unknown}){plot.renders++;useEffect(()=>{plot.mounts++;return()=>{plot.unmounts++;};},[]);return createElement('div',{'data-plot-surface':true},children as never);}
- return {ResponsiveContainer:Surface,LineChart:({children}:{children:unknown})=>createElement('div',{},children as never),Line:()=>null,XAxis:()=>null,YAxis:()=>null,CartesianGrid:()=>null,Tooltip:()=>null};
+ return {ResponsiveContainer:Surface,LineChart:({children,data}:{children:unknown;data:Record<string,unknown>[]})=>{plot.rows=data;return createElement('div',{},children as never);},Line:()=>null,XAxis:()=>null,YAxis:(props:Record<string,unknown>)=>{plot.axes.push(props);return null;},CartesianGrid:()=>null,Tooltip:()=>null};
 });
 import ComparisonChart from '../src/components/ComparisonChart';
 (globalThis as typeof globalThis&{IS_REACT_ACT_ENVIRONMENT:boolean}).IS_REACT_ACT_ENVIRONMENT=true;
@@ -32,4 +32,16 @@ it('does update when actual plotted prices change without remounting',async()=>{
  await act(async()=>{renderer=create(chart({2589:history}));});const renders=plot.renders;
  await act(async()=>renderer!.update(chart({2589:{...history,series:[{...history.series[0],minBuyout:250}]}})));
  expect(plot.renders).toBeGreaterThan(renders);expect(plot.mounts).toBe(1);
+});
+
+it('can separate small prices without changing copper values, zeros or missing demand',async()=>{
+ const expensive={...item,id:13468,name:'Black Lotus'},cheap={...history,series:[{...history.series[0],minBuyout:101}]};
+ await act(async()=>{renderer=create(createElement(ComparisonChart,{items:[item,expensive],selection:{2589:{price:true,demand:true},13468:{price:true,demand:false}},snapshots:[],histories:{2589:cheap,13468:{...history,itemId:13468,series:[{...history.series[0],minBuyout:120000}]}},period:'7d'}));});
+ const before=JSON.stringify(plot.rows);expect(plot.rows.at(-1)?.price_2589).toBe(101);expect(plot.rows.at(-1)?.demand_2589).toBeNull();
+ const button=renderer!.root.findAllByType('button').find(b=>b.props['aria-pressed']===false)!;
+ await act(async()=>button.props.onClick());
+ expect(JSON.stringify(plot.rows)).toBe(before);expect(plot.axes.slice(-2).every(axis=>axis.scale==='sqrt')).toBe(true);
+ expect(plot.mounts).toBe(1);expect(plot.unmounts).toBe(0);
+ await act(async()=>renderer!.root.findAllByType('button').find(b=>b.props['aria-pressed']===true)!.props.onClick());
+ expect(plot.axes.slice(-2).every(axis=>axis.scale==='linear')).toBe(true);expect(JSON.stringify(plot.rows)).toBe(before);
 });
